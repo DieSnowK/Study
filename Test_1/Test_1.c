@@ -252,3 +252,68 @@ int main()
 //	}
 //	return 0;
 //}
+
+////演示多个字符从两端移动，向中间汇聚
+//#include <string.h>
+//#include <windows.h>
+//int main()
+//{
+//	char text[] = "Welcome to dick big!!!";
+//	char exam[] = "                      ";
+//	int left = 0;
+//	int right = strlen(exam) - 1;
+//
+//	while (left <= right)
+//	{
+//		exam[left] = text[left];
+//		exam[right] = text[right];
+//		printf("%s\n", exam);
+//		Sleep(200);//睡眠1s，即让程序1s后继续
+//		system("cls");//清空屏幕
+//		left++;
+//		right--;
+//	}
+//	printf("%s\n", exam);
+//
+//	return 0;
+//}
+
+//编写代码实现，模拟用户登陆情景，并且只能登录三次
+//#include <string.h>
+//int main()
+//{
+//	//假定密码为123456
+//
+//	int i = 0;//登录次数 用于限制次数
+//	char password[20] = { 0 };//限制密码长度最大为20
+//	for (i = 0; i < 3; i++)
+//	{
+//		printf("请输入登录密码:>");
+//		scanf("%s", password);
+//		//if(password == "123456") --err 两个字符串比较，不能用==，应该使用strcap（string compare）
+//		if (strcmp(password, "123456") == 0)
+//		{
+//			printf("密码正确，登入成功");
+//			break;
+//		}
+//		else
+//		{
+//			printf("密码错误，请重试");
+//		}
+//	}
+//
+//	return 0;
+//}
+
+//写一个猜数游戏
+/*思路：1.自动生成1-100之间的随机数
+		2.猜数字
+			(1)猜对了，恭喜你，游戏结束
+			(2)猜错了，会告诉大了还是小了，继续猜
+		3.游戏一直进行，除非退出游戏*/
+
+int main()
+{
+	
+	return 0;
+}
