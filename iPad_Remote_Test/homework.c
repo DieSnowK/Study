@@ -105,14 +105,16 @@ int main()
 {
     printf("Hello World");
 	int i = 0;
+	int flag = 0;
 	for(i=0;i<20;i++)
 	{
 		printf("%d¹þ¹þ\n", i);
-		i = 1;
+		flag = 1;
 	}
-	if(i==1)
+
+	if (flag == 1)
 	{
-		printf("Over");
+		printf("Ov666er");
 	}
 	return 0;
 }
