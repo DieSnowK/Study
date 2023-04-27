@@ -43,66 +43,76 @@
 //	return 0;
 //}
 //
-//小孩看星星
-int main()
-{
-	int n = 0;
-	int i = 0;
-	int j = 0;
-	int arr[10][2] = { 0 };
+// //小孩看星星
+// int main()
+// {
+// 	int n = 0;
+// 	int i = 0;
+// 	int j = 0;
+// 	int arr[10][2] = { 0 };
 
-	scanf("%d", &n);
+// 	scanf("%d", &n);
 	
-	//获取坐标
-	for (i = 0; i < n; i++)
-	{
-		for (j = 0; j < 2; j++)
-		{
-			scanf("%d", &arr[i][j]);
-		}
-	}
+// 	//获取坐标
+// 	for (i = 0; i < n; i++)
+// 	{
+// 		for (j = 0; j < 2; j++)
+// 		{
+// 			scanf("%d", &arr[i][j]);
+// 		}
+// 	}
 
-	//寻找极值
-	int max_x = arr[0][0];
-	int max_y = arr[0][1];
-	int min_x = arr[0][1];
-	int min_y = arr[0][0];
+// 	//寻找极值
+// 	int max_x = arr[0][0];
+// 	int max_y = arr[0][1];
+// 	int min_x = arr[0][1];
+// 	int min_y = arr[0][0];
 
-	for (i = 0; i < n; i++)
-	{
+// 	for (i = 0; i < n; i++)
+// 	{
 		
-		if (max_x < arr[i][0])
-		{
-			max_x = arr[i][0];
-		}
+// 		if (max_x < arr[i][0])
+// 		{
+// 			max_x = arr[i][0];
+// 		}
 
-		if (max_y < arr[i][1])
-		{
-			max_y = arr[i][1];
-		}
+// 		if (max_y < arr[i][1])
+// 		{
+// 			max_y = arr[i][1];
+// 		}
 
-		if (min_x > arr[i][0])
-		{
-			min_x = arr[i][0];
-		}
+// 		if (min_x > arr[i][0])
+// 		{
+// 			min_x = arr[i][0];
+// 		}
 
-		if (min_y > arr[i][1])
-		{
-			min_y = arr[i][1];
-		}
-	}
+// 		if (min_y > arr[i][1])
+// 		{
+// 			min_y = arr[i][1];
+// 		}
+// 	}
 
-	int x = max_x - min_x;
-	int y = max_y - min_y;
-	int s = x > y ? x : y;
+// 	int x = max_x - min_x;
+// 	int y = max_y - min_y;
+// 	int s = x > y ? x : y;
 
-	printf("%d", s * s);
+// 	printf("%d", s * s);
 
-	return 0;
-}
+// 	return 0;
+// }
 
 int main()
 {
     printf("Hello World");
-    return 0;
+	int i = 0;
+	for(i=0;i<20;i++)
+	{
+		printf("%d哈哈\n", i);
+		i = 1;
+	}
+	if(i==1)
+	{
+		printf("Over");
+	}
+	return 0;
 }
