@@ -114,7 +114,7 @@ int main()
 
 	if (flag == 1)
 	{
-		printf("Ov666er");
+		printf("Ov66er");
 	}
 	return 0;
 }

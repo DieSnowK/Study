@@ -1773,3 +1773,437 @@ int main()
 //	return 0;
 //}
 
+//绘制菱形
+//int main()
+//{
+//	int n = 0;
+//	int i = 0;
+//	int j = 0;
+//	scanf("%d", &n);
+//	int line = n / 2 + 1; //上半部分
+//	//绘制上半部分
+//	for (i = 0; i < line; i++)
+//	{
+//		for (j = 0; j < line - 1 - i; j++)
+//		{
+//			printf(" ");
+//		}
+//
+//		for (j = 0; j < 2 * i + 1; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	//绘制下半部分
+//	for (i = 0; i < line - 1; i++)
+//	{
+//		for (j = 0; j <= i; j++)
+//		{
+//			printf(" ");
+//		}
+//
+//		for (j = 0; j < 2 * (line - i - 1) - 1; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+//喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以多少汽水（编程实现）
+//int main()
+//{
+//	int money = 0;
+//	int total = money;
+//	int empty = money;
+//	scanf("%d", &money);
+//	
+//	//开始置换瓶子
+//	while (empty >= 2)
+//	{
+//		total += empty / 2;
+//		empty = empty / 2 + empty % 2;
+//	}
+//	printf("%d", total);
+//
+//	return 0;
+//}
+
+//输入一个整数数组，实现一个函数，
+//来调整该数组中数字的顺序使得数组中所有的奇数位于数组的前半部分，
+//所有偶数位于数组的后半部分
+//void print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//void move(int arr[], int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left < right)
+//	{
+//		//从左往右找一个偶数
+//		while (left < right && (arr[left] % 2 == 1))
+//		{
+//			left++;
+//		}
+//		//从右往左找一个奇数
+//		while (left < right && (arr[right] % 2 == 0))
+//		{
+//			right--;
+//		}
+//
+//		if (left < right)
+//		{
+//			int tmp = arr[left];
+//			arr[left] = arr[right];
+//			arr[right] = tmp;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	move(arr, sz);
+//	print(arr, sz);
+//	return 0;
+//}
+
+//打印杨辉三角
+//1
+//1 1
+//1 2 1
+//1 3 3 1
+//1 4 6 4 1
+//1 5 10 10 5 1
+
+//int main()
+//{
+//	int arr[10][10] = { 0 };
+//	int i = 0;
+//	int j = 0;
+//
+//	for (i = 0; i < 10; i++)
+//	{
+//		for (j = 0; j <= i; j++)
+//		{
+//			if (j == 0)
+//			{
+//				arr[i][j] = 1;
+//			}
+//
+//			if (i == j)
+//			{
+//				arr[i][j] = 1;
+//			}
+//
+//			//开始计算部分
+//			if (i >= 2 && j >= 1)
+//			{
+//				arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+//			}
+//		}
+//	}
+//
+//	for (i = 0; i < 10; i++)
+//	{
+//		for (j = 0; j <= i; j++)
+//		{
+//			printf("%d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+//找凶手
+//A说：不是我
+//B说：是C
+//C说：是D
+//D说：C在胡说
+//已知三个人说了真话，一个人说的是假话
+//写一个程序来确定谁到底是凶手
+
+//int main()
+//{
+//	char killer = 0;
+//	//从每个人都是凶手的角度，去遍历一遍，挨个判断他们的话
+//	for (killer = 'A'; killer <= 'D'; killer++)
+//	{
+//		if ((killer != 'A') + (killer == 'C') + (killer == 'D') + (killer != 'D') == 3)
+//		{
+//			printf("%c", killer);
+//		}
+//	}
+//	return 0;
+//}
+
+//五位运动员跳水比赛，有人让他们预测比赛结果
+//A说：B第二，我第三；
+//B说：我第二，E第四
+//C说：我第一，D第二；
+//D说：C最后，我第三
+//E说：我第四，A第一
+//比赛结束后，每位选手都说对了一半，请编程确定比赛的名次
+
+//int main()
+//{
+//	//枚举出五个人  ——  五个循环套出五个人的名次
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	int d = 0;
+//	int e = 0;
+//
+//	for (a = 1; a <= 5; a++)
+//	{
+//		for (b = 1; b <= 5; b++)
+//		{
+//			for (c = 1; c <= 5; c++)
+//			{
+//				for (d = 1; d <= 5; d++)
+//				{
+//					for (e = 1; e <= 5; e++)
+//					{
+//						if ((b == 2) + (a == 3) == 1      //每个人中半真半假  那么也就是判断值求和为1
+//							&& (b == 2) + (e == 4) == 1
+//							&& (c == 1) + (d == 2) == 1
+//							&& (c == 5) + (d == 3) == 1
+//							&& (e == 4) + (a == 1) == 1
+//							)
+//						{
+//							if (a * b * c * d * e == 120)  //用于限定不重复的情况
+//							{
+//								printf("a=%d b=%d c=%d d=%d e=%d", a, b, c, d, e);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+//模拟计算器calc  并且逐渐进行迭代 升级 优化  (能力范围内)
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//
+//void menu()
+//{
+//	printf("***************************\n");
+//	printf("**** 1. add     2. sub ****\n");
+//	printf("**** 3. mul     2. div ****\n");
+//	printf("****      0.exit       ****\n");
+//	printf("***************************\n");
+//
+//}
+
+//版本①
+//如果要计算a&b a|b a>>b a<<b a^b呢？
+//int main()
+//{
+//	int input = 0;
+//
+//	do {
+//		menu();
+//
+//		int x = 0;
+//		int y = 0;
+//		int ret = 0;
+//
+//		scanf("%d", &input);
+//
+//		switch (input)
+//		{
+//		case 1:
+//			printf("请输入两个操作数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = Add(x, y);
+//			printf("ret = %d\n", ret);
+//			break;
+//
+//		case 2:
+//			printf("请输入两个操作数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = Sub(x, y);
+//			printf("ret = %d\n", ret);
+//			break;
+//
+//		case 3:
+//			printf("请输入两个操作数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = Mul(x, y);
+//			printf("ret = %d\n", ret);
+//			break;
+//
+//		case 4:
+//			printf("请输入两个操作数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = Div(x, y);
+//			printf("ret = %d\n", ret);
+//			break;
+//
+//		case 0:
+//			printf("退出程序\n");
+//			break;
+//
+//		default:
+//			printf("输入错误，重新输入\n");
+//			break;
+//		}
+//
+//	} while (input);
+//	return 0;
+//}
+
+////版本②  用函数指针数组来调用函数
+////函数指针数组的用途：转移表
+//int main()
+//{
+//	int input = 0;
+//
+//	do {
+//		menu();
+//		int(*pfarr[5])(int,int) = { NULL,Add,Sub,Mul,Div };  //函数指针数组
+//		int x = 0;
+//		int y = 0;
+//		int ret = 0;
+//
+//		scanf("%d", &input);
+//
+//		if (input >= 1 && input <= 4)
+//		{
+//			//实际调用计算模块
+//			printf("请输入两个操作数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = pfarr[input](x, y);  //通过函数指针数组来调用函数
+//			printf("ret = %d\n", ret);
+//		}
+//		else if (input == 0)
+//		{
+//			printf("退出程序\n");
+//			break;
+//		}
+//		else
+//		{
+//			printf("选择错误，重新选择\n");
+//		}
+//
+//	} while (input);
+//
+//	return 0;
+//}
+
+////版本③  回调函数
+//int Calc(int(*pf)(int, int))
+//{
+//	int x = 0;
+//	int y = 0;
+//	printf("请输入两个操作数:>");
+//	scanf("%d %d", &x, &y);
+//	return pf(x, y);
+//}
+//int main()
+//{
+//	int input = 0;
+//
+//	do {
+//		menu();
+//
+//		int ret = 0;
+//		printf("请选择:>");
+//		scanf("%d", &input);
+//
+//		switch (input)
+//		{
+//		case 1:
+//			printf("%d\n", Calc(Add));
+//			break;
+//		case 2:
+//			printf("%d\n", Calc(Sub));
+//			break;
+//		case 3:
+//			printf("%d\n", Calc(Mul));
+//			break;
+//		case 4:
+//			printf("%d\n", Calc(Div));
+//			break;
+//		case 0:
+//			printf("退出程序\n");
+//			break;
+//		default:
+//			printf("输入错误，重新选择\n");
+//			break;
+//		}
+//
+//	} while (input);
+//
+//	return 0;
+//}
+
+//研究库函数qsort();
+void qsort(
+	void* base,
+	size_t num,
+	size_t width,
+	int(__cdecl* compare)(const void*, const void*)
+);
+
+int main()
+{
+
+	return 0;
+}
+
+//仿照以上qsort(); 自己写一个适用性宽泛的冒泡排序
+//int main()
+//{
+//
+//	return 0;
+//}
+
+//杨氏矩阵
+//题目内容：
+//有一个数字矩阵，矩阵的每行从左到右是递增的，矩阵从上到下是递增的
+//请编写程序在这样的矩阵中查找某个数字是否存在。
+//要求：时间复杂度小于O(N);
+//如
+//1 2 3 
+//4 5 6
+//7 8 9
+
+//int main()
+//{
+//
+//	return 0;
+//}
