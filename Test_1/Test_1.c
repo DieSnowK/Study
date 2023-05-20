@@ -2171,24 +2171,146 @@ int main()
 //	return 0;
 //}
 
-//研究库函数qsort();
-void qsort(
-	void* base,
-	size_t num,
-	size_t width,
-	int(__cdecl* compare)(const void*, const void*)
-);
-
-int main()
-{
-
-	return 0;
-}
-
-//仿照以上qsort(); 自己写一个适用性宽泛的冒泡排序
+////研究库函数qsort();
+////void qsort(
+////	void* base,  //目标数组的开头
+////	size_t num,	 //排序数据元素的个数
+////	size_t width, //排序数据中一个元素的大小，单位是字节
+////	int(__cdecl* compare)(const void*e1, const void*e2) //是用来比较待排序数据中的两个元素的函数，返回值是int类型 
+////													//>0则e1>e2
+////);
+//
+//#include <stdlib.h>
+//#include <string.h>
+//void print_arr(int arr[], int sz)
+//{
+//	int i = 0;
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//int cmp_int(const void* e1, const void* e2)
+//{
+//	//>0 则e1>e2  <0 则e1<e2  增序
+//	return *(int*)e1 - *(int*)e2;
+//	
+//	//降序
+//	//return *(int*)e2 - *(int*)e1;
+//}
+//
+//void test1()
+//{
+//	//整形数据的排序
+//	int  arr[] = { 1,3,5,7,9,2,4,6,8,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//排序
+//	qsort(arr, sz, sizeof(arr[0]), cmp_int);
+//	//打印
+//	print_arr(arr, sz);
+//}
+//
+//struct Stu
+//{
+//	char name[20];
+//	int age;
+//};
+//
+//int sort_by_age(const void* e1, const void* e2)
+//{
+//	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+//}
+//
+//int sort_by_name(const void* e1, const void* e2)
+//{
+//	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+//}
+//
+//void test2()
+//{
+//	struct Stu s[3] = { {"zhangsan",30},{"lisi",34},{"wangwu",20} };
+//
+//	int sz = sizeof(s) / sizeof(s[0]);
+//	//按照年龄来排序
+//	//qsort(s, sz, sizeof(s[0]), sort_by_age);
+//
+//	//按照名字来排序
+//	qsort(s, sz, sizeof(s[0]), sort_by_name);
+//}
+//
+//void swap(char* buffer1, char* buffer2, int width)
+//{
+//	//buffer为缓冲区的意思,以后用buf缩写代替
+//	int i = 0;
+//	for (i = 0; i < width; i++)
+//	{
+//		char tmp = *buffer1;
+//		*buffer1 = *buffer2;
+//		*buffer2 = tmp;
+//		buffer1++;
+//		buffer2++;
+//	}
+//}
+//
+////模仿qsort()自己写一个冒泡排序
+//void bubble_sort(void* base, unsigned int sz, unsigned int width, int(*cmp)(const void* e1, const void* e2))
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < sz - 1; i++)
+//	{
+//		//一趟的排序
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			//两个元素的比较
+//			//arr[j] > arr[j+1]
+//			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
+//				//为何强制转化成char*呢？
+//				//char* 步长最小，为一个字节，可以通过 (最小的跨度) * (width) 来控制到任意类型(int struct short等等)
+//			{
+//				//交换
+//				//可是不知道具体的类型,该如何交换呢？
+//				//可以一个字节一个字节的交换 直到完成一个类型的大小 - 交换两个元素对应位置的字节
+//				//比如int类型，交换4次对应的字节，则交换完成两个元素
+//				swap((char*)base + j * width, (char*)base + (j + 1) * width, width);
+//			}
+//		}
+//	}
+//}
+//
+//void test3()
+//{
+//	//整形数据的排序
+//	int  arr[] = { 1,3,5,7,9,2,4,6,8,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//排序
+//	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+//	//打印
+//	print_arr(arr, sz);
+//}
+//
+//void test4()
+//{
+//	//使用qsort函数排序结构体数据
+//	struct Stu s[3] = { {"zhangsan", 30},{"lisi", 34},{"wangwu", 20} };
+//
+//	int sz = sizeof(s) / sizeof(s[0]);
+//	//按照年龄来排序
+//	bubble_sort(s, sz, sizeof(s[0]), sort_by_age);
+//	//按照名字来排序
+//	//bubble_sort(s, sz, sizeof(s[0]), sort_by_name);
+//}
+//
+//
 //int main()
 //{
-//
+//	//test1();//排序整形测试
+//	//test2();//排序结构体测试
+//	//test3();
+//	test4();
 //	return 0;
 //}
 
@@ -2197,13 +2319,212 @@ int main()
 //有一个数字矩阵，矩阵的每行从左到右是递增的，矩阵从上到下是递增的
 //请编写程序在这样的矩阵中查找某个数字是否存在。
 //要求：时间复杂度小于O(N);
+// 那就不能遍历，不然时间复杂度不符合要求
 //如
 //1 2 3 
 //4 5 6
 //7 8 9
 
+//int find_num(int arr[3][3], int* px, int* py, int k)
+//{
+//	//从右上角开始找  去杂
+//	int x = 0;
+//	int y = *py - 1;
+//	while (x < *px && y >= 0) //防止越界
+//	{
+//		if (arr[x][y] < k)
+//		{
+//			x++;//去掉一行
+//		}
+//		else if (arr[x][y] > k)
+//		{
+//			y--;//去掉一列
+//		}
+//		else
+//		{
+//			*px = x;
+//			*py = y;
+//			return 1; //找到了
+//		}
+//	}
+//	return 0; //找不到
+//}
+//
 //int main()
 //{
+//	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+//	int k = 7;
+//	//如果找到返回1，找不到返回0
+//	int x = 3;
+//	int y = 3;
+//	//&x,&y
+//	//1.传入参数
+//	//2.带回值
+//
+//	int ret = find_num(arr, &x, &y, k);
+//	if (ret == 1)
+//	{
+//		printf("找到了\n");
+//		printf("下标是%d %d\n", x, y);
+//	}
+//	else
+//	{
+//		printf("找不到\n");
+//	}
 //
 //	return 0;
 //}
+
+//字符串左旋
+//题目内容：
+//实现一个函数，可以左旋字符串中的k个字符。
+//例如：
+//ABCD左旋一个字符得到BCDA
+//ABCD左旋两个字符得到CDAB
+
+////①直接左旋
+//void string_left_rotate(char* str, int k)
+//{
+//	int i = 0;
+//	int n = strlen(str);
+//	for (i = 0; i < k; i++)
+//	{
+//		//1.每次旋转一个字符
+//		char tmp = *str;
+//		//2.后边的n-1个字符往前挪动
+//		int j = 0;
+//		for (j = 0; j < n - 1; j++)
+//		{
+//			*(str + j) = *(str + j + 1);
+//		}
+//		//3.把tmp放在最后
+//		*(str + n - 1) = tmp;
+//	}
+//}
+
+//#include <assert.h>
+////三步反转法
+////我理解为 排队 分前后  前面往后转  后面往后转  在整体往后转 等价于  把前面丢到后面去
+//
+//void reverse(char* left, char* right)
+//{
+//	assert(left);
+//	assert(right);
+//	while (left < right)
+//	{
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//void string_left_rotate(char str[], int k)
+//{
+//	assert(str);
+//	int n = strlen(str);
+//	reverse(str, str + k - 1); //左边翻转
+//	reverse(str + k, str + n - 1); //右边翻转
+//	reverse(str, str + n - 1); //整体翻转
+//}
+//
+//int main()
+//{
+//	char arr[10] = "ABCDEF";
+//	int k = 4;
+//	string_left_rotate(arr, k);
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+//写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串。
+//例如：给定s1 = AABCD和s2 = BCDAA，返回1
+//给定s1 = abcd和s2 = ACBD，返回0.
+//
+//AABCD左旋一个字符得到ABCDA
+//AABCD左旋两个字符得到BCDAA
+//AABCD右旋一个字符得到DAABC
+
+//写法①  遍历 穷举
+//int is_string_rotate(char* str1, const char* str2)
+//{
+//	int i = 0;
+//	int n = strlen(str1); //5
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		//每次都左旋转一个字符
+//		char tmp = *str1;
+//		//后边的n-1个字符往前挪动
+//		int j = 0;
+//		for (j = 0; j < n - 1; j++)
+//		{
+//			*(str1 + j) = *(str1 + j + 1);
+//		}
+//		//tmp放在最后
+//		*(str1 + n - 1) = tmp;
+//
+//		//每左旋一次，做一次比对
+//		if (strcmp(str1, str2) == 0)
+//		{
+//			return 1;
+//		}
+//	}
+//
+//	return 0;
+//}
+
+//#include <assert.h>
+////写法②  巧妙一点
+//int is_string_rotate(char* str1, const char* str2)  //判断str1是不是str2旋转得来的
+//{
+//	assert(str1);
+//	assert(str2);
+//	//若长度不相等，那么肯定不是选装得来的
+//	if (strlen(str1) != strlen(str2))
+//	{
+//		return 0;
+//	}
+//
+//	//1.str1字符串的后边追加一个str1
+//	//AABCDAABCD
+//	int len = strlen(str1);
+//	strncat(str1, str2, len);
+//	//2.判断str2是否为str1的字串
+//	char* ret = strstr(str1, str2);//strstr的返回值使str1中第一次出现str2的位置  -- 地址
+//
+//	return ret != NULL; //ret等于NULL即为找不到
+//	//等价于
+//	/*if (ret == NULL)
+//	{
+//		return 0;
+//	}
+//	else
+//	{
+//		return 1;
+//	}*/
+//}
+//
+//int main()
+//{
+//	char arr1[20] = "AABCD";
+//	char arr2[] = "BCDAA";
+//	int ret = is_string_rotate(arr1, arr2);
+//	if (ret == 1)
+//	{
+//		printf("Yes\n");
+//	}
+//	else
+//	{
+//		printf("No\n");
+//	}
+//
+//	return 0;
+//}
+
+int main()
+{
+
+	return 0;
+}
