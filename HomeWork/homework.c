@@ -259,3 +259,47 @@ Press any key to continue
 //    }
 //    return 0;
 //}
+
+//函数fun的功能是：找出形参s所指字符串中出现频率最高的字母(不区分大小写)，并统计出其出现的次数。
+#include  <stdio.h>
+#include  <string.h>
+#include  <ctype.h>
+void fun(char* s)
+{
+	//用哈希表
+	int  k[26] = { 0 };
+	int n = 0;
+	int max = 0;
+	int i = 0;
+	char  ch;
+	while (*s)
+	{
+		if (isalpha(*s)) 
+		{
+			ch = tolower(*s);
+			n = ch - 'a';//获取字母在数组k中的下标
+			k[n] += 1;//字母所对应的值加1
+		}
+
+		s++;
+
+		if (max < k[n])  //max用于存放最大次数
+		{
+			max = k[n];
+		}
+	}
+	//寻找最大的次数是哪一个
+	for (i = 0; i < 26; i++)
+	{
+		if (k[i] == max)
+		{
+			printf("%c %d\n", i + 'a', k[i]);
+		}
+	}
+}
+void main()
+{
+	char  s[81];
+	gets(s);
+	fun(s);
+}

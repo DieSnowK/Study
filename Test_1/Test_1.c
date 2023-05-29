@@ -2523,8 +2523,242 @@ int main()
 //	return 0;
 //}
 
+//模拟实现strcat
+//#include <assert.h>
+//char* my_strcat(char* dest, const char* src)
+//{
+//	assert(dest && src);
+//	char* ret = dest;
+//	//1.找目标字符串中\0的位置
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	//2.追加源字符串，包含\0
+//	while (*dest++ = *src++);
+//
+//	return ret;//返回目标启示地址
+//}
+//
+//int main()
+//{
+//	char arr1[20] = "hello ";
+//	char arr2[] = "world";
+//
+//	printf("%s\n", my_strcat(arr1, arr2));
+//
+//	return 0;
+//}
+
+//模拟实现strcmp
+//#include <assert.h>
+//
+//int my_strcmp(const char* s1, const char* s2)
+//{
+//	assert(s1 && s2);
+//	while (*s1 == *s2)
+//	{
+//		if (*s1 == '\0')
+//		{
+//			return 0;
+//		}
+//
+//		s1++;
+//		s2++;
+//	}
+//
+//	return *s1 - *s2;
+//}
+//
+//int main()
+//{
+//	char* p = "abbdef";
+//	char* q = "abcdef";
+//	int ret = my_strcmp(p, q);
+//
+//	if (ret > 0)
+//	{
+//		printf("p > q\n");
+//	}
+//	else if (ret < 0)
+//	{
+//		printf("p < q\n");
+//	}
+//	else
+//	{
+//		printf("p == q\n");
+//	}
+//	return 0;
+//}
+
+//模拟实现strstr
+//#include <assert.h>
+//char* my_strstr(const char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	//实际用s1,s2去查找
+//	const char* s1 = NULL;
+//	const char* s2 = NULL;
+//	const char* cp = str1; //用于记录每查找一次的起始位置
+//
+//	//原本str2就是空字符串呢？
+//	if (*str2 == '\0')
+//	{
+//		return str1;
+//	}
+//
+//	//若str2不是空字符串
+//	while (*cp)
+//	{
+//		s1 = cp;
+//		s2 = str2;
+//
+//		while (*s1 && *s2 && (*s1 == *s2)) //*s1 *s2没结束  并且两个相同则进入
+//		{
+//			s1++;
+//			s2++;
+//		}
+//		
+//		if (*s2 == '\0')
+//		{
+//			//返回值为str2在str1中的位置
+//			return cp;//思考：是否需要强制类型转换成char*?
+//		}
+//
+//		//若此轮没找到,则cp++,进入下一个字符作为起始位置开始查找
+//		cp++;
+//	}
+//	
+//	return NULL;//没找到则返回空指针
+//}
+//int main()
+//{
+//	char arr1[] = "abbbcdef";
+//	char arr2[] = "bbc";
+//	//在arr1中查找是否包含arr2数组
+//	char* ret = my_strstr(arr1, arr2);
+//	if (ret == NULL)
+//	{
+//		printf("没找到\n");
+//	}
+//	else
+//	{
+//		printf("找到了:%s\n", ret);
+//	}
+//	return 0;
+//}
+
+//研究strtok
+//int main()
+//{
+//	char arr[] = "11947361@qq.com";
+//	char* p = "@";
+//	char tmp[30] = { 0 };
+//	strcpy(tmp, arr);
+//	char* ret = NULL;
+//
+//	for (ret = strtok(tmp, p); ret != NULL; ret = strtok(NULL, p))
+//	{
+//		printf("%s\n", ret);
+//	}
+//
+//	//ret = strtok(tmp, p);
+//	//printf("%s\n", ret);
+//
+//	//ret = strtok(NULL, p);
+//	//printf("%s\n", ret);
+//
+//	return 0;
+//}
+
+//研究strerror
+//int main()
+//{
+//	printf("%s\n", strerror(0));
+//	printf("%s\n", strerror(1));
+//	printf("%s\n", strerror(2));
+//	printf("%s\n", strerror(3));
+//	printf("%s\n", strerror(4));
+//	printf("%s\n", strerror(5));
+//	return 0;
+//}
+
+//模拟实现memcpy，memcpy函数应该拷贝不重叠的内存
+//#include <assert.h>
+//void* my_memcpy(void* dest, const void* src, int num)
+//{
+//	assert(dest && src);
+//
+//	void* ret = dest;//用于保存返回值信息
+//
+//	while (num--) //在循环条件里用这种形式还是挺有意思的，值得学习:)
+//	{
+//		*(char*)dest = *(char*)src;
+//		dest = (char*)dest + 1;
+//		src = (char*)src + 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int arr2[10] = { 0 };
+//	my_memcpy(arr2, arr1, 20);
+//	return 0;
+//}
+
+//模拟实现memmove,memmove函数可以处理内存重叠的情况
+//#include <assert.h>
+//void* my_memmove(void* dest, void* src, int num)
+//{
+//	assert(dest && src);
+//	void* ret = dest;
+//
+//	if (dest < src)
+//	{
+//		//从前往后
+//		while (num--)
+//		{
+//			*(char*)dest = *(char*)src;
+//			dest = (char*)dest + 1;
+//			src = (char*)src + 1;
+//		}
+//	}
+//	else
+//	{
+//		//从后往前
+//		while (num--) //如果num一开始为20,第一次进来的时候num已经变成19，那么可以控制到第二十个字符，以此类推
+//		{
+//			//指向位置完全受num控制
+//			*((char*)dest + num) = *((char*)src + num);
+//		}
+//	}
+//
+//	return ret;
+//}
+//
+//int main()
+//{
+//	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	my_memmove(arr1 + 2, arr1, 20);
+//
+//	return 0;
+//}
+
+//打印用*组成的X型图案
+//多组输入，一个整数(2~20),表示输出的行数，也表示组成X的反斜线和正斜线的长度
 int main()
 {
 
 	return 0;
 }
+
+//有7位考官，从键盘输入若干组成绩，每军组个分数(百分制)，去掉一个最高分和一个最低分，输出每组的平均成绩
+//输入描述:一行，输入7个整数(0~100)，代表7个成绩，用空格分隔。
+//输出描述:一行，输出去掉最高分和最低分的平均成绩，小数点后保留2位，每行输出后换行
+
+
+//输入年份和月份，计算这一年这个月有多少天
+//输入描述：多组输入，一行有两个整数，分别表示年份和月份，用空格分隔
+//输出描述：针对每组输入，输出为一行，一个整数，表示这一年这个月有多少天。
