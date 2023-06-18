@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 //求两个输入变量最大值问题
 /*
@@ -2838,5 +2839,649 @@ int main()
 //		printf("%d\n", day);
 //	}
 //
+//	return 0;
+//}
+
+//模拟实现atoi
+//#include <ctype.h>
+//#include <limits.h>
+//
+////State 记录的是my_atoi返回的值是否是合法转化的值
+//enum State
+//{
+//	INVALID,
+//	VALID
+//};
+//
+//enum State state = INVALID;
+//
+//int my_atoi(char* p)
+//{
+//	int flag = 1;
+//	//空指针
+//	if (p == NULL)
+//	{
+//		return 0;
+//	}
+//
+//	//空字符串
+//	if (*p == '\0')
+//	{
+//		return 0;
+//	}
+//
+//	//跳过空白字符
+//	while (isspace(*p))
+//	{
+//		p++;
+//	}
+//
+//	//判断正负号+/-
+//	if (*p == '+')
+//	{
+//		flag = 1;
+//		p++;
+//	}
+//	else if (*p == '-')
+//	{
+//		flag = -1;
+//		p++;
+//	}
+//
+//	//处理数字字符的转换
+//	long long n = 0;
+//	while (isdigit(*p))
+//	{
+//		n = n * 10 + flag * (*p - '0');
+//		//超出int可容纳上限时，也为非法值
+//		if (n > INT_MAX || n < INT_MIN)
+//		{
+//			return 0;
+//		}
+//		p++;
+//	}
+//	//怎样退出循环的呢？
+//	if (*p == '\0')
+//	{
+//		//合法数值
+//		state = VALID;
+//		return n;
+//	}
+//	else
+//	{
+//		state = VALID;
+//		return (int)n;
+//	}
+//}
+//
+//int main()
+//{
+//	//要处理的异常状态
+//	//1.空指针 √
+//	//2.空字符串 √
+//	//3.遇到了非数字字符 √
+//	//4.超出范围 √
+//	const char* p = "     -123a"; //常量字符串本来就不可修改，所以加上const更合理一些
+//	int ret = my_atoi(p);
+//
+//	if (state == VALID)
+//	{
+//		printf("正常的转换:%d\n", ret);
+//	}
+//	else
+//	{
+//		printf("非法的转换:%d\n", ret);
+//	}
+//
+//	return 0;
+//}
+
+//例如:1 2 3 4 5 1 2 3 4
+//一个数组中只有两个数字是出现了一次，其他所有数字都出现了两次
+//编写一个函数找出这两个只出现一次的数字
+
+//void Find(int arr[], int sz, int* px, int* py)
+//{
+//	//1.所有数字异或
+//	int i = 0;
+//	int ret = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		ret ^= arr[i];
+//	}
+//	//计算ret的哪一位为1(分组方法)
+//	//为什么要这样呢？
+//	//把所有数字异或，相同的异或出来为0，剩下两个不同的，那么相同为0，相异为1
+//	//第一个出现1的地方就是他们二进制位第一个不同的地方
+//
+//	int pos = 0;//表示ret第pos位为1(下标）
+//	for (i = 0; i < 32; i++)
+//	{
+//		if ((ret >> i) & 1 == 1)
+//		{
+//			pos = i;
+//			break;
+//		}
+//	}
+//	
+//	//把从地位到高位第pos位为1，为0的放在两个组
+//	int num1 = 0;
+//	int num2 = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		if ((arr[i] >> pos) & 1 == 1)
+//		{
+//			num1 ^= arr[i];
+//		}
+//		else
+//		{
+//			num2 ^= arr[i];
+//		}
+//	}
+//	//循环结束时，num1,num2就是找到的两个值
+//	*px = num1;
+//	*py = num2;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,1,2,3,4 };
+//	//5:00000101
+//	//6:00000110
+//	//1.分组
+//	//2.分组的要点：5和6必须在不同的组
+//	//3.找出这两个只出现一次的数字
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int x = 0;
+//	int y = 0;
+//
+//	Find(arr, sz, &x, &y);
+//
+//	printf("%d %d\n", x, y);
+//
+//	return 0;
+//}
+
+//写一个宏，将一个整数的二进制的奇数位和偶数位互换
+//如何实现？
+//假设第一位为1，则奇数位左移一位，偶数位右移一位
+
+
+//#define SWAP(N) ((N & 0xaaaaaaaa)>>1) + ((N & 0x55555555)<<1)
+////          获取偶数位，并且右移一位 || 获取奇数位，并且左移一位
+////偶数位 + 奇数位，则为调整后的数字
+//
+//int main()
+//{
+//	//原理分析  --  按位与
+//	//10101010101010101010101010101010 从原数字从拿出偶数位 -- 原偶数位全部保留原本状态，奇数位置零  0xaaaaaaaa
+//	//01010101010101010101010101010101 从原数字用拿出奇数位 -- 原奇数位全部保留原本状态，偶数位置零  0x55555555
+//	
+//	int num = 10;
+//	int ret = SWAP(num);
+//
+//	printf("%d\n", ret);
+//
+//	return 0;
+//}
+
+//模拟实现offsetof  -- 写一个宏，计算结构体中某变量相对于首地址的偏移，并给出说明
+
+//struct A
+//{
+//	int a;
+//	short b;
+//	int c;
+//	char d;
+//};
+////
+//#define OFFSETOF(struct_name,mem_name) (int)&(((struct_name*)0)->mem_name)
+////假设结构体第一位在0地址处
+////往后访问成员的时候，成员的地址
+//
+//int main()
+//{
+//	printf("%d\n", OFFSETOF(struct A, a));
+//	printf("%d\n", OFFSETOF(struct A, b));
+//	printf("%d\n", OFFSETOF(struct A, c));
+//	printf("%d\n", OFFSETOF(struct A, d));
+//
+//	return 0;
+//}
+
+//题目描述：
+//输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。
+//例如：第一个字符串是"They are students."，第二个字符串是”aeiou"。删除之后的第一个字符串变成"Thy r stdnts."。
+//保证两个字符串的长度均不超过100。
+//输入描述：输入两行，每行一个字符串。
+//输出描述：输出删除后的字符串。
+
+//int main()
+//{
+//	char arr1[100] = { 0 };
+//	char arr2[100] = { 0 };
+//	int i = 0;
+//	int j = 0;
+//	int t = 0;
+//	int count = 0;
+//	gets(arr1);
+//	gets(arr2);
+//	int sz = strlen(arr1);
+//
+//	for (i = 0; arr2[i] != '\0'; i++)//从arr2中每次拿出一个字符出来比较
+//	{
+//		for (j = 0; arr1[j] != '\0'; j++)//和arr1中的每个字符比较
+//		{
+//			if (arr2[i] == arr1[j])//找到了相等的
+//			{
+//				//把后面的数据往后面搬，即可实现删除效果
+//				for (t = j; t < sz - count; t++)
+//				{
+//					arr1[t] = arr1[t + 1];
+//				}
+//				count++;
+//				j--;
+//			}
+//		}
+//	}
+//
+//	puts(arr1);
+//
+//	return 0;
+//}
+
+//题目描述：
+//对于一个较大的整数 N(1 <= N <= 2, 000, 000, 000)
+//比如 980364535，我们常常需要一位一位数这个数字是几位数，但是如果在这 个数字每三位加一个逗号，它会变得更加易于朗读。
+//因此，这个数字加上逗号成如下的模样：980, 364, 535请写一个程序帮她完成这件事情
+//输入描述：一行一个整数 N
+//输出描述：一行一个字符串表示添加完逗号的结果
+
+//int main()
+//{
+//	int n = 0;
+//	int control = 0;
+//	scanf("%d", &n);
+//	char arr[100] = { 0 };
+//
+//	sprintf(arr, "%d", n);
+//	int sz = strlen(arr);
+//	int symbol_num = sz / 3 - 1;
+//	char* pend = arr + sz - 1;//最开始指向\0
+//
+//	//从后往前搬，每三个中间插一个,
+//	while (pend != arr)
+//	{
+//		if (control % 3 == 0 && control != 0)
+//		{
+//			*(pend + symbol_num) = ',';
+//			symbol_num--;
+//		}
+//		*(pend + symbol_num) = *pend;
+//		pend--;
+//		control++;
+//	}
+//
+//	puts(arr);
+//
+//	return 0;
+//}
+
+//实现一个函数，将一个字符串中的每个空格替换成"%20"
+//例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy
+
+//#include <ctype.h>
+//int main()
+//{
+//	int spacecnt = 0;
+//	char arr[30] = "We Are Happy";
+//	char* p = arr;
+//	int length = strlen(arr);
+//	//数空格
+//	while (*p)
+//	{
+//		if (isspace(*p))
+//		{
+//			spacecnt++;
+//		}
+//		p++;
+//	}
+//
+//	int newlen = length + 2 * spacecnt;
+//	int end1 = length;
+//	int end2 = newlen;
+//
+//	while (end1 != end2)
+//	{
+//		if (arr[end1] != ' ')
+//		{
+//			arr[end2--] = arr[end1--];
+//		}
+//		else
+//		{
+//			arr[end2--] = '0';
+//			arr[end2--] = '2';
+//			arr[end2--] = '%';
+//			end1--;
+//
+//		}
+//	}
+//
+//	printf("%s", arr);
+//
+//	return 0;
+//}
+
+//在一个斐波那契数列中，给处一个数N，算出离它最近的一个斐波那契数和它的距离
+
+//#include <math.h>
+//int main()
+//{
+//	int a = 0;
+//	int b = 1;
+//	int c = 1;
+//	int n = 0;
+//
+//	scanf("%d", &n);
+//
+//	while (1)
+//	{
+//		if (b == n || a == n)
+//		{
+//			printf("0\n");
+//			break;
+//		}
+//		else if (b > n)
+//		{
+//			printf("%d\n", (abs(n - a) < abs(n - b)) ? abs(n - a) : abs(n - b));
+//			break;
+//		}
+//		else
+//		{
+//			//如果n不在原来的a b之间，就让a b往后走，直到可以夹住n
+//			//下面为斐波那契计算
+//			a = b;
+//			b = c;
+//			c = a + b;
+//		}
+//	}
+//
+//	return 0;
+//}
+
+//利用可变参数列表，做一个寻找最大值的函数
+//#include <stdarg.h>
+//
+////此处,num表示传入参数的个数
+//int FindMax(int num, ...)
+//{
+//	int i = 0;
+//
+//	va_list p_ret;  //定义一个char*类型的指针，此指针变量可访问可变参数部分的变量
+//	va_start(p_ret, num);//使p_ret指向可变参数部分,已经指向可变参数部分的第一个数据了
+//	int max = va_arg(p_ret, int);//根据类型，获取可变参数变量列表中的第一个数据，并且此时p_ret已经指向可变参数部分的下一个数据
+//
+//	for (i = 0; i < num - 1; i++)  //获取并比较其他的
+//	{
+//		int tmp = va_arg(p_ret, int);//拿出当前指向数据，并且p_ret向后偏移
+//		if (tmp > max)
+//		{
+//			max = tmp;
+//		}
+//	}
+//
+//	va_end(p_ret);
+//
+//	return max;
+//}
+//
+//int main()
+//{
+//	printf("%d\n", FindMax(5, 13, 11, 65, 23, 24));
+//	return 0;
+//}
+
+//消失的数字
+//数组nums包含从0到n的所有整数，但其中缺了一个。编写代码找出那个缺失的整数。
+//要求：时间复杂度在O(N)内
+
+//思路1：类似哈希表  O(N)
+//int FindMissingNum(int arr[], int sz)
+//{
+//	int* hash = (int*)malloc((sz + 1) * sizeof(int));//malloc出一个额外数组
+//	if (NULL == hash)  //开辟失败的情况
+//	{
+//		perror("main");
+//		exit(1);
+//	}
+//	memset(hash, -1, sz * sizeof(int));//以字节为单位设置内存  --  初始化数组为-1
+//
+//	int i = 0;
+//
+//	//遍历原有数组，遇到一个数字，就在哈希表对应位置+1
+//	for (i = 0; i < sz; i++)
+//	{
+//		hash[arr[i]] += 1;
+//	}
+//
+//	//遍历数组，哪个位置为-1,那这个位置的下标就是缺失的数字
+//	for (i = 0; i < sz + 1; i++)
+//	{
+//		if (-1 == hash[i])
+//		{
+//			free(hash);
+//			hash = NULL;
+//			return i;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[] = { 0,1,3,5,7,2,4 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	printf("%d\n", FindMissingNum(arr,sz));
+//	return 0;
+//}
+
+//思路2：用异或  O(N)
+
+//int FindMissingNum(int arr[], int sz)
+//{
+//	int i = 0;
+//	int ret = 0;
+//	//先和缺失数组异或
+//	for (i = 0; i < sz; i++)
+//	{
+//		ret ^= arr[i];
+//	}
+//	//再和原数组异或
+//	for (i = 0; i < sz + 1; i++)
+//	{
+//		ret ^= i;
+//	}
+//	
+//	return ret;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 0,1,3,5,7,2,4 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	printf("%d\n", FindMissingNum(arr, sz));
+//	return 0;
+//}
+ 
+//思路3：排序 + 二分查找  冒泡O(N^2)  快排O(N*logN) - 效率相对较低
+//int main()
+//{
+//
+//	return 0;
+//}
+
+//思路4：公式计算 - 算出原数组 - 缺失数组 = 缺失数字    O(N)
+
+//int FindMissingNum(int arr[], int sz)
+//{
+//	int sum = 0;
+//	int i = 0;
+//
+//	for (i = 0; i < sz + 1; i++)
+//	{
+//		sum += i;
+//	}
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		sum -= arr[i];
+//	}
+//
+//	return sum;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 0,1,3,5,7,2,4 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	printf("%d\n", FindMissingNum(arr, sz));
+//	return 0;
+//}
+
+//轮转数组  --  给一个数组，将数组中的元素向右轮转k个位置
+//尽可能多的解决方案
+//要求：空间复杂度为O(1),时间复杂度O(N)
+
+//思路1：每次旋转一个，旋转k次 - O(N*K)
+
+//void rotate(int arr[], int sz, int k)
+//{
+//	//如果k>sz怎么办？
+//	k %= sz;
+//
+//	while (k--)
+//	{
+//		//先把第一个往后放
+//		int tmp = arr[0];
+//
+//		//再把后面的往后搬
+//		int i = 0;
+//		for (i = 0; i < sz - 1; i++)
+//		{
+//			arr[i] = arr[i + 1];
+//		}
+//
+//		arr[sz - 1] = tmp;
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int k = 3;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//
+//	rotate(arr, sz, k);
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+//思路2：以空间换时间 - 拿一个新的数组出来 - O(N)
+
+//void rotate(int arr[], int sz, int k)
+//{
+//	int i = 0;
+//	int j = 0;
+//	int* p = (int*)malloc(sizeof(int) * sz);
+//	if (NULL == p) //判断是否开辟好空间
+//	{
+//		perror("main");
+//		exit(1);
+//	}
+//	
+//	//将前k个放在新数组后面
+//	for (i = 0; i < k; i++)
+//	{
+//		p[sz - k + i] = arr[i];
+//	}
+//
+//	//将后n-k个放在新数组前面
+//	for (i = k, j = 0; i < sz; i++, j++)
+//	{
+//		p[j] = arr[i];
+//	}
+//
+//	//覆盖原数组
+//	for (i = 0; i < sz; i++)
+//	{
+//		arr[i] = p[i];
+//	}
+//
+//	free(p);
+//	p = NULL;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int k = 3;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//
+//	rotate(arr, sz, k);
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+//思路3：三步翻转法 - 最优解法  时间复杂度O(N)   空间复杂度O(1)
+
+//void reverse(int arr[], int* left, int* right)
+//{
+//	while (left < right)
+//	{
+//		int tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//void rotate(int arr[], int sz, int k)
+//{
+//	k %= sz;
+// 
+//	//先反转前k个
+//	reverse(arr, arr, arr + k - 1);
+//	//再翻转后n-k个
+//	reverse(arr, arr + k, arr + sz - 1);
+//	//全体反转
+//	reverse(arr, arr, arr + sz - 1);
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int k = 3;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//
+//	rotate(arr, sz, k);
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
 //	return 0;
 //}
