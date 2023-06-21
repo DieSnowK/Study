@@ -3485,3 +3485,140 @@ int main()
 //	}
 //	return 0;
 //}
+
+//移除元素 -- 给一个数组nums和一个值val,需要原地移除所有数值等于val的元素，并返回移除后数组的新长度
+//要求：不能使用额外的数组空间  --  空间复杂度O(1)  时间复杂度O(N)
+//元素的顺序可以改变，不需要考虑数组中超出新长度后面的元素
+
+//思路1：覆盖删除  --  O(N^2)
+//思路2：保留不是val的值，挪到新数组  --  空间复杂度O(N)
+//思路3: 双指针，保留不是val的值，覆盖前面的值
+
+//int RemoveElement(int arr[], int sz, int val)
+//{
+//	int src = 0;
+//	int dest = 0;
+//
+//	while (src < sz)
+//	{
+//		if (arr[src] == val)
+//		{
+//			src++;
+//		}
+//		else
+//		{
+//			arr[dest++] = arr[src++];
+//		}
+//	}
+//
+//	return dest;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 3,2,2,3,1,5,2,6,7,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	printf("%d\n", RemoveElement(arr, sz, 2));
+//
+//	for (int i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//
+//	return 0;
+//}
+
+//删除有序数组中的重复项  --  去重算法
+//给定一个升序数组nums,请原地删除重复出现的元素，使每个元素只出现一次，返回删除后数组的新长度
+//元素的相对顺序应该保持一致
+
+//仍然可用双指针
+//int RemoveDuplicates(int arr[], int sz)
+//{
+//	int src = 1;
+//	int dest = 0;
+//
+//	while (src < sz)
+//	{
+//		if (arr[dest] == arr[src])
+//		{
+//			src++;
+//		}
+//		else
+//		{
+//			arr[++dest] = arr[src++];
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[] = { 0,0,1,1,1,2,2,3,3,4 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	RemoveDuplicates(arr, sz);
+//
+//	for (int i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//
+//	return 0;
+//}
+
+//合并两个有序数组
+//给定两个非递减顺序排列的整数数组nums1和nums2
+//m、n分别表示nums1和nums2中元素的数目
+//请合并nums2到nums1中，使合并后的数组同样按非递减顺序排列
+//要求：时间复杂度 - O(N+M)
+
+//void merge(int nums1[], int nums2[], int m, int n)
+//{
+//	int end1 = m - 1;
+//	int end2 = n - 1;
+//	int end = m + n - 1;
+//
+//	while (end1 >= 0 && end2 >= 0) //有一个结束就结束了   是且 - &&
+//	{
+//		if (nums1[end1] > nums2[end2])
+//		{
+//			nums1[end--] = nums1[end1--];
+//		}
+//		else
+//		{
+//			nums1[end--] = nums2[end2--];
+//		}
+//	}
+//
+//	//如果是end2结束，end1没结束，则不需要处理
+//	//因为end1就在nums1前面，且顺序合乎要求
+//
+//	while (end2 > 0) //如果是end2没结束，那就把end2剩余的放到nums1中最前面
+//	{
+//		nums1[end--] = nums2[end2--];
+//	}
+//
+//}
+//
+//int main()
+//{
+//	int nums1[6] = { 1,2,3 };
+//	int nums2[3] = { 2,5,6 };
+//	int m = 3;
+//	int n = 3;
+//
+//	merge(nums1, nums2, m, n);
+//
+//	for (int i = 0; i < 6; i++)
+//	{
+//		printf("%d ", nums1[i]);
+//	}
+//	return 0;
+//}
+
+int main()
+{
+
+	return 0;
+}
