@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>>
 
 //求两个输入变量最大值问题
 /*
@@ -3620,29 +3621,229 @@ int main()
 //移除链表元素
 //给定一个链表的头节点head和一个整数val
 //请删除链表中所有满足Node.val == val的节点，并返回新的头节点
-
-//方法一  --  直接干
-//方法二  --  遍历原链表，把不是val的节点拿出来进行尾插到新链表
-//方法三  --  哨兵位头节点
-int main()
-{
-
-	return 0;
-}
+//typedef struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//}ListNode;
+//
+////方法一  --  直接干
+//ListNode* removeElements(ListNode* head, int val) 
+//{
+//	struct ListNode* cur = head;
+//	struct ListNode* pre = NULL;
+//
+//	while (cur)
+//	{
+//		if (cur->val == val)
+//		{
+//			if (head == cur)
+//			{
+//				//头删
+//				head = head->next;
+//				free(cur);
+//				cur = head;
+//			}
+//			else
+//			{
+//				//删除
+//				pre->next = cur->next;
+//				free(cur);
+//				cur = pre->next;
+//			}
+//		}
+//		else
+//		{
+//			//更新信息
+//			pre = cur;
+//			cur = cur->next;
+//		}
+//	}
+//	return head;
+//}
+//
+////方法二  --  遍历原链表，把不是val的节点拿出来进行尾插到新链表
+//struct ListNode* removeElements(struct ListNode* head, int val)
+//{
+//	struct ListNode* cur = head;
+//	struct ListNode* tail = NULL;
+//	head = NULL;  //防止全是要删除的，head会成为野指针
+//
+//	while (cur)
+//	{
+//		if (cur->val == val)
+//		{
+//			struct ListNode* del = cur;
+//			cur = cur->next;
+//			free(del);
+//		}
+//		else
+//		{
+//			if (tail == NULL)
+//			{
+//				head = tail = cur;
+//			}
+//			else
+//			{
+//				//尾插
+//				tail->next = cur;
+//				tail = tail->next;
+//			}
+//
+//			cur = cur->next;
+//		}
+//	}
+//
+//	if (tail)  //防止是空链表，tail原本是NULL，无法访问
+//	{
+//		tail->next = NULL;  //防止最后一个要删，删完后，新链表最后一个节点的next是野指针
+//	}
+//
+//	return head;
+//}
+//
+////方法三  --  哨兵位头节点
+//struct ListNode* removeElements(struct ListNode* head, int val)
+//{
+//	struct ListNode* tail = NULL;
+//	struct ListNode* cur = head;
+//
+//	//哨兵位的头节点
+//	head = tail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	tail->next = NULL;
+//
+//	while (cur)
+//	{
+//		if (cur->val == val)
+//		{
+//			struct ListNode* del = cur;
+//			cur = cur->next;
+//			free(del);
+//		}
+//		else
+//		{
+//			tail->next = cur;
+//			tail = tail->next;
+//
+//			cur = cur->next;
+//		}
+//	}
+//
+//	tail->next = NULL;
+//
+//	//释放哨兵位头节点，否则内存溢出
+//	struct ListNode* del = head;
+//	head = head->next;
+//	free(del);
+//
+//	return head;
+//}
 
 //反转链表
 //给定单链表的头节点head，请反转链表，并返回反转后的链表
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+// 
+////方法一  --  头插
+//struct ListNode* reverseList(struct ListNode* head) {
+//	struct ListNode* cur = head;
+//	struct ListNode* newhead = NULL;
+//	while (cur)
+//	{
+//		struct ListNode* next = cur->next;
+//		//头插
+//		cur->next = newhead;
+//		newhead = cur;
+//
+//		cur = next;
+//	}
+//
+//	return newhead;
+//}
+////方法二  --  指针的方向颠倒
+//struct ListNode* reverseList(struct ListNode* head) 
+//{
+//
+//	if (head == NULL)
+//	{
+//		return NULL;
+//	}
+//
+//	struct ListNode* n1 = NULL;
+//	struct ListNode* n2 = head;
+//	struct ListNode* n3 = head->next;
+//
+//	while (n2)
+//	{
+//		//倒指向
+//		n2->next = n1;
+//		n1 = n2;
+//		n2 = n3;
+//		if (n3)
+//		{
+//			n3 = n3->next;
+//		}
+//	}
+//
+//	return n1;
+//}
 
-//方法一  --  头插
-//方法二  --  指针的方向颠倒
 
 //链表的中间节点
 //给定一个头节点位head的非空单链表，返回链表的中间节点
 //如果有两个中间节点，则返回第二个中间节点
-
-//方法  --  快慢指针
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+////方法  --  快慢指针
+//struct ListNode* middleNode(struct ListNode* head) {
+//	struct ListNode* slow = head;
+//	struct ListNode* fast = head;
+//
+//	while (fast && fast->next)  //不可以写fast->next && fast  --  思考为什么？
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//	}
+//
+//	return slow;
+//}
 
 //链表中倒数第K个节点
 //输入一个链表，输出该链表中倒数第k个节点
-
-//方法  --  快慢指针  --  fast比slow先走k
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+////方法  --  快慢指针  --  fast比slow先走k
+//struct ListNode* getKthFromEnd(struct ListNode* head, int k)
+//{
+//	struct ListNode* slow = head;
+//	struct ListNode* fast = head;
+//
+//	while (k--)  //k-- 是循环k次     --k是循环k-1次
+//	{
+//		//fast还没走出k步，链表没有k步长
+//		if (fast == NULL)
+//		{
+//			return NULL;
+//		}
+//
+//		//fast先走k步
+//		fast = fast->next;
+//	}
+//
+//	while (fast)
+//	{
+//		slow = slow->next;
+//		fast = fast->next;
+//	}
+//
+//	return slow;
+//}
