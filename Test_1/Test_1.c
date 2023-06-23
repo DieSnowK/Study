@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <assert.h>>
+#include <assert.h>
+#include <math.h>
 
 //求两个输入变量最大值问题
 /*
@@ -4010,12 +4011,97 @@ int main()
 //判断链表是否为回文结构  --  中心对称
 //要求：时间复杂度：O(N)  空间复杂度：O(1)
 //思路：找中间节点，再逆置，再比较
-struct ListNode 
-{
-	int val;
-	struct ListNode* next;
-};
-
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+//
+//struct ListNode* MiddleNode(struct ListNode* head)
+//{
+//	struct ListNode* slow = head;
+//	struct ListNode* fast = head;
+//
+//	while (fast && fast->next)  //有一个结束就结束
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//	}
+//
+//	return slow;
+//}
+//
+//struct ListNode* ReverseList(struct ListNode* head)
+//{
+//	struct ListNode* cur = head;
+//	struct ListNode* newhead = NULL;
+//	//头插
+//	while (cur)
+//	{
+//		//保留cur下一个信息
+//		struct ListNode* next = cur->next;
+//		//头插
+//		cur->next = newhead;
+//		newhead = cur;
+//
+//		cur = next;
+//	}
+//
+//	return newhead;
+//}
+//
+//int isPalindrome(struct ListNode* head)
+//{
+//	//先找中间节点
+//	struct ListNode* middle = MiddleNode(head);
+//	//再从中间节点逆置
+//	struct ListNode* rhead = ReverseList(middle);
+//
+//	//把头和逆置后的头往后作比较
+//	while (rhead)  //有一个结束就结束
+//	{
+//		if (head->val == rhead->val)
+//		{
+//			head = head->next;
+//			rhead = rhead->next;
+//		}
+//		else
+//		{
+//			return 0;
+//		}
+//	}
+//
+//	return 1;
+//}
+//
+// int main()
+// {
+// 	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n1);
+//
+// 	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n2);
+//
+// 	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n3);
+//
+// 	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n4);
+//
+// 	n1->val = 1;
+// 	n2->val = 2;
+// 	n3->val = 2;
+// 	n4->val = 1;
+//
+// 	n1->next = n2;
+// 	n2->next = n3;
+// 	n3->next = n4;
+// 	n4->next = NULL;
+//
+//
+//	isPalindrome(n1);
+// 	return 0;
+// }
 
 //相交链表
 //给你两个单链表的头节点 headA 和 headB
@@ -4025,6 +4111,165 @@ struct ListNode
 //	int val;
 //	struct ListNode* next;
 //};
+//
+//struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB)
+//{
+//	//防止有空链表，则无相交
+//	if (headA == NULL || headB == NULL)
+//	{
+//		return NULL;
+//	}
+//
+//	struct ListNode* curA = headA, * curB = headB;
+//	//按下面那样计算长度会少一个，虽然不打紧，求的是A-B的差值，但是都从1开始无妨
+//	int lenA = 1;
+//	int lenB = 1;
+//	//求长度顺便找尾巴
+//	while (curA->next)
+//	{
+//		lenA++;
+//		curA = curA->next;
+//	}
+//
+//	while (curB->next)
+//	{
+//		lenA++;
+//		curB = curB->next;
+//	}
+//
+//	//此时curA curB均指向两段链表最末尾
+//	//比较末尾是否地址相同，若末尾不相同，肯定不相交
+//	if (curA != curB)
+//	{
+//		return NULL;
+//	}
+//
+//	//必然会有相交
+//	//求第一个交点
+//	//这是一个技巧性编程，替代了if else判断lenA和lenB谁大谁小
+//	struct ListNode* shortlist = headA;
+//	struct ListNode* longlist = headB;
+//	if (lenA > lenB)
+//	{
+//		longlist = headA;
+//		shortlist = headB;
+//	}
+//
+//	int gap = abs(lenA - lenB);
+//
+//	//长的先走gap步
+//	while (gap--)  //gap--走gap步    --gap走(gap-1)步
+//	{
+//		longlist = longlist->next;
+//	}
+//
+//	//比地址，找相同
+//	while (longlist != shortlist)
+//	{
+//		//不同则往下走
+//		longlist = longlist->next;
+//		shortlist = shortlist->next;
+//	}
+//
+//	//找到相同地址了
+//	return longlist;
+//}
+//
+// int main()
+// {
+// 	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n1);
+//
+// 	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n2);
+//
+// 	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n3);
+//
+// 	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
+// 	assert(n4);
+//
+// 	n1->val = 1;
+// 	n2->val = 2;
+// 	n3->val = 2;
+// 	n4->val = 1;
+//
+// 	n1->next = n2;
+// 	n2->next = n3;
+// 	n3->next = n4;
+// 	n4->next = NULL;
+//
+//	struct ListNode* ret = getIntersectionNode(n1, n2);
+//
+// 	return 0;
+// }
 
 //环形链表
 //给你一个链表的头节点 head ，判断链表中是否有环
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+//
+//int hasCycle(struct ListNode* head)
+//{
+//	struct ListNode* slow = head;
+//	struct ListNode* fast = head;
+//
+//	//快慢指针  --  龟兔赛跑
+//	while (fast && fast->next)  //如果没环，则一定会结束
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//
+//		if (slow == fast)  //若有环，则快指针一定会追上慢指针
+//		{
+//			//追上，则说明有环  --  有环才能追上
+//			return 1;
+//		}
+//	}
+//
+//	return 0;
+//}
+
+//环形链表2
+//给定一个链表的头节点head,返回链表开始入环的第一个节点。如果链表无环，则返回 null
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+//
+////理论推导
+////L = (N-1)*C + (C-X)
+////结论：一个指针从meet开始走，一个指针从head开始走，他们会在入口点相遇
+//struct ListNode* detectCycle(struct ListNode* head)
+//{
+//	//找相遇点
+//	struct ListNode* slow = head;
+//	struct ListNode* fast = head;
+//
+//	while (fast && fast->next)  //结束则代表链表不含环
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//
+//		if (slow == fast)
+//		{
+//			//找到相遇点
+//			struct ListNode* meet = slow;
+//			while (meet != head)
+//			{
+//				//meet head都往后走
+//				meet = meet->next;
+//				head = head->next;
+//			}
+//
+//			return meet;
+//		}
+//	}
+//
+//	return NULL;
+//}
+
