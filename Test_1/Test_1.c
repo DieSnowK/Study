@@ -4273,3 +4273,71 @@ int main()
 //	return NULL;
 //}
 
+//复制带随机指针的链表
+//给定一个长度为n的链表，每个节点包含一个额外增加的指针random，该指针可以指向链表中的任何节点或空节点
+//构造这个链表的深拷贝  --  结构完全相同
+//struct Node
+//{
+//	int val;
+//	struct Node* next;
+//	struct Node* random;
+//};
+//
+//struct Node* copyRandomList(struct Node* head)
+//{
+//	//1.copy节点链接在源节点的后面
+//	struct Node* cur = head;
+//	while (cur)
+//	{
+//		//每次开辟一个新节点
+//		struct Node* copy = (struct Node*)malloc(sizeof(struct Node));
+//		copy->val = cur->val;
+//
+//		copy->next = cur->next;
+//		cur->next = copy;
+//
+//		cur = copy->next;  //调整cur指向原链表下一位置
+//	}
+//	//2.copy->random = cur->random->next
+//	cur = head;
+//	while (cur)
+//	{
+//		struct Node* copy = cur->next;
+//		if (cur->random == NULL)
+//		{
+//			copy->random = NULL;
+//		}
+//		else
+//		{
+//			copy->random = cur->random->next;
+//		}
+//
+//		cur = copy->next;
+//	}
+//	//3.拷贝节点解下来，链接到一起。恢复原链表
+//	cur = head;
+//	//尾插  --  带哨兵位头节点
+//	struct Node* copyHead, * copyTail;
+//	copyHead = copyTail = (struct Node*)malloc(sizeof(struct Node));
+//	copyTail->next = NULL;
+//
+//	while (cur)
+//	{
+//		struct Node* copy = cur->next;
+//		struct Node* next = copy->next;
+//
+//		//尾插
+//		copyTail->next = copy;
+//		copyTail = copyTail->next;
+//
+//		cur->next = next;
+//		cur = next;
+//	}
+//
+//	struct Node* del = copyHead;
+//	copyHead = copyHead->next;
+//	free(del);
+//
+//	return copyHead;
+//}
+
