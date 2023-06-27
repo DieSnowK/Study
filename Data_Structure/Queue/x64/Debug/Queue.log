@@ -1,0 +1,5 @@
+﻿  Queue.c
+C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(26,1): warning C4029: 声明的形参表不同于定义
+C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(100,7): warning C4133: “=”: 从“QNode *”到“Queue *”的类型不兼容
+C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(94,9): warning C4133: “初始化”: 从“QNode *”到“Queue *”的类型不兼容
+  Queue.vcxproj -> C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\x64\Debug\Queue.exe
