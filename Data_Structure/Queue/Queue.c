@@ -91,13 +91,13 @@ bool isQueueEmpty(Queue* pq)
 int QueueSize(Queue* pq)
 {
 	assert(pq);
-	Queue* cur = pq->head;
+	QNode* cur = pq->head;
 	int size = 0;
 
 	while (cur)
 	{
 		size++;
-		cur = cur->tail;
+		cur = cur->next;
 	}
 
 	return size;
