@@ -22,7 +22,7 @@ void StackPush(Stack* ps ,STDataType x)
 	//¼ì²âÀ©ÈÝ
 	if (ps->top == ps->capacity)
 	{
-		ps->capacity = 0 ? 4: ps->capacity * 2;
+		ps->capacity = ps->capacity == 0 ? 4: ps->capacity * 2;
 		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * ps->capacity);
 		if (tmp == NULL)
 		{

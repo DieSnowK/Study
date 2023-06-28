@@ -1,3 +1,2 @@
 ﻿  Test_1.c
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Test_1\Test_1.c(4348,37): error C2065: “M_PI”: 未声明的标识符
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Test_1\Test_1.c(4348,15): warning C4477: “sprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 1 拥有了类型“int”
+  Test_1.vcxproj -> C:\Users\SnowK\Desktop\My_Repository\Study_Test\Test_1\x64\Debug\Test_1.exe

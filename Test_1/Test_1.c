@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include <stdbool.h>
 
 //求两个输入变量最大值问题
 /*
@@ -4341,5 +4342,148 @@ int main()
 //	return copyHead;
 //}
 
-
-
+//给定一个只包括(){}[]的字符串s，判断字符串是否有效
+//有效字符串需满足：
+//1.左括号必须用相同类型的右括号闭合
+//2.左括号必须以正确的顺序闭合
+//3.每个右括号都有一个对应的相同类型的左括号
+//用栈实现
+//
+//typedef char STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//
+//void StackInit(Stack* ps);
+//void StackDestroy(Stack* ps);
+//void StackPush(Stack* ps, STDataType x);
+//void StackPop(Stack* ps);
+//STDataType StackTop(Stack* ps);
+//bool isStackEmpty(Stack* ps);
+//int StackSize(Stack* ps);
+//
+//void StackInit(Stack* ps)
+//{
+//	assert(ps);
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->top = ps->capacity = 0;
+//}
+//
+//void StackPush(Stack* ps, STDataType x)
+//{
+//	assert(ps);
+//
+//	//检测扩容
+//	if (ps->top == ps->capacity)
+//	{
+//		ps->capacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * ps->capacity);
+//		if (tmp == NULL)
+//		{
+//			perror("realloc");
+//			exit(1);
+//		}
+//		ps->a = tmp;
+//	}
+//
+//	ps->a[ps->top] = x;
+//	ps->top++;
+//}
+//
+//void StackPop(Stack* ps)
+//{
+//	assert(ps);
+//	assert(!isStackEmpty(ps));
+//
+//	ps->top--;  //访问不到这个数据即可视为删除
+//}
+//
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	assert(!isStackEmpty(ps));
+//
+//	return ps->a[ps->top - 1];
+//}
+//
+//bool isStackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//
+//	return ps->top == 0;
+//}
+//
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//
+//	return ps->top;
+//}
+//
+//bool isValid(char* s)
+//{
+//	Stack st;
+//	StackInit(&st);
+//
+//	while (*s)
+//	{
+//		if (*s == '(' || *s == '[' || *s == '{')
+//		{
+//			StackPush(&st, *s);
+//			s++;
+//		}
+//		else
+//		{
+//			if (isStackEmpty(&st))
+//			{
+//				StackDestroy(&st);
+//				return false;
+//			}
+//
+//			STDataType top = StackTop(&st);
+//			StackPop(&st);
+//
+//			if (top == '(' && *s == ')'
+//				|| top == '[' && *s == ']'
+//				|| top == '{' && *s == '}')
+//			{
+//				s++;
+//			}
+//			else
+//			{
+//				StackDestroy(&st);
+//				return false;
+//			}
+//		}
+//	}
+//
+//	bool ret = isStackEmpty(&st);
+//	StackDestroy(&st);
+//	return ret;
+//}
+//
+//int main()
+//{
+//	char s[] = "()";
+//	if (isValid(s))
+//	{
+//		printf("true\n");
+//	}
+//	else
+//	{
+//		printf("false\n");
+//	}
+//
+//	return 0;
+//}
