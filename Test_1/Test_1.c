@@ -4854,106 +4854,112 @@ int main()
 //在一个普通队列里，一旦一个队列满了，就不能插入下一个元素，即使在队列前面仍有空间。但是使用循环队列，我们能使用这些空间去存储新的值
 //用数组实现
 
-typedef struct
-{
-	int* a;
-	int k;
-	int head;
-	int tail;
-} MyCircularQueue;
-
-MyCircularQueue* myCircularQueueCreate(int k)
-{
-	MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
-	//带有一个不存储数据的头
-	obj->a = (int*)malloc(sizeof(int) * (k + 1));
-	obj->k = k;
-	obj->head = obj->tail = 0;
-
-	return obj;
-}
-
-bool myCircularQueueIsEmpty(MyCircularQueue* obj)
-{
-	return obj->head == obj->tail;
-}
-
-bool myCircularQueueIsFull(MyCircularQueue* obj)
-{
-	int next = obj->tail + 1;
-	if (obj->tail == obj->k)
-	{
-		next = 0;
-	}
-
-	return next == obj->head;
-}
-
-bool myCircularQueueEnQueue(MyCircularQueue* obj, int value)
-{
-	if (myCircularQueueIsFull(obj))
-	{
-		return false;
-	}
-
-	obj->a[obj->tail] = value;
-	obj->tail++;
-
-	//tail到达数组临界，调整tail位置到开头，以达到循环队列效果
-	if (obj->tail == obj->k + 1)
-	{
-		obj->tail = 0;
-	}
-
-	return true;
-}
-
-bool myCircularQueueDeQueue(MyCircularQueue* obj)
-{
-	if (myCircularQueueIsEmpty(obj))
-	{
-		return false;
-	}
-
-	obj->head++;
-
-	if (obj->head == obj->k + 1)
-	{
-		obj->head = 0;
-	}
-
-	return true;
-}
-
-int myCircularQueueFront(MyCircularQueue* obj)
-{
-	if (myCircularQueueIsEmpty(obj))
-	{
-		return -1;
-	}
-
-	return obj->a[obj->head];
-}
-
-int myCircularQueueRear(MyCircularQueue* obj)
-{
-	if (myCircularQueueIsEmpty(obj))
-	{
-		return -1;
-	}
-
-	int prev = obj->tail - 1;
-	if (obj->tail == 0)
-	{
-		prev = obj->k;
-	}
-
-	return obj->a[prev];
-}
-
-void myCircularQueueFree(MyCircularQueue* obj)
-{
-	free(obj->a);
-	free(obj);
-}
+//typedef struct
+//{
+//	int* a;
+//	int k;
+//	int head;
+//	int tail;
+//} MyCircularQueue;
+//
+//MyCircularQueue* myCircularQueueCreate(int k)
+//{
+//	MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+//	//带有一个不存储数据的头
+//	obj->a = (int*)malloc(sizeof(int) * (k + 1));
+//	obj->k = k;
+//	obj->head = obj->tail = 0;
+//
+//	return obj;
+//}
+//
+//bool myCircularQueueIsEmpty(MyCircularQueue* obj)
+//{
+//	return obj->head == obj->tail;
+//}
+//
+//bool myCircularQueueIsFull(MyCircularQueue* obj)
+//{
+//	int next = obj->tail + 1;
+//	if (obj->tail == obj->k)
+//	{
+//		next = 0;
+//	}
+//
+//	return next == obj->head;
+//}
+//
+//bool myCircularQueueEnQueue(MyCircularQueue* obj, int value)
+//{
+//	if (myCircularQueueIsFull(obj))
+//	{
+//		return false;
+//	}
+//
+//	obj->a[obj->tail] = value;
+//	obj->tail++;
+//
+//	//tail到达数组临界，调整tail位置到开头，以达到循环队列效果
+//	if (obj->tail == obj->k + 1)
+//	{
+//		obj->tail = 0;
+//	}
+//
+//	//obj->tail %= (obj->k + 1);  //上述调整代码可用模代替
+//
+//	return true;
+//}
+//
+//bool myCircularQueueDeQueue(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return false;
+//	}
+//
+//	obj->head++;
+//
+//	if (obj->head == obj->k + 1)
+//	{
+//		obj->head = 0;
+//	}
+//
+//	return true;
+//}
+//
+//int myCircularQueueFront(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return -1;
+//	}
+//
+//	return obj->a[obj->head];
+//}
+//
+//int myCircularQueueRear(MyCircularQueue* obj)
+//{
+//	if (myCircularQueueIsEmpty(obj))
+//	{
+//		return -1;
+//	}
+//
+//	int prev = obj->tail - 1;
+//	if (obj->tail == 0)
+//	{
+//		prev = obj->k;
+//	}
+//
+//	//int prev = obj->tail - 1 + (obj->k + 1);
+//	//prev %= (obj->k + 1);   //上述调整代码可用模代替
+//
+//	//obj->a[obj->tail + obj->k % (obj->k + 1)];  //同上
+//	return obj->a[prev];
+//}
+//
+//void myCircularQueueFree(MyCircularQueue* obj)
+//{
+//	free(obj->a);
+//	free(obj);
+//}
 
