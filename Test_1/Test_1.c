@@ -4696,3 +4696,264 @@ int main()
 //
 //	free(obj);
 //}
+
+//用栈实现队列
+//仅使用两个栈实现先入先出队列
+
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}Stack;
+//
+//void StackInit(Stack* ps);
+//void StackDestroy(Stack* ps);
+//void StackPush(Stack* ps, STDataType x);
+//void StackPop(Stack* ps);
+//STDataType StackTop(Stack* ps);
+//bool isStackEmpty(Stack* ps);
+//int StackSize(Stack* ps);
+//
+//void StackInit(Stack* ps)
+//{
+//	assert(ps);
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//
+//void StackDestroy(Stack* ps)
+//{
+//	assert(ps);
+//	free(ps->a);
+//	ps->top = ps->capacity = 0;
+//}
+//
+//void StackPush(Stack* ps, STDataType x)
+//{
+//	assert(ps);
+//
+//	//检测扩容
+//	if (ps->top == ps->capacity)
+//	{
+//		ps->capacity = ps->capacity == 0 ? 4 : ps->capacity * 2;
+//		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * ps->capacity);
+//		if (tmp == NULL)
+//		{
+//			perror("realloc");
+//			exit(1);
+//		}
+//		ps->a = tmp;
+//	}
+//
+//	ps->a[ps->top] = x;
+//	ps->top++;
+//}
+//
+//void StackPop(Stack* ps)
+//{
+//	assert(ps);
+//	assert(!isStackEmpty(ps));
+//
+//	ps->top--;  //访问不到这个数据即可视为删除
+//}
+//
+//STDataType StackTop(Stack* ps)
+//{
+//	assert(ps);
+//	assert(!isStackEmpty(ps));
+//
+//	return ps->a[ps->top - 1];
+//}
+//
+//bool isStackEmpty(Stack* ps)
+//{
+//	assert(ps);
+//
+//	return ps->top == 0;
+//}
+//
+//int StackSize(Stack* ps)
+//{
+//	assert(ps);
+//
+//	return ps->top;
+//}
+//
+//typedef struct
+//{
+//	Stack pushst;
+//	Stack popst;
+//} MyQueue;
+//
+//
+//MyQueue* myQueueCreate()
+//{
+//	MyQueue* obj = (MyQueue*)malloc(sizeof(MyQueue));
+//	StackInit(&obj->pushst);
+//	StackInit(&obj->popst);
+//
+//	return obj;
+//}
+//
+//void myQueuePush(MyQueue* obj, int x)
+//{
+//	StackPush(&obj->pushst, x);
+//}
+//
+//int myQueuePop(MyQueue* obj)
+//{
+//	if (isStackEmpty(&obj->popst))
+//	{
+//		//如果popst为空，则把pushst的数据倒过来
+//		while (!isStackEmpty(&obj->pushst))
+//		{
+//			StackPush(&obj->popst, StackTop(&obj->pushst));
+//			StackPop(&obj->pushst);
+//		}
+//	}
+//
+//	//删数据
+//	int front = StackTop(&obj->popst);
+//	StackPop(&obj->popst);
+//	return front;
+//}
+//
+//int myQueuePeek(MyQueue* obj)
+//{
+//	if (isStackEmpty(&obj->popst))
+//	{
+//		//如果popst为空，则把pushst的数据倒过来
+//		while (!isStackEmpty(&obj->pushst))
+//		{
+//			StackPush(&obj->popst, StackTop(&obj->pushst));
+//			StackPop(&obj->pushst);
+//		}
+//	}
+//
+//	return StackTop(&obj->popst);
+//}
+//
+//bool myQueueEmpty(MyQueue* obj)
+//{
+//	return isStackEmpty(&obj->pushst) && isStackEmpty(&obj->popst);
+//}
+//
+//void myQueueFree(MyQueue* obj)
+//{
+//	StackDestroy(&obj->pushst);
+//	StackDestroy(&obj->popst);
+//	free(obj);
+//}
+
+//设计循环队列
+//队尾被连接在队首之后以形成一个循环。它也被称为“环形缓冲器”。
+//循环队列的一个好处是我们可以利用这个队列之前用过的空间。
+//在一个普通队列里，一旦一个队列满了，就不能插入下一个元素，即使在队列前面仍有空间。但是使用循环队列，我们能使用这些空间去存储新的值
+//用数组实现
+
+typedef struct
+{
+	int* a;
+	int k;
+	int head;
+	int tail;
+} MyCircularQueue;
+
+MyCircularQueue* myCircularQueueCreate(int k)
+{
+	MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+	//带有一个不存储数据的头
+	obj->a = (int*)malloc(sizeof(int) * (k + 1));
+	obj->k = k;
+	obj->head = obj->tail = 0;
+
+	return obj;
+}
+
+bool myCircularQueueIsEmpty(MyCircularQueue* obj)
+{
+	return obj->head == obj->tail;
+}
+
+bool myCircularQueueIsFull(MyCircularQueue* obj)
+{
+	int next = obj->tail + 1;
+	if (obj->tail == obj->k)
+	{
+		next = 0;
+	}
+
+	return next == obj->head;
+}
+
+bool myCircularQueueEnQueue(MyCircularQueue* obj, int value)
+{
+	if (myCircularQueueIsFull(obj))
+	{
+		return false;
+	}
+
+	obj->a[obj->tail] = value;
+	obj->tail++;
+
+	//tail到达数组临界，调整tail位置到开头，以达到循环队列效果
+	if (obj->tail == obj->k + 1)
+	{
+		obj->tail = 0;
+	}
+
+	return true;
+}
+
+bool myCircularQueueDeQueue(MyCircularQueue* obj)
+{
+	if (myCircularQueueIsEmpty(obj))
+	{
+		return false;
+	}
+
+	obj->head++;
+
+	if (obj->head == obj->k + 1)
+	{
+		obj->head = 0;
+	}
+
+	return true;
+}
+
+int myCircularQueueFront(MyCircularQueue* obj)
+{
+	if (myCircularQueueIsEmpty(obj))
+	{
+		return -1;
+	}
+
+	return obj->a[obj->head];
+}
+
+int myCircularQueueRear(MyCircularQueue* obj)
+{
+	if (myCircularQueueIsEmpty(obj))
+	{
+		return -1;
+	}
+
+	int prev = obj->tail - 1;
+	if (obj->tail == 0)
+	{
+		prev = obj->k;
+	}
+
+	return obj->a[prev];
+}
+
+void myCircularQueueFree(MyCircularQueue* obj)
+{
+	free(obj->a);
+	free(obj);
+}
+
