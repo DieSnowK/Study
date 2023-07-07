@@ -1,12 +1,2 @@
-﻿  Queue.c
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(26,1): warning C4029: 声明的形参表不同于定义
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(100,18): warning C4133: “=”: 从“QNode *”到“Queue *”的类型不兼容
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\Queue.c(94,1): warning C4133: “初始化”: 从“QNode *”到“Queue *”的类型不兼容
-  test.c
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\test.c(8,16): warning C4020: “QueuePush”: 实参太多
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\test.c(9,16): warning C4020: “QueuePush”: 实参太多
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\test.c(10,16): warning C4020: “QueuePush”: 实参太多
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\test.c(11,16): warning C4020: “QueuePush”: 实参太多
-C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\test.c(12,16): warning C4020: “QueuePush”: 实参太多
-  正在生成代码...
+﻿  test.c
   Queue.vcxproj -> C:\Users\SnowK\Desktop\My_Repository\Study_Test\Data_Structure\Queue\x64\Debug\Queue.exe
