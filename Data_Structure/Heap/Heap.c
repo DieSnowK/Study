@@ -53,6 +53,7 @@ void AdjustUp(HPDataType* a, int child)
 	}
 }
 
+//向下调整前提:左右子树必须是小/大堆
 void AdjustDown(HPDataType* a, int size, int parent)
 {
 	int child = parent * 2 + 1;
