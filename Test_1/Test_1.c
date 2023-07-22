@@ -7,41 +7,41 @@
 #include <stdbool.h>
 
 //求两个输入变量最大值问题
-/*
-int Max(int x, int y)
-{
-	if (x > y)
-		return x;
-	else
-	return y;
-}
-
-
-int main()
-{
-	int a, b;
-	scanf("%d %d", &a, &b);
-	int m = Max(a, b);
-	printf("%d", m);
-
-	return 0;
-}
-*/
-
+///*
+//int Max(int x, int y)
+//{
+//	if (x > y)
+//		return x;
+//	else
+//	return y;
+//}
+//
+//
+//int main()
+//{
+//	int a, b;
+//	scanf("%d %d", &a, &b);
+//	int m = Max(a, b);
+//	printf("%d", m);
+//
+//	return 0;
+//}
+//*/
+//
 //通过控制printf函数来打印图案
-/*
-int main()
-{
-	printf("     **\n");
-	printf("     **\n");
-	printf("************\n");
-	printf("************\n");
-	printf("    *  *\n");
-	printf("    *  *\n");
-	return 0;
-}
-*/
-
+///*
+//int main()
+//{
+//	printf("     **\n");
+//	printf("     **\n");
+//	printf("************\n");
+//	printf("************\n");
+//	printf("    *  *\n");
+//	printf("    *  *\n");
+//	return 0;
+//}
+//*/
+//
 //判断一个整数能否被5整除问题
 //int main()
 //{
@@ -56,7 +56,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //判断一个数是否为奇数
 //int main()
 //{
@@ -64,13 +64,13 @@ int main()
 //	if (num % 2 == 1)
 //		printf("奇数");
 //	else
-//		printf("偶数");	
+//		printf("偶数");
 //
 //
 //	return 0;
 //}
-
-//输出1-100之间的奇数
+//
+//输出1 - 100之间的奇数
 //int main()
 //{
 //	int i = 1;
@@ -86,8 +86,8 @@ int main()
 //
 //	return 0;
 //}
-
-//输出1-10数
+//
+//输出1 - 10数
 //int main()
 //{
 //	int i = 1;
@@ -99,7 +99,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //计算n的介乘
 //int main()
 //{
@@ -117,9 +117,9 @@ int main()
 //	printf("%d的介乘为%d:", n, tep);
 //	return 0;
 //}
-
-//计算1！+2！+3！……+n!
-
+//
+//计算1！ + 2！ + 3！…… + n!
+//
 //int main()
 //{
 //
@@ -143,13 +143,13 @@ int main()
 //		//对临时值tep重新赋初值，使得下次计算i介乘时起点为1
 //		tep = 1;
 //	}
-//	
+//
 //	printf("%d", sum);
 //
 //	return 0;
 //}
-
-//计算1！+2！+3！……+n!
+//
+//计算1！ + 2！ + 3！…… + n!
 //int main()
 //{
 //	int sum = 0;
@@ -166,7 +166,7 @@ int main()
 //	printf("%d", sum);
 //	return 0;
 //}
-
+//
 //在一个有序数组中查找具体的某个数字n的下标
 //采用折半查找法
 //
@@ -175,20 +175,20 @@ int main()
 //	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
 //	//left right mid 均为下标
 //	int left = 0;
-//	int right = (sizeof(arr)/sizeof(arr[0])) - 1;
+//	int right = (sizeof(arr) / sizeof(arr[0])) - 1;
 //
 //	//定义一个需要查找的数
 //	int k = 0;
 //	printf("请输入1-10中需要查找的数\n");
-//	scanf("%d" , &k);
+//	scanf("%d", &k);
 //
-//	
+//
 //
 //	//查找
 //	//arr[]去访问数组中的数，用下标来访问数
 //
 //
-//	while (left<=right)
+//	while (left <= right)
 //	{
 //		//定义中间折半数值下标
 //		int mid = (left + right) / 2;
@@ -215,20 +215,20 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //查找一个有序数组中某个数的下标（笨办法）（效率低下）
-
+//
 //int main()
 //{
 //	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
 //	//left right mid 均为下标
 //	int i = 1;
-//	int nm = (sizeof(arr)/sizeof(arr[0])) - 1;
+//	int nm = (sizeof(arr) / sizeof(arr[0])) - 1;
 //
 //	//定义一个需要查找的数
 //	int k = 0;
 //	printf("请输入1-10中需要查找的数\n");
-//	scanf("%d" , &k);
+//	scanf("%d", &k);
 //
 //	//查找
 //	//arr[]去访问数组中的数，用下标来访问数
@@ -257,7 +257,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 ////演示多个字符从两端移动，向中间汇聚
 //#include <string.h>
 //#include <windows.h>
@@ -282,7 +282,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //编写代码实现，模拟用户登陆情景，并且只能登录三次
 //#include <string.h>
 //int main()
@@ -309,1177 +309,1177 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //写一个猜数游戏
-/*思路：1.自动生成1-100之间的随机数
-		2.猜数字
-			(1)猜对了，恭喜你，游戏结束
-			(2)猜错了，会告诉大了还是小了，继续猜
-		3.游戏一直进行，除非退出游戏*/
-
-		//#include <stdlib.h>
-		//#include <time.h>
-		//
-		//void menu()
-		//{
-		//
-		//	printf("***********************************\n");
-		//	printf("************  1.Play  *************\n");
-		//	printf("************  0.exit  *************\n");
-		//	printf("***********************************\n");
-		//
-		//}
-		//
-		//void game()
-		//{
-		//	//先生成随机数，以时间做种
-		//	int num = rand() % 100 + 1;//%100的余数是0-99，然后+1即可达成范围为1-100
-		//
-		//	//先做框架
-		//	int guess = 0;
-		//	while (1)
-		//	{
-		//		printf("请猜数字:>");
-		//		scanf("%d", &guess);
-		//		if (guess > num)
-		//		{
-		//			printf("猜大啦\n");
-		//		}
-		//		else if (guess < num)
-		//		{
-		//			printf("猜小啦\n");
-		//		}
-		//		else
-		//		{
-		//			printf("恭喜你，猜对了，正确答案为%d\n", num);
-		//			break;
-		//		}
-		//	}
-		//
-		//
-		//}
-		//
-		//int main()
-		//{
-		//	int input = 0;
-		//	//先调用srand() 掷出rand()所需要的随机数种子
-		//	//该种子一个程序中，有一次生成即可
-		//	//所以放在主函数开头中
-		//	srand((unsigned int)time(NULL));
-		//
-		//	do 
-		//	{
-		//		//开始游戏先打印菜单
-		//		menu();
-		//		printf("请选择:>");
-		//		//选择游戏模式
-		//		scanf("%d", &input);
-		//
-		//		//判断游戏是否进行（即状态）
-		//		//switch 决定游戏框架
-		//		//game()决定游戏如何游玩
-		//		switch (input)
-		//		{
-		//		case 1:
-		//			game();
-		//			break;
-		//		case 0:
-		//			printf("退出游戏\n");
-		//			break;
-		//		default:
-		//			printf("选择错误，请重新选择\n");
-		//			break;
-		//		}
-		//	} while (input);
-		//	
-		//	return 0;
-		//}
-
-		//将三个整数按从大到小输出
-		//借此研究理解全局变量和局部变量
-
-		//int main()
-		//{
-		//	int a = 0;
-		//	int b = 0;
-		//	int c = 0;
-		//	printf("请输入要排序的三个数:>");
-		//	//输入
-		//	scanf("%d%d%d", &a, &b, &c);
-		//	
-		//	//调整顺序
-		//	if (a < b)
-		//	{
-		//		int tep = a;//中间过度变量
-		//		a = b;
-		//		b = tep;
-		//	}
-		//	if (a < c)
-		//	{
-		//		int tmp = a;
-		//		a = c;
-		//		c = tmp;
-		//	}
-		//	if (b < c)
-		//	{
-		//		int tmp = b;
-		//		b = c;
-		//		c = tmp;
-		//	}
-		//
-		//	//输出 - 从大到小
-		//	printf("%d %d %d", a, b, c);
-		//	return 0;
-		//}
-
-		//打印1-100之间3的倍数的数字
-
-		//int main()
-		//{
-		//	int i = 0;
-		//	//for (i = 1; i <= 100; i++)
-		//	//{
-		//	//	if (i % 3 == 0)
-		//	//	{
-		//	//		printf("%d ", i);
-		//	//	}
-		//	//}
-		//
-		//	for (i = 3; i <= 100; i += 3)
-		//	{
-		//		printf("%d ", i);
-		//	}
-		//
-		//	return 0;
-		//}
-
-		//给定两个数，求这两个数的最大公约数
-
-		//int main()
-		//{
-		//	int m = 0;
-		//	int n = 0;
-		//	int min = 0;
-		//	scanf("%d%d", &m, &n);
-		//
-		//	//方法① if语句
-		//	/*if (m > n)
-		//	{
-		//		min = n;
-		//	}
-		//	else
-		//	{
-		//		min = m;
-		//	}*/
-		//
-		//	//方法② 用条件操作符 exp1 ? exp2 : exp3
-		//	min = (m > n) ? n : m;//等价于上方的if语句
-		//
-		//	while (1)
-		//	{
-		//		if (m % min == 0 && n % min == 0)
-		//		{
-		//			printf("最大公约数为%d", min);
-		//			break;
-		//		}
-		//		min--;
-		//	}
-		//
-		//	return 0;
-		//} 
-
-		//上述问题用辗转相除法
-		//
-		//int main()
-		//{
-		//	int m = 0;
-		//	int n = 0;
-		//	int tep = 0;
-		//	scanf("%d%d", &m, &n);
-		//
-		//	while (tep=m%n)
-		//	{
-		//		m = n;
-		//		n = tep;
-		//	}
-		//	printf("最大公约数是%d", n);
-		//	return 0;
-		// //最小公倍数 = m*n/最大公因数 
-		//}
-
-		//打印1000-2000之间的闰年
-
-		//int main()
-		//{
-		//	//能被4整除，不能被100整除的为闰年
-		//	//能被400整除，为闰年
-		//
-		//	int year = 0;
-		//	int count = 0;
-		//	//for (year = 1000; year<= 2000; year++)
-		//	//{
-		//	//	if (year % 4 == 0)
-		//	//	{
-		//	//		if (year % 100 != 0)
-		//	//		{
-		//	//			printf("%d ", year);
-		//	//			count++;
-		//	//		}
-		//	//		
-		//	//	}
-		//	//	if (year % 400 == 0)
-		//	//	{
-		//	//		printf("%d ", year);
-		//	//		count++;
-		//	//	}
-		//	//}
-		//
-		//	//优化上述代码 用|| 逻辑或来合并两次if判断闰年的两种方法
-		//	for (year = 1000; year <= 2000; year++)
-		//	{
-		//		if (((year % 4 == 0) && (year % 400 != 0)) || (year % 400 == 0))
-		//		{
-		//			printf("%d ", year);
-		//			count++;
-		//		}
-		//	}
-		//
-		//	printf("\n\n闰年总数为%d\n", count);
-		//	return 0;
-		//}
-
-		//打印100-200之间的素数
-		//int main()
-		//{
-		//	//素数的判断
-		//	//因数只有1和本身
-		//	int i = 0;
-		//	for (i = 100; i <= 200; i++) //这个for语句是为了生成100-200
-		//	{
-		//		//判断i是否为素数
-		//		//方法：用2 -> i-1之间的数字去试除，看能不能整除
-		//		//如果能，即不是素数
-		//		int j = 0;
-		//
-		//		for (j = 2; j < i; j++) //这个for语句是判断是否为素数用的
-		//		{
-		//			if (i % j == 0)
-		//			{
-		//				break;
-		//			}
-		//		}
-		//		//break跳出到此
-		//		if (i == j)//因为两个路径都可以到达这个地方，所以用if语句判断来控制输出
-		//		{
-		//			printf("%d ", i);//打印素数
-		//		}
-		//	}
-		//	return 0;
-		//}
-
-		//上述题目另一种判断思路
-
-		//int main()
-		//{
-		//	//素数的判断
-		//	//因数只有1和本身
-		//	int i = 0;
-		//	for (i = 100; i <= 200; i++) //这个for语句是为了生成100-200
-		//	{
-		//		//判断i是否为素数
-		//		//方法：用2 -> i-1之间的数字去试除，看能不能整除
-		//		//如果能，即不是素数
-		//		int j = 0;
-		//		int flag = 1;//假设i就是素数
-		//		for (j = 2; j < i; j++) //这个for语句是判断是否为素数用的
-		//		{
-		//			if (i % j == 0)
-		//			{
-		//				flag = 0;//i不是素数
-		//				break;
-		//			}
-		//		}
-		//		//break跳出到此
-		//		if (flag == 1)
-		//		{
-		//			printf("%d ", i);//打印素数
-		//		}
-		//	}
-		//	return 0;
-		//}
-
-		//上述问题的另一种写法
-		//#include <math.h>
-		//
-		//int main()
-		//{
-		//	//素数的判断
-		//	//因数只有1和本身、
-		//	//如果m=a*b
-		//	//a和b中一定至少有一个数字是<=m开平方根
-		//	//如16 = 2*8 = 4*4  sqrt(16)=4
-		//	//所以试除 只需要除到 <=m开平方根即可，因为如果这个可以，那么后面也必然可以存在一个因数使得他可以除
-		//	int i = 0;
-		//	for (i = 101; i <= 200; i+=2) //这个for语句是为了生成100-200       从101开始，每次+=2，从源头上杜绝了判断偶数的可能  因为偶数有2为因数
-		//	{
-		//		//判断i是否为素数
-		//		//方法：用2 -> sqrt(i)之间的数字去试除，看能不能整除
-		//		//如果能，即不是素数
-		//		int j = 0;
-		//		int flag = 1;//假设i就是素数    此处flag为控制变量
-		//		for (j = 2; j < sqrt(i); j++) //减少了循环次数，优化代码效率
-		//		{
-		//			if (i % j == 0)
-		//			{
-		//				flag = 0;//i不是素数
-		//				break;
-		//			}
-		//		}
-		//		//break跳出到此
-		//		if (flag == 1)
-		//		{
-		//			printf("%d ", i);//打印素数
-		//		}
-		//	}
-		//	return 0;
-		//}
-
-		//关机
-		//#include <string.h>
-		//
-		//int main()
-		//{
-		//	char input[20] = { 0 };//存放输入信息
-		//	system("shutdown -s -t 60"); //需引用 - stdlib.h
-		//	
-		//again:
-		//
-		//	printf("您的电脑将在60s后关机，如要取消，请输入:我是猪,\"即可取消关机\"\n");
-		//	scanf("%s", input);
-		//
-		//	if (strcmp(input, "我是猪") == 0)
-		//	{
-		//		system("shutdown -a");
-		//		printf("成功取消");
-		//	}
-		//	else 
-		//	{
-		//		goto again;   //可以用while循环代替goto 
-		//	}
-		//
-		//	return 0;
-		//}
-
-		//写一个函数可以找出两个整数中的较大值
-
-		//int get_max(int x,int y)
-		//{
-		//	int z = 0;
-		//	z = (x > y) ? x : y;
-		//	return z;//返回z-返回最大值
-		//}
-		//
-		//int main()
-		//{
-		//	int a = 10;
-		//	int b = 20;
-		//	//函数的调用
-		//	int max = get_max(a, b);
-		//	printf("max = %d\n");
-		//	return 0;
-		//}
-
-		//写一个函数 - 交换两个整型变量的值
-
-		//void exchange_int(int* x, int* y)
-		//{
-		//	int z = 0;
-		//	z = *x;
-		//	*x = *y;
-		//	*y = z;
-		//}
-		//
-		//int main()
-		//{
-		//	int a = 10;
-		//	int b = 20;
-		//	printf("交换前的值为%d %d\n", a, b);
-		//	//调用交换数值函数
-		//	exchange_int(&a,&b);
-		//	printf("交换后的值为%d %d\n", a, b);
-		//
-		//	return 0;
-		//}
-
-		//写一个函数可以判断一个数是不是素数
-		//
-		//#include <math.h>
-		//
-		//int judge_prime(int x)
-		//{
-		//	//怎么判断一个素数？
-		//	//方法① 用要判断的数去除2 - （num-1），我都除了之后有余数，那他就是素数
-		//	int z = 0;
-		//	for (z = 2; z <= sqrt(x); z++)
-		//	{
-		//		if (x % z == 0)
-		//		{
-		//			return 0;
-		//		}
-		//
-		//	}
-		//	return 1;
-		//}
-		//
-		//int main()
-		//{
-		//	//判断100-200中间的素数
-		//	int num = 0;
-		//	int count = 0;
-		//	for (num = 100; num <= 200; num++)
-		//	{
-		//		if (judge_prime(num) == 1)
-		//		{
-		//			printf("%d ", num);
-		//			count++;
-		//		}
-		//
-		//	}
-		//
-		//	printf("\ncount = %d\n", count);
-		//	return 0;
-		//}
-
-		//写一个函数判断一年是不是闰年
-		//1000-2000年之间的闰年
-
-		//定义函数
-		//int judge_year(int x)
-		//{
-		//	if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0)
-		//	{
-		//		return 0;
-		//	}
-		//	return 1;
-		//}
-		//
-		//int main()
-		//{
-		//	int y = 0;
-		//	int count = 0;
-		//	for (y = 1000; y <= 2000; y++)
-		//	{
-		//		if (judge_year(y) == 0)
-		//		{
-		//			printf("%d ", y);
-		//			count++;
-		//		}
-		//	}
-		//
-		//	printf("\ncount = %d\n", count);
-		//	return 0;
-		//}
-
-		//写一个函数，实现一个整型有序数组的二分查找
-
-		//int get_num(int a[],int x,int y)
-		//{
-		//	int left = 0;
-		//	int right = y - 1;
-		//
-		//	while (left <= right)
-		//	{
-		//		int mid = (left + right) / 2;
-		//		if (a[mid] < x)
-		//		{
-		//			left += 1;
-		//		}
-		//		else if (a[mid] > x)
-		//		{
-		//			right -= 1;
-		//		}
-		//		else
-		//		{
-		//			return mid;
-		//		}
-		//	}
-		//	return 0;
-		//}
-		//
-		//int main()
-		//{
-		//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
-		//	int k = 8;
-		//	int sz = sizeof(arr) / sizeof(arr[0]);
-		//
-		//	if (get_num(arr, k, sz) == 0)
-		//	{
-		//		printf("找不到了/(ㄒoㄒ)/~~\n");
-		//	}
-		//	else
-		//	{
-		//		printf("%d的下标为：%d\n", k, get_num(arr, k, sz)); //链式访问
-		//	}
-		//	return 0;
-		//}
-
-		//写一个函数，每调用一次这个函数，将会将num的值增加1
-
-		//add(int* p)
-		//{
-		//	(*p)++;
-		//}
-		//
-		//int main()
-		//{
-		//	int num = 0;
-		//	add(&num);
-		//	printf("%d\n", num);//1
-		//
-		//	add(&num);
-		//	printf("%d\n", num);//2
-		//
-		//	add(&num);
-		//	printf("%d\n", num);//3
-		//	return 0;
-		//}
-
-		//函数的嵌套调用
-		//void test3()
-		//{
-		//	printf("呵呵\n");
-		//}
-		//
-		//int test2()
-		//	{
-		//		test3();
-		//		return 0;
-		//	}
-		//
-		//int main()
-		//{
-		//	test2();
-		//	return 0;
-		//}
-
-		//接受一个整型值（无符号），按顺序打印他的每一位  例如：1234，输出1 2 3 4
-		//从项目为练习函数的递归（自己调用自己）
-		//递归主要思考方式：把大事化小 
-
-		//void print(int n)
-		//{
-		//	if (n > 9)   //需要存在限制条件，来组织函数一直递归    且每递归一次，越来越接近限制条件
-		//	{
-		//		print(n/10);
-		//	}
-		//	printf("%d ", n % 10);
-		//}
-		//
-		//int main()
-		//{
-		//	int num = 0;
-		//	scanf("%d", &num);
-		//	print(num);
-		//	return 0;
-		//}
-
-		//模拟实现一个strlen函数   测量字符串长度函数
-
-		//int my_strlen(char* str)//str为一个字符型指针变量
-		//{
-		//	//创建临时变量的方法
-		//	//int count = 0;
-		//	//while (*str != 0) //指针存放数组时，存放的是第一个元素的地址，并非整个数组
-		//	//{
-		//	//	str++;
-		//	//	count++;
-		//	//}
-		//	//return count;
-		//
-		//	//不允许创建临时变量法，用函数递归
-		//	if (*str != '\0')
-		//	{
-		//		return 1 + my_strlen(str + 1);
-		//	}
-		//	else
-		//	{
-		//		return 0; 
-		//	}
-		//	
-		//}
-		//
-		//int main()
-		//{
-		//	char arr[] = "SnowK";
-		//	//[S][n][o][w][K][\0]   \0为字符串结束表示，不占据字符串长度和大小
-		//
-		//	printf("%d\n", my_strlen(arr));//函数的链式访问
-		//	return 0;
-		//}
-
-		//求n的介乘
-		//迭代的方式
-
-		//int main()
-		//{
-		//	int n = 0;   //求n的介乘，可以用n来限制次数
-		//	int i = 0;
-		//	scanf("%d", &n);
-		//	int ret = 1; //ret作为中转用的变量
-		// 
-		//  迭代
-		//	for (i = 1; i <= n; i++)
-		//	{
-		//		ret = ret * i;
-		//	}
-		//	
-		//	printf("%d", ret);
-		//	return 0;
-		//}
-
-		////求n的介乘  用递归的方式
-		//Fac(int n)
-		//{
-		//	if (n <= 1)
-		//	{
-		//		return 1;
-		//	}
-		//	else
-		//	{
-		//		return n * Fac(n - 1);
-		//	}
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0;
-		//	scanf("%d", &n);
-		//	//int ret = Fac(n);
-		//	//
-		//	//printf("%d", ret);
-		//
-		//	printf("%d", Fac(n));
-		//
-		//	return 0;
-		//}
-
-		//求斐波那契数列的第n个数
-		//用迭代的方法去做
-
-		//定义一个全局变量count  用来计数
-		//int count = 0;
-		//
-		//int Fib(int n)
-		//{
-		//	if (n == 3)
-		//	{
-		//		count++; //用于计数，n=3被算了多少遍
-		//	}
-		//
-		//	if (n <= 2)
-		//	{
-		//		return 1;
-		//	}
-		//	else
-		//	{
-		//		return Fib(n - 1) + Fib(n - 2);
-		//	}
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0;
-		//	scanf("%d", &n);
-		//
-		//	printf("%d\n", Fib(n));
-		//
-		//	printf("%d\n", count);
-		//
-		//	return 0;
-		//}
-
-		//求n的斐波那契数
-		//用迭代的方式去做
-
-		//int Fib(int n)
-		//{
-		//	int a = 1;
-		//	int b = 1;
-		//	int c = 1;
-		//
-		//	while (n >= 3)
-		//	{
-		//		c = a + b;
-		//		a = b;
-		//		b = c;
-		//		n--;
-		//	}
-		//	return c;
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0;
-		//	printf("要计算第几个斐波那契数:");
-		//	scanf("%d", &n);
-		//	int result = Fib(n);
-		//	printf("%d", result);
-		//
-		//	return 0;
-		//}
-
-
-		//编写程序数一下1到100 的所有整数中出现多少个数字9
-		//9 19 29 39 49 59 69 79 89 99
-
-		//int main()
-		//{	
-		//	int count = 0;
-		//	//先生成数字
-		//	int i = 0;
-		//	for (i = 1; i <= 100; i++)
-		//	{
-		//		//判断个位9
-		//		if (i % 10 == 9)
-		//		{
-		//			count++;
-		//		}
-		//
-		//		//判断十位10
-		//		if (i / 10 == 9)
-		//		{
-		//			count++;
-		//		}
-		//	}
-		//
-		//	printf("总共有%d个9", count);
-		//	return 0;
-		//}
-
-
-		//计算1/1-1/2+1/3-1/4+1/5 ......+ 1/99 - 1/100的值，打印出结果
-		//int main()
-		//{
-		//	int i = 0;
-		//	double sum = 0.0;
-		//	int flag = 1;
-		//	for (int i = 1; i <= 100; i++)
-		//	{
-		//		//此处模2是为了判断并且控制正负号
-		//	/*	if (i % 2 == 0)
-		//			sum -= 1.0 / i;
-		//		else
-		//			sum += 1.0 / i;*/
-		//
-		//		//另一种控制正负方法
-		//		sum += 1.0 / i * flag;
-		//		flag = -flag;  //控制正负号
-		//
-		//	}
-		//	printf("%lf", sum);
-		//	return 0;
-		//}
-
-		//求10个数中的最大值  随机 且不分正负
-
-		//int main()
-		//{
-		//	int arr[7] = { 188,261,233,666,100,1835,1752 };
-		//	int max = arr[0];  //假设起始max数为数组中的一个数  而不是0   因为如果为负数，则无法判断
-		//	int i = 0;
-		//
-		//	for (i = 1; i <= 7; i++)
-		//	{
-		//		if (arr[i] > max)
-		//		{
-		//			max = arr[i];
-		//		}
-		//	}
-		//
-		//	printf("%d", max);
-		//
-		//	return 0;
-		//}
-		//
-		//打印九九乘法表
-			//1*1=1 
-			//2*1=2 2*2=4
-			//3*1=3 3*2=4
-
-		//int main()
-		//{
-		//	int i = 0;
-		//	for (i = 1; i <= 9; i++)//控制行数
-		//	{
-		//		int j = 0; //控制列数变量
-		//
-		//		for (j = 1; j <= 9; j++)
-		//		{
-		//			printf("%d*%d=%-2d ", i, j, i * j);//%-2d用了控制两位，且左对齐    %2d为右对齐
-		//			                                  //使输出的int型的数值以2位的固定位宽输出。如果不足2位，则在前面补空格
-		//		}
-		//		printf("\n"); //调整排版，使每一行结尾换行
-		//	}
-		//	return 0;
-		//}
-		//
-
-		//实现X*X乘法表
-		//
-		//void print_table(int n)
-		//{
-		//	int i = 0;
-		//	for (i = 1; i <= n; i++)
-		//	{
-		//		//一行
-		//		int w = 0;
-		//		for (w = 1; w <= n; w++)
-		//		{
-		//			printf("%d*%d=%-4d", i, w, i * w);
-		//		}
-		//		printf("\n");
-		//	}
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0; //控制x*x
-		//	printf("请输入需要X*X:");
-		//	scanf("%d", &n);
-		//
-		//	print_table(n);
-		//	return 0;
-		//}
-
-		//字符串逆序(递归实现)题目内容:
-		//编写一个函数reverse_string(char * string)(递归实现)
-		//实现:将参数字符串中的字符反向排列，不是逆序打印。要求:不能使用C函数库中的字符串操作函数
-
-		//int my_strlen(char* arr)//写一个函数  模拟库函数strlen()的功能
-		//{
-		//	int count = 0;
-		//	while (*arr != '\0')
-		//	{
-		//		arr++;
-		//		count++;
-		//	}
-		//	return count;
-		//
-		//}
-
-		//法①  不用递归实现  用迭代
-		//void reverse_string(char* arr)//形参用指针
-		//{
-		//	int left = 0;
-		//	int right = my_strlen(arr) - 1;
-		//	while (left < right)
-		//	{
-		//		//第一种表述形式
-		//		//char tmp = arr[left];
-		//		//arr[left] = arr[right];
-		//		//arr[right] = tmp;
-		//		//left++;
-		//		//right--;
-		//
-		//		//第二种表述形式   解引用
-		// 		char tmp = *(arr + left);//等价于 arr[left];
-		//		*(arr + left) = *(arr + right);
-		//		*(arr + right) = tmp;
-		//		left++;
-		//		right--;
-		//	}
-		//}
-
-		//法② 用递归实现
-		//void reverse_string(char* arr)
-		//{
-		//	char tmp = *arr;
-		//	int len = my_strlen(arr) - 1;
-		//	*arr = *(arr + len);
-		//	*(arr + len) = '\0'; //先不放最前面一个值到最后面  防止下次调用时 这两个换  就达不到目的
-		//	//判断条件
-		//	if (my_strlen(arr + 1) >= 2)
-		//	{
-		//		reverse_string(arr + 1);
-		//	}
-		//	*(arr + len) = tmp;//最后再把第一个值换到最后面
-		//}
-		//
-		//int main()
-		//{
-		//	//生成一个字符串
-		//	char arr[10] = "DiesnowK" ;
-		//	reverse_string(arr);//传数组过去 传的是第一个字符的地址
-		//	printf("%s", arr);
-		//	return 0;
-		//}
-
-		//计算一个数的每位之和(非负数)  用递归实现
-
-		//int digitsum(int n)
-		//{
-		//	if (n <= 9)
-		//		return n;
-		//	else
-		//	{
-		//		return n % 10 + digitsum(n / 10);
-		//	}
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0;
-		//	scanf("%d", &n);
-		//	int sum = digitsum(n);
-		//	printf("%d", sum);
-		//	
-		//	return 0;
-		//}
-
-		//编写一个程序，实现n的k次方，用递归实现  包含正负数功能
-		//若k次方为负的，则为小数，所以数据类型用double
-
-		//double Pow(int n, int k)
-		//{
-		//	if (k == 0)
-		//	{
-		//		return 1.0;
-		//	}
-		//	else if (k > 0)
-		//	{
-		//		return n * Pow(n, k - 1);
-		//	}
-		//	else
-		//	{
-		//		return 1.0 / (Pow(n, -k));
-		//	}
-		//}
-		//
-		//int main()
-		//{
-		//	int n = 0;
-		//	int k = 0;
-		//	scanf("%d %d", &n, &k);
-		//	double result = Pow(n, k);
-		//	printf("%lf", result);
-		//
-		//	return 0;
-		//}
-
-		//冒泡排序
-
-		//void bubble_sort(int* arr, int sz)
-		//{
-		//	//确定要换几趟
-		//	int i = 0;
-		//	int flag = 1;
-		//	for (i = 0; i < sz - 1; i++)
-		//	{
-		//		//每一趟要换几次
-		//		int j = 0;
-		//		for (j = 0; j < sz - 1 - i; j++)
-		//		{
-		//			//一趟冒泡排序的过程
-		//			if (arr[j] < arr[j + 1])
-		//			{
-		//				//交换
-		//				int tmp = arr[j];
-		//				arr[j] = arr[j + 1];
-		//				arr[j + 1] = tmp;
-		//				flag = 0;
-		//			}
-		//		}
-		//		if (flag == 1)
-		//		{
-		//			break;
-		//		}
-		//	}
-		//
-		//}
-		//
-		//int main()
-		//{
-		//	//声明数组
-		//	int arr[] = { 1,2,3,4,5,6,7,8,9 };
-		//	int sz = sizeof(arr) / sizeof(arr[0]);
-		//	bubble_sort(arr, sz);
-		//	int k = 0;
-		//	for (k = 0; k <= sz - 1; k++)
-		//	{
-		//		printf("%d ", arr[k]);
-		//	}
-		//
-		//	return 0;
-		//}
-
-		//完成数组的交换
-
-		//int main()
-		//{
-		//	int arr1[] = { 1,3,5,7,9 };
-		//	int arr2[] = { 2,4,6,8,10 };
-		//	int i = 0;
-		//	int sz = sizeof(arr1);
-		//	for (i = 0; i < sz; i++)
-		//	{
-		//		int tmp = 0;
-		//		tmp = arr1[i];
-		//		arr1[i] = arr2[i];
-		//		arr2[i] = tmp;
-		//	}
-		//	return 0;
-		//}
-
-		//较为规范模拟strcpy  -  my_strcpy
-
-		//#include <assert.h>
-		//
-		//char* my_strcpy(char* destination, const char* source) //这里使用const防止source被修改
-		//{
-		//	char* tmp = destination;
-		//
-		//	assert(source != NULL); //断言，用来debug时查错用
-		//
-		//	while (*destination++ = *source++)
-		//	{
-		//		;
-		//	}
-		//	return tmp;  //返回目标空间的起始地址
-		//}
-		//
-		//int main()
-		//{
-		//	char arr1[] = "SnowK";
-		//	char arr2[] = "xxxxxxxxxxxxx";
-		//
-		//	printf("%s\n", my_strcpy(arr2, arr1));
-		//
-		//	return 0;
-		//}
-
-		//较为规范的模拟strlen  -  my_strlen
-
-		//#include <assert.h>
-		//
-		//unsigned int my_strlen(const char* arr)  //为何是unsigned int?   --  因为长度不存在负数，以防任何其他意外
-		//{
-		//	assert(arr != NULL);
-		//	//assert(arr); 等价于上述表达式
-		//
-		//	unsigned int count = 0;
-		//	while (*arr++ != '\0')
-		//	{
-		//		count++;
-		//	}
-		//	return count;
-		//}
-		//
-		//int main()
-		//{
-		//	char arr[] = "DieSnowK";
-		//	printf("%d\n", my_strlen(arr));
-		//	
-		//	return 0;
-		//}
-
-		//写一个函数
-		//要求：输入一个整数，输出该数32位二进制表示中1的个数，其中负数用补码表示
-
-		//如何获取一个十进制数字的二进制形式？
-		//以下为例子
-		//15 - 00001111
-		//15 % 2 = 1               //获得最右边一位是1/0
-		//15 / 2 = 7 - 00000111    //除去一位
-		//7 % 2 = 1
-		//7 / 2 = 3 -- 00000011
-		//3 % 2 = 1 -- 00000001
-		//3 / 2 = 1 -- 00000001
-		//1 % 2 = 1 -- 00000001
-
-		//此函数算法是有问题的   正数可以正常处理   但是负数呢？
-		//int NumberOf(int n)
-		//{
-		//	int count = 0;//计数器
-		//	while (n)
-		//	{
-		//		if (n % 2 == 1)  //判断第一位是否是1
-		//		{
-		//			count++;
-		//		}
-		//
-		//		n /= 2;  //获取下一位
-		//	}
-		//
-		//	return count;
-		//}
-
-		//通过直接操作二进制位  可以避免上述问题
-		//int NumberOf(int n)
-		//{
-		//	int count = 0;
-		//	int i = 0;
-		//	
-		//	for (i = 0; i < 32; i++)
-		//	{
-		//		//用& 按位与   
-		//		//与1   00000001    可判断最后一位情况
-		//
-		//		if ((n >> i) & 1 == 1)    //n右移位数用i控制  一步控制  不需要每次都右移一位
-		//		{
-		//			count++;
-		//		}
-		//	}
-		//	
-		//	return count;
-		//}
-
-		//以上函数算法可优化
-		//n & (n - 1)  --  用来逐步减少二进制位中的1
-		//以下位例子
-		//n = n & (n - 1)
-		//n = 15
-		//1111 - n
-		//1110 - n - 1
-		//1110 - n
-		//1101 - n - 1
-		//1100 - n
-		//1011 - n - 1
-		//1000 - n
-		//0111 - n - 1
-		//0000 - n
-
-		//以上思路还可以用来判断一个数字是不是2的n次方
-		//2的n次方的数字，其中只有一个1
-		// 00100000 - n
-		// 00011111 - n - 1
-		//k & (k - 1) == 0
-
-		//int NumberOf(int n)
-		//{
-		//	int count = 0;
-		//
-		//	while (n)  //一直处理到 n == 0时，跳出循环
-		//	{
-		//		n = n & (n - 1); //只要能进来，就让他移位，减少二进制中的一个1
-		//		count++;
-		//	}
-		//
-		//	return count;
-		//}
-
-		//int main()
-		//{
-		//	int n = -1;  //00001100  -  12
-		//
-		//	printf("%d", NumberOf(n));
-		//	return 0;
-		//}
-
-		//求两个数二进制中不同位的个数
-		// 按位异或即可   ^   相同为0  相异为1
-		// 统计异或后的结果中1的个数
-		//例：1999  2299    输出 - 7
-
+///*思路：1.自动生成1-100之间的随机数
+//		2.猜数字
+//			(1)猜对了，恭喜你，游戏结束
+//			(2)猜错了，会告诉大了还是小了，继续猜
+//		3.游戏一直进行，除非退出游戏*/
+//
+//#include <stdlib.h>
+//#include <time.h>
+//
+//	void menu()
+//{
+//
+//	printf("***********************************\n");
+//	printf("************  1.Play  *************\n");
+//	printf("************  0.exit  *************\n");
+//	printf("***********************************\n");
+//
+//}
+//
+//void game()
+//{
+//	//先生成随机数，以时间做种
+//	int num = rand() % 100 + 1;//%100的余数是0-99，然后+1即可达成范围为1-100
+//
+//	//先做框架
+//	int guess = 0;
+//	while (1)
+//	{
+//		printf("请猜数字:>");
+//		scanf("%d", &guess);
+//		if (guess > num)
+//		{
+//			printf("猜大啦\n");
+//		}
+//		else if (guess < num)
+//		{
+//			printf("猜小啦\n");
+//		}
+//		else
+//		{
+//			printf("恭喜你，猜对了，正确答案为%d\n", num);
+//			break;
+//		}
+//	}
+//
+//
+//}
+//
+//int main()
+//{
+//	int input = 0;
+//	//先调用srand() 掷出rand()所需要的随机数种子
+//	//该种子一个程序中，有一次生成即可
+//	//所以放在主函数开头中
+//	srand((unsigned int)time(NULL));
+//
+//	do
+//	{
+//		//开始游戏先打印菜单
+//		menu();
+//		printf("请选择:>");
+//		//选择游戏模式
+//		scanf("%d", &input);
+//
+//		//判断游戏是否进行（即状态）
+//		//switch 决定游戏框架
+//		//game()决定游戏如何游玩
+//		switch (input)
+//		{
+//		case 1:
+//			game();
+//			break;
+//		case 0:
+//			printf("退出游戏\n");
+//			break;
+//		default:
+//			printf("选择错误，请重新选择\n");
+//			break;
+//		}
+//	} while (input);
+//
+//	return 0;
+//}
+//
+//将三个整数按从大到小输出
+//借此研究理解全局变量和局部变量
+//
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	printf("请输入要排序的三个数:>");
+//	//输入
+//	scanf("%d%d%d", &a, &b, &c);
+//
+//	//调整顺序
+//	if (a < b)
+//	{
+//		int tep = a;//中间过度变量
+//		a = b;
+//		b = tep;
+//	}
+//	if (a < c)
+//	{
+//		int tmp = a;
+//		a = c;
+//		c = tmp;
+//	}
+//	if (b < c)
+//	{
+//		int tmp = b;
+//		b = c;
+//		c = tmp;
+//	}
+//
+//	//输出 - 从大到小
+//	printf("%d %d %d", a, b, c);
+//	return 0;
+//}
+//
+//打印1 - 100之间3的倍数的数字
+//
+//int main()
+//{
+//	int i = 0;
+//	//for (i = 1; i <= 100; i++)
+//	//{
+//	//	if (i % 3 == 0)
+//	//	{
+//	//		printf("%d ", i);
+//	//	}
+//	//}
+//
+//	for (i = 3; i <= 100; i += 3)
+//	{
+//		printf("%d ", i);
+//	}
+//
+//	return 0;
+//}
+//
+//给定两个数，求这两个数的最大公约数
+//
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	int min = 0;
+//	scanf("%d%d", &m, &n);
+//
+//	//方法① if语句
+//	/*if (m > n)
+//	{
+//		min = n;
+//	}
+//	else
+//	{
+//		min = m;
+//	}*/
+//
+//	//方法② 用条件操作符 exp1 ? exp2 : exp3
+//	min = (m > n) ? n : m;//等价于上方的if语句
+//
+//	while (1)
+//	{
+//		if (m % min == 0 && n % min == 0)
+//		{
+//			printf("最大公约数为%d", min);
+//			break;
+//		}
+//		min--;
+//	}
+//
+//	return 0;
+//}
+//
+//上述问题用辗转相除法
+//
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	int tep = 0;
+//	scanf("%d%d", &m, &n);
+//
+//	while (tep = m % n)
+//	{
+//		m = n;
+//		n = tep;
+//	}
+//	printf("最大公约数是%d", n);
+//	return 0;
+//	//最小公倍数 = m*n/最大公因数 
+//}
+//
+//打印1000 - 2000之间的闰年
+//
+//int main()
+//{
+//	//能被4整除，不能被100整除的为闰年
+//	//能被400整除，为闰年
+//
+//	int year = 0;
+//	int count = 0;
+//	//for (year = 1000; year<= 2000; year++)
+//	//{
+//	//	if (year % 4 == 0)
+//	//	{
+//	//		if (year % 100 != 0)
+//	//		{
+//	//			printf("%d ", year);
+//	//			count++;
+//	//		}
+//	//		
+//	//	}
+//	//	if (year % 400 == 0)
+//	//	{
+//	//		printf("%d ", year);
+//	//		count++;
+//	//	}
+//	//}
+//
+//	//优化上述代码 用|| 逻辑或来合并两次if判断闰年的两种方法
+//	for (year = 1000; year <= 2000; year++)
+//	{
+//		if (((year % 4 == 0) && (year % 400 != 0)) || (year % 400 == 0))
+//		{
+//			printf("%d ", year);
+//			count++;
+//		}
+//	}
+//
+//	printf("\n\n闰年总数为%d\n", count);
+//	return 0;
+//}
+//
+//打印100 - 200之间的素数
+//int main()
+//{
+//	//素数的判断
+//	//因数只有1和本身
+//	int i = 0;
+//	for (i = 100; i <= 200; i++) //这个for语句是为了生成100-200
+//	{
+//		//判断i是否为素数
+//		//方法：用2 -> i-1之间的数字去试除，看能不能整除
+//		//如果能，即不是素数
+//		int j = 0;
+//
+//		for (j = 2; j < i; j++) //这个for语句是判断是否为素数用的
+//		{
+//			if (i % j == 0)
+//			{
+//				break;
+//			}
+//		}
+//		//break跳出到此
+//		if (i == j)//因为两个路径都可以到达这个地方，所以用if语句判断来控制输出
+//		{
+//			printf("%d ", i);//打印素数
+//		}
+//	}
+//	return 0;
+//}
+//
+//上述题目另一种判断思路
+//
+//int main()
+//{
+//	//素数的判断
+//	//因数只有1和本身
+//	int i = 0;
+//	for (i = 100; i <= 200; i++) //这个for语句是为了生成100-200
+//	{
+//		//判断i是否为素数
+//		//方法：用2 -> i-1之间的数字去试除，看能不能整除
+//		//如果能，即不是素数
+//		int j = 0;
+//		int flag = 1;//假设i就是素数
+//		for (j = 2; j < i; j++) //这个for语句是判断是否为素数用的
+//		{
+//			if (i % j == 0)
+//			{
+//				flag = 0;//i不是素数
+//				break;
+//			}
+//		}
+//		//break跳出到此
+//		if (flag == 1)
+//		{
+//			printf("%d ", i);//打印素数
+//		}
+//	}
+//	return 0;
+//}
+//
+//上述问题的另一种写法
+//#include <math.h>
+//
+//int main()
+//{
+//	//素数的判断
+//	//因数只有1和本身、
+//	//如果m=a*b
+//	//a和b中一定至少有一个数字是<=m开平方根
+//	//如16 = 2*8 = 4*4  sqrt(16)=4
+//	//所以试除 只需要除到 <=m开平方根即可，因为如果这个可以，那么后面也必然可以存在一个因数使得他可以除
+//	int i = 0;
+//	for (i = 101; i <= 200; i += 2) //这个for语句是为了生成100-200       从101开始，每次+=2，从源头上杜绝了判断偶数的可能  因为偶数有2为因数
+//	{
+//		//判断i是否为素数
+//		//方法：用2 -> sqrt(i)之间的数字去试除，看能不能整除
+//		//如果能，即不是素数
+//		int j = 0;
+//		int flag = 1;//假设i就是素数    此处flag为控制变量
+//		for (j = 2; j < sqrt(i); j++) //减少了循环次数，优化代码效率
+//		{
+//			if (i % j == 0)
+//			{
+//				flag = 0;//i不是素数
+//				break;
+//			}
+//		}
+//		//break跳出到此
+//		if (flag == 1)
+//		{
+//			printf("%d ", i);//打印素数
+//		}
+//	}
+//	return 0;
+//}
+//
+//关机
+//#include <string.h>
+//
+//int main()
+//{
+//	char input[20] = { 0 };//存放输入信息
+//	system("shutdown -s -t 60"); //需引用 - stdlib.h
+//
+//again:
+//
+//	printf("您的电脑将在60s后关机，如要取消，请输入:我是猪,\"即可取消关机\"\n");
+//	scanf("%s", input);
+//
+//	if (strcmp(input, "我是猪") == 0)
+//	{
+//		system("shutdown -a");
+//		printf("成功取消");
+//	}
+//	else
+//	{
+//		goto again;   //可以用while循环代替goto 
+//	}
+//
+//	return 0;
+//}
+//
+//写一个函数可以找出两个整数中的较大值
+//
+//int get_max(int x, int y)
+//{
+//	int z = 0;
+//	z = (x > y) ? x : y;
+//	return z;//返回z-返回最大值
+//}
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	//函数的调用
+//	int max = get_max(a, b);
+//	printf("max = %d\n");
+//	return 0;
+//}
+//
+//写一个函数 - 交换两个整型变量的值
+//
+//void exchange_int(int* x, int* y)
+//{
+//	int z = 0;
+//	z = *x;
+//	*x = *y;
+//	*y = z;
+//}
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("交换前的值为%d %d\n", a, b);
+//	//调用交换数值函数
+//	exchange_int(&a, &b);
+//	printf("交换后的值为%d %d\n", a, b);
+//
+//	return 0;
+//}
+//
+//写一个函数可以判断一个数是不是素数
+//
+//#include <math.h>
+//
+//int judge_prime(int x)
+//{
+//	//怎么判断一个素数？
+//	//方法① 用要判断的数去除2 - （num-1），我都除了之后有余数，那他就是素数
+//	int z = 0;
+//	for (z = 2; z <= sqrt(x); z++)
+//	{
+//		if (x % z == 0)
+//		{
+//			return 0;
+//		}
+//
+//	}
+//	return 1;
+//}
+//
+//int main()
+//{
+//	//判断100-200中间的素数
+//	int num = 0;
+//	int count = 0;
+//	for (num = 100; num <= 200; num++)
+//	{
+//		if (judge_prime(num) == 1)
+//		{
+//			printf("%d ", num);
+//			count++;
+//		}
+//
+//	}
+//
+//	printf("\ncount = %d\n", count);
+//	return 0;
+//}
+//
+//写一个函数判断一年是不是闰年
+//1000 - 2000年之间的闰年
+//
+//定义函数
+//int judge_year(int x)
+//{
+//	if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0)
+//	{
+//		return 0;
+//	}
+//	return 1;
+//}
+//
+//int main()
+//{
+//	int y = 0;
+//	int count = 0;
+//	for (y = 1000; y <= 2000; y++)
+//	{
+//		if (judge_year(y) == 0)
+//		{
+//			printf("%d ", y);
+//			count++;
+//		}
+//	}
+//
+//	printf("\ncount = %d\n", count);
+//	return 0;
+//}
+//
+//写一个函数，实现一个整型有序数组的二分查找
+//
+//int get_num(int a[], int x, int y)
+//{
+//	int left = 0;
+//	int right = y - 1;
+//
+//	while (left <= right)
+//	{
+//		int mid = (left + right) / 2;
+//		if (a[mid] < x)
+//		{
+//			left += 1;
+//		}
+//		else if (a[mid] > x)
+//		{
+//			right -= 1;
+//		}
+//		else
+//		{
+//			return mid;
+//		}
+//	}
+//	return 0;
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int k = 8;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	if (get_num(arr, k, sz) == 0)
+//	{
+//		printf("找不到了/(ㄒoㄒ)/~~\n");
+//	}
+//	else
+//	{
+//		printf("%d的下标为：%d\n", k, get_num(arr, k, sz)); //链式访问
+//	}
+//	return 0;
+//}
+//
+//写一个函数，每调用一次这个函数，将会将num的值增加1
+//
+//add(int* p)
+//{
+//	(*p)++;
+//}
+//
+//int main()
+//{
+//	int num = 0;
+//	add(&num);
+//	printf("%d\n", num);//1
+//
+//	add(&num);
+//	printf("%d\n", num);//2
+//
+//	add(&num);
+//	printf("%d\n", num);//3
+//	return 0;
+//}
+//
+//函数的嵌套调用
+//void test3()
+//{
+//	printf("呵呵\n");
+//}
+//
+//int test2()
+//{
+//	test3();
+//	return 0;
+//}
+//
+//int main()
+//{
+//	test2();
+//	return 0;
+//}
+//
+//接受一个整型值（无符号），按顺序打印他的每一位  例如：1234，输出1 2 3 4
+//从项目为练习函数的递归（自己调用自己）
+//递归主要思考方式：把大事化小
+//
+//void print(int n)
+//{
+//	if (n > 9)   //需要存在限制条件，来组织函数一直递归    且每递归一次，越来越接近限制条件
+//	{
+//		print(n / 10);
+//	}
+//	printf("%d ", n % 10);
+//}
+//
+//int main()
+//{
+//	int num = 0;
+//	scanf("%d", &num);
+//	print(num);
+//	return 0;
+//}
+//
+//模拟实现一个strlen函数   测量字符串长度函数
+//
+//int my_strlen(char* str)//str为一个字符型指针变量
+//{
+//	//创建临时变量的方法
+//	//int count = 0;
+//	//while (*str != 0) //指针存放数组时，存放的是第一个元素的地址，并非整个数组
+//	//{
+//	//	str++;
+//	//	count++;
+//	//}
+//	//return count;
+//
+//	//不允许创建临时变量法，用函数递归
+//	if (*str != '\0')
+//	{
+//		return 1 + my_strlen(str + 1);
+//	}
+//	else
+//	{
+//		return 0;
+//	}
+//
+//}
+//
+//int main()
+//{
+//	char arr[] = "SnowK";
+//	//[S][n][o][w][K][\0]   \0为字符串结束表示，不占据字符串长度和大小
+//
+//	printf("%d\n", my_strlen(arr));//函数的链式访问
+//	return 0;
+//}
+//
+//求n的介乘
+//迭代的方式
+//
+//int main()
+//{
+//	int n = 0;   //求n的介乘，可以用n来限制次数
+//	int i = 0;
+//	scanf("%d", &n);
+//	int ret = 1; //ret作为中转用的变量
+//
+//	迭代
+//		for (i = 1; i <= n; i++)
+//		{
+//			ret = ret * i;
+//		}
+//
+//	printf("%d", ret);
+//	return 0;
+//}
+//
+////求n的介乘  用递归的方式
+//Fac(int n)
+//{
+//	if (n <= 1)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return n * Fac(n - 1);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	//int ret = Fac(n);
+//	//
+//	//printf("%d", ret);
+//
+//	printf("%d", Fac(n));
+//
+//	return 0;
+//}
+//
+//求斐波那契数列的第n个数
+//用迭代的方法去做
+//
+//定义一个全局变量count  用来计数
+//int count = 0;
+//
+//int Fib(int n)
+//{
+//	if (n == 3)
+//	{
+//		count++; //用于计数，n=3被算了多少遍
+//	}
+//
+//	if (n <= 2)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return Fib(n - 1) + Fib(n - 2);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//
+//	printf("%d\n", Fib(n));
+//
+//	printf("%d\n", count);
+//
+//	return 0;
+//}
+//
+//求n的斐波那契数
+//用迭代的方式去做
+//
+//int Fib(int n)
+//{
+//	int a = 1;
+//	int b = 1;
+//	int c = 1;
+//
+//	while (n >= 3)
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		n--;
+//	}
+//	return c;
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	printf("要计算第几个斐波那契数:");
+//	scanf("%d", &n);
+//	int result = Fib(n);
+//	printf("%d", result);
+//
+//	return 0;
+//}
+//
+//
+//编写程序数一下1到100 的所有整数中出现多少个数字9
+//9 19 29 39 49 59 69 79 89 99
+//
+//int main()
+//{
+//	int count = 0;
+//	//先生成数字
+//	int i = 0;
+//	for (i = 1; i <= 100; i++)
+//	{
+//		//判断个位9
+//		if (i % 10 == 9)
+//		{
+//			count++;
+//		}
+//
+//		//判断十位10
+//		if (i / 10 == 9)
+//		{
+//			count++;
+//		}
+//	}
+//
+//	printf("总共有%d个9", count);
+//	return 0;
+//}
+//
+//
+//计算1 / 1 - 1 / 2 + 1 / 3 - 1 / 4 + 1 / 5 ...... + 1 / 99 - 1 / 100的值，打印出结果
+//int main()
+//{
+//	int i = 0;
+//	double sum = 0.0;
+//	int flag = 1;
+//	for (int i = 1; i <= 100; i++)
+//	{
+//		//此处模2是为了判断并且控制正负号
+//	/*	if (i % 2 == 0)
+//			sum -= 1.0 / i;
+//		else
+//			sum += 1.0 / i;*/
+//
+//			//另一种控制正负方法
+//		sum += 1.0 / i * flag;
+//		flag = -flag;  //控制正负号
+//
+//	}
+//	printf("%lf", sum);
+//	return 0;
+//}
+//
+//求10个数中的最大值  随机 且不分正负
+//
+//int main()
+//{
+//	int arr[7] = { 188,261,233,666,100,1835,1752 };
+//	int max = arr[0];  //假设起始max数为数组中的一个数  而不是0   因为如果为负数，则无法判断
+//	int i = 0;
+//
+//	for (i = 1; i <= 7; i++)
+//	{
+//		if (arr[i] > max)
+//		{
+//			max = arr[i];
+//		}
+//	}
+//
+//	printf("%d", max);
+//
+//	return 0;
+//}
+//
+//打印九九乘法表
+//1 * 1 = 1
+//2 * 1 = 2 2 * 2 = 4
+//3 * 1 = 3 3 * 2 = 4
+//
+//int main()
+//{
+//	int i = 0;
+//	for (i = 1; i <= 9; i++)//控制行数
+//	{
+//		int j = 0; //控制列数变量
+//
+//		for (j = 1; j <= 9; j++)
+//		{
+//			printf("%d*%d=%-2d ", i, j, i * j);//%-2d用了控制两位，且左对齐    %2d为右对齐
+//			//使输出的int型的数值以2位的固定位宽输出。如果不足2位，则在前面补空格
+//		}
+//		printf("\n"); //调整排版，使每一行结尾换行
+//	}
+//	return 0;
+//}
+//
+//
+//实现X* X乘法表
+//
+//void print_table(int n)
+//{
+//	int i = 0;
+//	for (i = 1; i <= n; i++)
+//	{
+//		//一行
+//		int w = 0;
+//		for (w = 1; w <= n; w++)
+//		{
+//			printf("%d*%d=%-4d", i, w, i * w);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0; //控制x*x
+//	printf("请输入需要X*X:");
+//	scanf("%d", &n);
+//
+//	print_table(n);
+//	return 0;
+//}
+//
+//字符串逆序(递归实现)题目内容:
+//编写一个函数reverse_string(char* string)(递归实现)
+//实现 : 将参数字符串中的字符反向排列，不是逆序打印。要求 : 不能使用C函数库中的字符串操作函数
+//
+//int my_strlen(char* arr)//写一个函数  模拟库函数strlen()的功能
+//{
+//	int count = 0;
+//	while (*arr != '\0')
+//	{
+//		arr++;
+//		count++;
+//	}
+//	return count;
+//
+//}
+//
+//法①  不用递归实现  用迭代
+//void reverse_string(char* arr)//形参用指针
+//{
+//	int left = 0;
+//	int right = my_strlen(arr) - 1;
+//	while (left < right)
+//	{
+//		//第一种表述形式
+//		//char tmp = arr[left];
+//		//arr[left] = arr[right];
+//		//arr[right] = tmp;
+//		//left++;
+//		//right--;
+//
+//		//第二种表述形式   解引用
+//		char tmp = *(arr + left);//等价于 arr[left];
+//		*(arr + left) = *(arr + right);
+//		*(arr + right) = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//法② 用递归实现
+//void reverse_string(char* arr)
+//{
+//	char tmp = *arr;
+//	int len = my_strlen(arr) - 1;
+//	*arr = *(arr + len);
+//	*(arr + len) = '\0'; //先不放最前面一个值到最后面  防止下次调用时 这两个换  就达不到目的
+//	//判断条件
+//	if (my_strlen(arr + 1) >= 2)
+//	{
+//		reverse_string(arr + 1);
+//	}
+//	*(arr + len) = tmp;//最后再把第一个值换到最后面
+//}
+//
+//int main()
+//{
+//	//生成一个字符串
+//	char arr[10] = "DiesnowK";
+//	reverse_string(arr);//传数组过去 传的是第一个字符的地址
+//	printf("%s", arr);
+//	return 0;
+//}
+//
+//计算一个数的每位之和(非负数)  用递归实现
+//
+//int digitsum(int n)
+//{
+//	if (n <= 9)
+//		return n;
+//	else
+//	{
+//		return n % 10 + digitsum(n / 10);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int sum = digitsum(n);
+//	printf("%d", sum);
+//
+//	return 0;
+//}
+//
+//编写一个程序，实现n的k次方，用递归实现  包含正负数功能
+//若k次方为负的，则为小数，所以数据类型用double
+//
+//double Pow(int n, int k)
+//{
+//	if (k == 0)
+//	{
+//		return 1.0;
+//	}
+//	else if (k > 0)
+//	{
+//		return n * Pow(n, k - 1);
+//	}
+//	else
+//	{
+//		return 1.0 / (Pow(n, -k));
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	int k = 0;
+//	scanf("%d %d", &n, &k);
+//	double result = Pow(n, k);
+//	printf("%lf", result);
+//
+//	return 0;
+//}
+//
+//冒泡排序
+//
+//void bubble_sort(int* arr, int sz)
+//{
+//	//确定要换几趟
+//	int i = 0;
+//	int flag = 1;
+//	for (i = 0; i < sz - 1; i++)
+//	{
+//		//每一趟要换几次
+//		int j = 0;
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			//一趟冒泡排序的过程
+//			if (arr[j] < arr[j + 1])
+//			{
+//				//交换
+//				int tmp = arr[j];
+//				arr[j] = arr[j + 1];
+//				arr[j + 1] = tmp;
+//				flag = 0;
+//			}
+//		}
+//		if (flag == 1)
+//		{
+//			break;
+//		}
+//	}
+//
+//}
+//
+//int main()
+//{
+//	//声明数组
+//	int arr[] = { 1,2,3,4,5,6,7,8,9 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz);
+//	int k = 0;
+//	for (k = 0; k <= sz - 1; k++)
+//	{
+//		printf("%d ", arr[k]);
+//	}
+//
+//	return 0;
+//}
+//
+//完成数组的交换
+//
+//int main()
+//{
+//	int arr1[] = { 1,3,5,7,9 };
+//	int arr2[] = { 2,4,6,8,10 };
+//	int i = 0;
+//	int sz = sizeof(arr1);
+//	for (i = 0; i < sz; i++)
+//	{
+//		int tmp = 0;
+//		tmp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = tmp;
+//	}
+//	return 0;
+//}
+//
+//较为规范模拟strcpy - my_strcpy
+//
+//#include <assert.h>
+//
+//char* my_strcpy(char* destination, const char* source) //这里使用const防止source被修改
+//{
+//	char* tmp = destination;
+//
+//	assert(source != NULL); //断言，用来debug时查错用
+//
+//	while (*destination++ = *source++)
+//	{
+//		;
+//	}
+//	return tmp;  //返回目标空间的起始地址
+//}
+//
+//int main()
+//{
+//	char arr1[] = "SnowK";
+//	char arr2[] = "xxxxxxxxxxxxx";
+//
+//	printf("%s\n", my_strcpy(arr2, arr1));
+//
+//	return 0;
+//}
+//
+//较为规范的模拟strlen - my_strlen
+//
+//#include <assert.h>
+//
+//unsigned int my_strlen(const char* arr)  //为何是unsigned int?   --  因为长度不存在负数，以防任何其他意外
+//{
+//	assert(arr != NULL);
+//	//assert(arr); 等价于上述表达式
+//
+//	unsigned int count = 0;
+//	while (*arr++ != '\0')
+//	{
+//		count++;
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	char arr[] = "DieSnowK";
+//	printf("%d\n", my_strlen(arr));
+//
+//	return 0;
+//}
+//
+//写一个函数
+//要求：输入一个整数，输出该数32位二进制表示中1的个数，其中负数用补码表示
+//
+//如何获取一个十进制数字的二进制形式？
+//以下为例子
+//15 - 00001111
+//15 % 2 = 1               //获得最右边一位是1/0
+//15 / 2 = 7 - 00000111    //除去一位
+//7 % 2 = 1
+//7 / 2 = 3 -- 00000011
+//3 % 2 = 1 -- 00000001
+//3 / 2 = 1 -- 00000001
+//1 % 2 = 1 -- 00000001
+//
+//此函数算法是有问题的   正数可以正常处理   但是负数呢？
+//int NumberOf(int n)
+//{
+//	int count = 0;//计数器
+//	while (n)
+//	{
+//		if (n % 2 == 1)  //判断第一位是否是1
+//		{
+//			count++;
+//		}
+//
+//		n /= 2;  //获取下一位
+//	}
+//
+//	return count;
+//}
+//
+//通过直接操作二进制位  可以避免上述问题
+//int NumberOf(int n)
+//{
+//	int count = 0;
+//	int i = 0;
+//
+//	for (i = 0; i < 32; i++)
+//	{
+//		//用& 按位与   
+//		//与1   00000001    可判断最后一位情况
+//
+//		if ((n >> i) & 1 == 1)    //n右移位数用i控制  一步控制  不需要每次都右移一位
+//		{
+//			count++;
+//		}
+//	}
+//
+//	return count;
+//}
+//
+//以上函数算法可优化
+//n& (n - 1)  --用来逐步减少二进制位中的1
+//以下位例子
+//n = n & (n - 1)
+//n = 15
+//1111 - n
+//1110 - n - 1
+//1110 - n
+//1101 - n - 1
+//1100 - n
+//1011 - n - 1
+//1000 - n
+//0111 - n - 1
+//0000 - n
+//
+//以上思路还可以用来判断一个数字是不是2的n次方
+//2的n次方的数字，其中只有一个1
+//00100000 - n
+//00011111 - n - 1
+//k & (k - 1) == 0
+//
+//int NumberOf(int n)
+//{
+//	int count = 0;
+//
+//	while (n)  //一直处理到 n == 0时，跳出循环
+//	{
+//		n = n & (n - 1); //只要能进来，就让他移位，减少二进制中的一个1
+//		count++;
+//	}
+//
+//	return count;
+//}
+//
+//int main()
+//{
+//	int n = -1;  //00001100  -  12
+//
+//	printf("%d", NumberOf(n));
+//	return 0;
+//}
+//
+//求两个数二进制中不同位的个数
+//按位异或即可^ 相同为0  相异为1
+//统计异或后的结果中1的个数
+//例：1999  2299    输出 - 7
+//
 //int NumberOf(int n)
 //{
 //	int count = 0;
@@ -1492,7 +1492,7 @@ int main()
 //
 //	return count;
 //}
-
+//
 //int main()
 //{
 //
@@ -1507,7 +1507,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //以上问题另一种处理方案
 //int main()
 //{
@@ -1530,9 +1530,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //打印整数二进制的奇数位和偶数位
-
+//
 //int main()
 //{
 //	int x = 15;
@@ -1553,9 +1553,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //交换两个变量（不创建临时变量）
-
+//
 //int main()
 //{
 //	int a = 10;
@@ -1570,9 +1570,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //求最小公倍数  设计算法
-
+//
 //int main()
 //{
 //	int a = 0;
@@ -1604,9 +1604,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //将一句话的单词进行倒置，标点不倒置，比如 l like beijing.
-//倒置后 beijing. like l
+//倒置后 beijing.like l
 //#include <string.h>
 //
 //void reverse(char* left, char* right) //用来逆序数组内容
@@ -1655,15 +1655,15 @@ int main()
 //			start = end;
 //		}
 //	}
-//	
+//
 //
 //	printf("%s", arr);
 //	return 0;
 //}
-
+//
 //求Sn = a + aa + aaa + aaaa + aaaaa的前5项之和，其中a是一个数字
-//例如:2+22+222+2222 +22222
-
+//例如 : 2 + 22 + 222 + 2222 + 22222
+//
 //int main()
 //{
 //	int a = 0;
@@ -1683,10 +1683,10 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //写一个函数打印arr数组的内容，不使用数组下标，使用指针
 //arr是一个整形一维数组
-
+//
 //int main()
 //{
 //	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
@@ -1706,13 +1706,13 @@ int main()
 //	//{
 //	//	printf("%d ", *(p + i));
 //	//}
-//	
+//
 //	return 0;
 //}
-
+//
 //求出0～100000之间的所有“水仙花数”并输出
 //“水仙花数”是指一个n位数，其各位数字的n次方之和确好等于该数本身，//如：153=1^3+5^3+3^3，则153是一个“水仙花数”
-
+//
 //#include <math.h>
 //int main()
 //{
@@ -1746,7 +1746,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //写一个函数，可以逆序一个字符串的内容
 //#include <string.h>
 //#include <assert.h>
@@ -1776,7 +1776,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //绘制菱形
 //int main()
 //{
@@ -1816,7 +1816,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以多少汽水（编程实现）
 //int main()
 //{
@@ -1824,7 +1824,7 @@ int main()
 //	int total = money;
 //	int empty = money;
 //	scanf("%d", &money);
-//	
+//
 //	//开始置换瓶子
 //	while (empty >= 2)
 //	{
@@ -1835,7 +1835,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //输入一个整数数组，实现一个函数，
 //来调整该数组中数字的顺序使得数组中所有的奇数位于数组的前半部分，
 //所有偶数位于数组的后半部分
@@ -1883,7 +1883,7 @@ int main()
 //	print(arr, sz);
 //	return 0;
 //}
-
+//
 //打印杨辉三角
 //1
 //1 1
@@ -1891,7 +1891,7 @@ int main()
 //1 3 3 1
 //1 4 6 4 1
 //1 5 10 10 5 1
-
+//
 //int main()
 //{
 //	int arr[10][10] = { 0 };
@@ -1931,7 +1931,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //找凶手
 //A说：不是我
 //B说：是C
@@ -1939,7 +1939,7 @@ int main()
 //D说：C在胡说
 //已知三个人说了真话，一个人说的是假话
 //写一个程序来确定谁到底是凶手
-
+//
 //int main()
 //{
 //	char killer = 0;
@@ -1953,7 +1953,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //五位运动员跳水比赛，有人让他们预测比赛结果
 //A说：B第二，我第三；
 //B说：我第二，E第四
@@ -1961,7 +1961,7 @@ int main()
 //D说：C最后，我第三
 //E说：我第四，A第一
 //比赛结束后，每位选手都说对了一半，请编程确定比赛的名次
-
+//
 //int main()
 //{
 //	//枚举出五个人  ——  五个循环套出五个人的名次
@@ -2000,8 +2000,8 @@ int main()
 //	}
 //	return 0;
 //}
-
-//模拟计算器calc  并且逐渐进行迭代 升级 优化  (能力范围内)
+//
+//模拟计算器calc  并且逐渐进行迭代 升级 优化(能力范围内)
 //int Add(int x, int y)
 //{
 //	return x + y;
@@ -2031,9 +2031,9 @@ int main()
 //	printf("***************************\n");
 //
 //}
-
+//
 //版本①
-//如果要计算a&b a|b a>>b a<<b a^b呢？
+//如果要计算a& b a | b a >> b a << b a ^ b呢？
 //int main()
 //{
 //	int input = 0;
@@ -2089,7 +2089,7 @@ int main()
 //	} while (input);
 //	return 0;
 //}
-
+//
 ////版本②  用函数指针数组来调用函数
 ////函数指针数组的用途：转移表
 //int main()
@@ -2098,7 +2098,7 @@ int main()
 //
 //	do {
 //		menu();
-//		int(*pfarr[5])(int,int) = { NULL,Add,Sub,Mul,Div };  //函数指针数组
+//		int(*pfarr[5])(int, int) = { NULL,Add,Sub,Mul,Div };  //函数指针数组
 //		int x = 0;
 //		int y = 0;
 //		int ret = 0;
@@ -2127,7 +2127,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 ////版本③  回调函数
 //int Calc(int(*pf)(int, int))
 //{
@@ -2174,7 +2174,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 ////研究库函数qsort();
 ////void qsort(
 ////	void* base,  //目标数组的开头
@@ -2201,7 +2201,7 @@ int main()
 //{
 //	//>0 则e1>e2  <0 则e1<e2  增序
 //	return *(int*)e1 - *(int*)e2;
-//	
+//
 //	//降序
 //	//return *(int*)e2 - *(int*)e1;
 //}
@@ -2317,18 +2317,18 @@ int main()
 //	test4();
 //	return 0;
 //}
-
+//
 //杨氏矩阵
 //题目内容：
 //有一个数字矩阵，矩阵的每行从左到右是递增的，矩阵从上到下是递增的
 //请编写程序在这样的矩阵中查找某个数字是否存在。
 //要求：时间复杂度小于O(N);
-// 那就不能遍历，不然时间复杂度不符合要求
+//那就不能遍历，不然时间复杂度不符合要求
 //如
-//1 2 3 
+//1 2 3
 //4 5 6
 //7 8 9
-
+//
 //int find_num(int arr[3][3], int* px, int* py, int k)
 //{
 //	//从右上角开始找  去杂
@@ -2378,14 +2378,14 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //字符串左旋
 //题目内容：
 //实现一个函数，可以左旋字符串中的k个字符。
 //例如：
 //ABCD左旋一个字符得到BCDA
 //ABCD左旋两个字符得到CDAB
-
+//
 ////①直接左旋
 //void string_left_rotate(char* str, int k)
 //{
@@ -2405,7 +2405,7 @@ int main()
 //		*(str + n - 1) = tmp;
 //	}
 //}
-
+//
 //#include <assert.h>
 ////三步反转法
 ////我理解为 排队 分前后  前面往后转  后面往后转  在整体往后转 等价于  把前面丢到后面去
@@ -2441,7 +2441,7 @@ int main()
 //	printf("%s\n", arr);
 //	return 0;
 //}
-
+//
 //写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串。
 //例如：给定s1 = AABCD和s2 = BCDAA，返回1
 //给定s1 = abcd和s2 = ACBD，返回0.
@@ -2449,7 +2449,7 @@ int main()
 //AABCD左旋一个字符得到ABCDA
 //AABCD左旋两个字符得到BCDAA
 //AABCD右旋一个字符得到DAABC
-
+//
 //写法①  遍历 穷举
 //int is_string_rotate(char* str1, const char* str2)
 //{
@@ -2478,7 +2478,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //#include <assert.h>
 ////写法②  巧妙一点
 //int is_string_rotate(char* str1, const char* str2)  //判断str1是不是str2旋转得来的
@@ -2526,7 +2526,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //模拟实现strcat
 //#include <assert.h>
 //char* my_strcat(char* dest, const char* src)
@@ -2553,7 +2553,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //模拟实现strcmp
 //#include <assert.h>
 //
@@ -2594,7 +2594,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //模拟实现strstr
 //#include <assert.h>
 //char* my_strstr(const char* str1, const char* str2)
@@ -2622,7 +2622,7 @@ int main()
 //			s1++;
 //			s2++;
 //		}
-//		
+//
 //		if (*s2 == '\0')
 //		{
 //			//返回值为str2在str1中的位置
@@ -2632,7 +2632,7 @@ int main()
 //		//若此轮没找到,则cp++,进入下一个字符作为起始位置开始查找
 //		cp++;
 //	}
-//	
+//
 //	return NULL;//没找到则返回空指针
 //}
 //int main()
@@ -2651,7 +2651,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //研究strtok
 //int main()
 //{
@@ -2674,7 +2674,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //研究strerror
 //int main()
 //{
@@ -2686,7 +2686,7 @@ int main()
 //	printf("%s\n", strerror(5));
 //	return 0;
 //}
-
+//
 //模拟实现memcpy，memcpy函数应该拷贝不重叠的内存
 //#include <assert.h>
 //void* my_memcpy(void* dest, const void* src, int num)
@@ -2711,8 +2711,8 @@ int main()
 //	my_memcpy(arr2, arr1, 20);
 //	return 0;
 //}
-
-//模拟实现memmove,memmove函数可以处理内存重叠的情况
+//
+//模拟实现memmove, memmove函数可以处理内存重叠的情况
 //#include <assert.h>
 //void* my_memmove(void* dest, void* src, int num)
 //{
@@ -2749,9 +2749,9 @@ int main()
 //
 //	return 0;
 //}
-
-//打印用*组成的X型图案
-//多组输入，一个整数(2~20),表示输出的行数，也表示组成X的反斜线和正斜线的长度
+//
+//打印用* 组成的X型图案
+//多组输入，一个整数(2~20), 表示输出的行数，也表示组成X的反斜线和正斜线的长度
 //int main()
 //{
 //	int n = 0;
@@ -2781,11 +2781,11 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //有7位考官，从键盘输入若干组成绩，每军组个分数(百分制)，去掉一个最高分和一个最低分，输出每组的平均成绩
-//输入描述:一行，输入7个整数(0~100)，代表7个成绩，用空格分隔。
-//输出描述:一行，输出去掉最高分和最低分的平均成绩，小数点后保留2位，每行输出后换行
-
+//输入描述 : 一行，输入7个整数(0~100)，代表7个成绩，用空格分隔。
+//输出描述 : 一行，输出去掉最高分和最低分的平均成绩，小数点后保留2位，每行输出后换行
+//
 //int main()
 //{
 //	int score = 0;
@@ -2815,11 +2815,11 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //输入年份和月份，计算这一年这个月有多少天
 //输入描述：多组输入，一行有两个整数，分别表示年份和月份，用空格分隔
 //输出描述：针对每组输入，输出为一行，一个整数，表示这一年这个月有多少天
-
+//
 //int main()
 //{
 //	int year = 0;
@@ -2830,7 +2830,7 @@ int main()
 //	while (scanf("%d %d", &year, &month) != EOF)
 //	{
 //		day = days[month];
-//		
+//
 //		if (month == 2)
 //		{
 //			//判断是否闰年
@@ -2844,7 +2844,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //模拟实现atoi
 //#include <ctype.h>
 //#include <limits.h>
@@ -2938,11 +2938,11 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //例如:1 2 3 4 5 1 2 3 4
 //一个数组中只有两个数字是出现了一次，其他所有数字都出现了两次
 //编写一个函数找出这两个只出现一次的数字
-
+//
 //void Find(int arr[], int sz, int* px, int* py)
 //{
 //	//1.所有数字异或
@@ -2966,7 +2966,7 @@ int main()
 //			break;
 //		}
 //	}
-//	
+//
 //	//把从地位到高位第pos位为1，为0的放在两个组
 //	int num1 = 0;
 //	int num2 = 0;
@@ -3004,12 +3004,12 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //写一个宏，将一个整数的二进制的奇数位和偶数位互换
 //如何实现？
 //假设第一位为1，则奇数位左移一位，偶数位右移一位
-
-
+//
+//
 //#define SWAP(N) ((N & 0xaaaaaaaa)>>1) + ((N & 0x55555555)<<1)
 ////          获取偶数位，并且右移一位 || 获取奇数位，并且左移一位
 ////偶数位 + 奇数位，则为调整后的数字
@@ -3019,7 +3019,7 @@ int main()
 //	//原理分析  --  按位与
 //	//10101010101010101010101010101010 从原数字从拿出偶数位 -- 原偶数位全部保留原本状态，奇数位置零  0xaaaaaaaa
 //	//01010101010101010101010101010101 从原数字用拿出奇数位 -- 原奇数位全部保留原本状态，偶数位置零  0x55555555
-//	
+//
 //	int num = 10;
 //	int ret = SWAP(num);
 //
@@ -3027,9 +3027,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //模拟实现offsetof  -- 写一个宏，计算结构体中某变量相对于首地址的偏移，并给出说明
-
+//
 //struct A
 //{
 //	int a;
@@ -3051,14 +3051,14 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //题目描述：
 //输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。
 //例如：第一个字符串是"They are students."，第二个字符串是”aeiou"。删除之后的第一个字符串变成"Thy r stdnts."。
 //保证两个字符串的长度均不超过100。
 //输入描述：输入两行，每行一个字符串。
 //输出描述：输出删除后的字符串。
-
+//
 //int main()
 //{
 //	char arr1[100] = { 0 };
@@ -3092,14 +3092,14 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //题目描述：
 //对于一个较大的整数 N(1 <= N <= 2, 000, 000, 000)
 //比如 980364535，我们常常需要一位一位数这个数字是几位数，但是如果在这 个数字每三位加一个逗号，它会变得更加易于朗读。
 //因此，这个数字加上逗号成如下的模样：980, 364, 535请写一个程序帮她完成这件事情
 //输入描述：一行一个整数 N
 //输出描述：一行一个字符串表示添加完逗号的结果
-
+//
 //int main()
 //{
 //	int n = 0;
@@ -3129,10 +3129,10 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //实现一个函数，将一个字符串中的每个空格替换成"%20"
-//例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy
-
+//例如，当字符串为We Are Happy.则经过替换之后的字符串为We % 20Are % 20Happy
+//
 //#include <ctype.h>
 //int main()
 //{
@@ -3174,9 +3174,9 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //在一个斐波那契数列中，给处一个数N，算出离它最近的一个斐波那契数和它的距离
-
+//
 //#include <math.h>
 //int main()
 //{
@@ -3211,7 +3211,7 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //利用可变参数列表，做一个寻找最大值的函数
 //#include <stdarg.h>
 //
@@ -3243,11 +3243,11 @@ int main()
 //	printf("%d\n", FindMax(5, 13, 11, 65, 23, 24));
 //	return 0;
 //}
-
+//
 //消失的数字
 //数组nums包含从0到n的所有整数，但其中缺了一个。编写代码找出那个缺失的整数。
 //要求：时间复杂度在O(N)内
-
+//
 //思路1：类似哈希表  O(N)
 //int FindMissingNum(int arr[], int sz)
 //{
@@ -3284,12 +3284,12 @@ int main()
 //	int arr[] = { 0,1,3,5,7,2,4 };
 //	int sz = sizeof(arr) / sizeof(arr[0]);
 //
-//	printf("%d\n", FindMissingNum(arr,sz));
+//	printf("%d\n", FindMissingNum(arr, sz));
 //	return 0;
 //}
-
+//
 //思路2：用异或  O(N)
-
+//
 //int FindMissingNum(int arr[], int sz)
 //{
 //	int i = 0;
@@ -3304,7 +3304,7 @@ int main()
 //	{
 //		ret ^= i;
 //	}
-//	
+//
 //	return ret;
 //}
 //
@@ -3316,16 +3316,16 @@ int main()
 //	printf("%d\n", FindMissingNum(arr, sz));
 //	return 0;
 //}
-
-//思路3：排序 + 二分查找  冒泡O(N^2)  快排O(N*logN) - 效率相对较低
+//
+//思路3：排序 + 二分查找  冒泡O(N ^ 2)  快排O(N * logN) - 效率相对较低
 //int main()
 //{
 //
 //	return 0;
 //}
-
+//
 //思路4：公式计算 - 算出原数组 - 缺失数组 = 缺失数字    O(N)
-
+//
 //int FindMissingNum(int arr[], int sz)
 //{
 //	int sum = 0;
@@ -3352,13 +3352,13 @@ int main()
 //	printf("%d\n", FindMissingNum(arr, sz));
 //	return 0;
 //}
-
+//
 //轮转数组  --  给一个数组，将数组中的元素向右轮转k个位置
 //尽可能多的解决方案
-//要求：空间复杂度为O(1),时间复杂度O(N)
-
-//思路1：每次旋转一个，旋转k次 - O(N*K)
-
+//要求：空间复杂度为O(1), 时间复杂度O(N)
+//
+//思路1：每次旋转一个，旋转k次 - O(N * K)
+//
 //void rotate(int arr[], int sz, int k)
 //{
 //	//如果k>sz怎么办？
@@ -3395,9 +3395,9 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //思路2：以空间换时间 - 拿一个新的数组出来 - O(N)
-
+//
 //void rotate(int arr[], int sz, int k)
 //{
 //	int i = 0;
@@ -3408,7 +3408,7 @@ int main()
 //		perror("main");
 //		exit(1);
 //	}
-//	
+//
 //	//将前k个放在新数组后面
 //	for (i = 0; i < k; i++)
 //	{
@@ -3446,9 +3446,9 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //思路3：三步翻转法 - 最优解法  时间复杂度O(N)   空间复杂度O(1)
-
+//
 //void reverse(int arr[], int* left, int* right)
 //{
 //	while (left < right)
@@ -3464,7 +3464,7 @@ int main()
 //void rotate(int arr[], int sz, int k)
 //{
 //	k %= sz;
-// 
+//
 //	//先反转前k个
 //	reverse(arr, arr, arr + k - 1);
 //	//再翻转后n-k个
@@ -3488,15 +3488,15 @@ int main()
 //	}
 //	return 0;
 //}
-
-//移除元素 -- 给一个数组nums和一个值val,需要原地移除所有数值等于val的元素，并返回移除后数组的新长度
+//
+//移除元素 -- 给一个数组nums和一个值val, 需要原地移除所有数值等于val的元素，并返回移除后数组的新长度
 //要求：不能使用额外的数组空间  --  空间复杂度O(1)  时间复杂度O(N)
 //元素的顺序可以改变，不需要考虑数组中超出新长度后面的元素
-
-//思路1：覆盖删除  --  O(N^2)
+//
+//思路1：覆盖删除  --  O(N ^ 2)
 //思路2：保留不是val的值，挪到新数组  --  空间复杂度O(N)
 //思路3: 双指针，保留不是val的值，覆盖前面的值
-
+//
 //int RemoveElement(int arr[], int sz, int val)
 //{
 //	int src = 0;
@@ -3531,11 +3531,11 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //删除有序数组中的重复项  --  去重算法
-//给定一个升序数组nums,请原地删除重复出现的元素，使每个元素只出现一次，返回删除后数组的新长度
+//给定一个升序数组nums, 请原地删除重复出现的元素，使每个元素只出现一次，返回删除后数组的新长度
 //元素的相对顺序应该保持一致
-
+//
 //仍然可用双指针
 //int RemoveDuplicates(int arr[], int sz)
 //{
@@ -3569,13 +3569,13 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //合并两个有序数组
 //给定两个非递减顺序排列的整数数组nums1和nums2
 //m、n分别表示nums1和nums2中元素的数目
 //请合并nums2到nums1中，使合并后的数组同样按非递减顺序排列
-//要求：时间复杂度 - O(N+M)
-
+//要求：时间复杂度 - O(N + M)
+//
 //void merge(int nums1[], int nums2[], int m, int n)
 //{
 //	int end1 = m - 1;
@@ -3619,7 +3619,7 @@ int main()
 //	}
 //	return 0;
 //}
-
+//
 //移除链表元素
 //给定一个链表的头节点head和一个整数val
 //请删除链表中所有满足Node.val == val的节点，并返回新的头节点
@@ -3630,7 +3630,7 @@ int main()
 //}ListNode;
 //
 ////方法一  --  直接干
-//ListNode* removeElements(ListNode* head, int val) 
+//ListNode* removeElements(ListNode* head, int val)
 //{
 //	struct ListNode* cur = head;
 //	struct ListNode* pre = NULL;
@@ -3740,15 +3740,15 @@ int main()
 //
 //	return head;
 //}
-
+//
 //反转链表
 //给定单链表的头节点head，请反转链表，并返回反转后的链表
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
 //};
-// 
+//
 ////方法一  --  头插
 //struct ListNode* reverseList(struct ListNode* head) {
 //	struct ListNode* cur = head;
@@ -3766,7 +3766,7 @@ int main()
 //	return newhead;
 //}
 ////方法二  --  指针的方向颠倒
-//struct ListNode* reverseList(struct ListNode* head) 
+//struct ListNode* reverseList(struct ListNode* head)
 //{
 //
 //	if (head == NULL)
@@ -3792,12 +3792,12 @@ int main()
 //
 //	return n1;
 //}
-
-
+//
+//
 //链表的中间节点
 //给定一个头节点位head的非空单链表，返回链表的中间节点
 //如果有两个中间节点，则返回第二个中间节点
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -3815,10 +3815,10 @@ int main()
 //
 //	return slow;
 //}
-
+//
 //链表中倒数第K个节点
 //输入一个链表，输出该链表中倒数第k个节点
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -3849,11 +3849,11 @@ int main()
 //
 //	return slow;
 //}
-
+//
 //合并两个有序链表
 //将两个升序链表合并为一个新的升序链表并返回
 //新链表是通过拼接给定的两个链表的所有节点组成的
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -3960,7 +3960,7 @@ int main()
 //	free(head);
 //	return list;
 //}
-
+//
 //链表分割
 //有一链表的头指针 ListNode* pHead，给一定值x
 //编写一段代码将所有小于x的结点排在其余结点之前，且不能改变原来的数据顺序，返回重新排列后的链表的头指针
@@ -4007,12 +4007,12 @@ int main()
 //
 //	return head;
 //}
-
+//
 //回文链表
 //判断链表是否为回文结构  --  中心对称
 //要求：时间复杂度：O(N)  空间复杂度：O(1)
 //思路：找中间节点，再逆置，再比较
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -4075,39 +4075,39 @@ int main()
 //	return 1;
 //}
 //
-// int main()
-// {
-// 	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n1);
+//int main()
+//{
+//	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n1);
 //
-// 	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n2);
+//	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n2);
 //
-// 	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n3);
+//	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n3);
 //
-// 	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n4);
+//	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n4);
 //
-// 	n1->val = 1;
-// 	n2->val = 2;
-// 	n3->val = 2;
-// 	n4->val = 1;
+//	n1->val = 1;
+//	n2->val = 2;
+//	n3->val = 2;
+//	n4->val = 1;
 //
-// 	n1->next = n2;
-// 	n2->next = n3;
-// 	n3->next = n4;
-// 	n4->next = NULL;
+//	n1->next = n2;
+//	n2->next = n3;
+//	n3->next = n4;
+//	n4->next = NULL;
 //
 //
 //	isPalindrome(n1);
-// 	return 0;
-// }
-
+//	return 0;
+//}
+//
 //相交链表
 //给你两个单链表的头节点 headA 和 headB
-//找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 
-//struct ListNode 
+//找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -4176,38 +4176,38 @@ int main()
 //	return longlist;
 //}
 //
-// int main()
-// {
-// 	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n1);
+//int main()
+//{
+//	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n1);
 //
-// 	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n2);
+//	struct ListNode* n2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n2);
 //
-// 	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n3);
+//	struct ListNode* n3 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n3);
 //
-// 	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
-// 	assert(n4);
+//	struct ListNode* n4 = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	assert(n4);
 //
-// 	n1->val = 1;
-// 	n2->val = 2;
-// 	n3->val = 2;
-// 	n4->val = 1;
+//	n1->val = 1;
+//	n2->val = 2;
+//	n3->val = 2;
+//	n4->val = 1;
 //
-// 	n1->next = n2;
-// 	n2->next = n3;
-// 	n3->next = n4;
-// 	n4->next = NULL;
+//	n1->next = n2;
+//	n2->next = n3;
+//	n3->next = n4;
+//	n4->next = NULL;
 //
 //	struct ListNode* ret = getIntersectionNode(n1, n2);
 //
-// 	return 0;
-// }
-
+//	return 0;
+//}
+//
 //环形链表
 //给你一个链表的头节点 head ，判断链表中是否有环
-//struct ListNode 
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -4233,10 +4233,10 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //环形链表2
-//给定一个链表的头节点head,返回链表开始入环的第一个节点。如果链表无环，则返回 null
-//struct ListNode 
+//给定一个链表的头节点head, 返回链表开始入环的第一个节点。如果链表无环，则返回 null
+//struct ListNode
 //{
 //	int val;
 //	struct ListNode* next;
@@ -4273,7 +4273,7 @@ int main()
 //
 //	return NULL;
 //}
-
+//
 //复制带随机指针的链表
 //给定一个长度为n的链表，每个节点包含一个额外增加的指针random，该指针可以指向链表中的任何节点或空节点
 //构造这个链表的深拷贝  --  结构完全相同
@@ -4341,8 +4341,8 @@ int main()
 //
 //	return copyHead;
 //}
-
-//给定一个只包括(){}[]的字符串s，判断字符串是否有效
+//
+//给定一个只包括() {}[]的字符串s，判断字符串是否有效
 //有效字符串需满足：
 //1.左括号必须用相同类型的右括号闭合
 //2.左括号必须以正确的顺序闭合
@@ -4487,12 +4487,12 @@ int main()
 //
 //	return 0;
 //}
-
+//
 //用队列实现栈
 //仅使用两个队列实现一个后入先出的栈
-//并支持普通栈的全部四种操作 - push,pop,top,empty
+//并支持普通栈的全部四种操作 - push, pop, top, empty
 //双队列实现
-
+//
 //typedef int QDataType;
 ////每个队列节点
 //typedef struct QueueNode
@@ -4696,10 +4696,10 @@ int main()
 //
 //	free(obj);
 //}
-
+//
 //用栈实现队列
 //仅使用两个栈实现先入先出队列
-
+//
 //typedef int STDataType;
 //typedef struct Stack
 //{
@@ -4847,13 +4847,13 @@ int main()
 //	StackDestroy(&obj->popst);
 //	free(obj);
 //}
-
+//
 //设计循环队列
 //队尾被连接在队首之后以形成一个循环。它也被称为“环形缓冲器”。
 //循环队列的一个好处是我们可以利用这个队列之前用过的空间。
 //在一个普通队列里，一旦一个队列满了，就不能插入下一个元素，即使在队列前面仍有空间。但是使用循环队列，我们能使用这些空间去存储新的值
 //用数组实现
-
+//
 //typedef struct
 //{
 //	int* a;
@@ -4961,4 +4961,229 @@ int main()
 //{
 //	free(obj->a);
 //	free(obj);
+//}
+//
+//单值二叉树
+//若二叉树每个节点都具有相同的值->√
+//
+//默认是true，若遇到异常，则改bool变量为false
+//bool flag = true;
+//void PreOrderCompare(struct TreeNode* root, int val)
+//{
+//	if (root == NULL || flag == false)
+//	{
+//		return;
+//	}
+//
+//	if (root->val != val)
+//	{
+//		flag = false;
+//		return;
+//	}
+//
+//	PreOrderCompare(root->left, val);
+//	PreOrderCompare(root->right, val);
+//}
+//
+//bool isUnivalTree(struct TreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return true;
+//	}
+//
+//	flag = true;
+//	PreOrderCompare(root, root->val);
+//	return flag;
+//}
+//
+//检验相同的树
+//bool isSameTree(struct TreeNode* p, struct TreeNode* q)
+//{
+//	if (p == NULL && q == NULL)
+//	{
+//		return true;
+//	}
+//
+//	//至此，必然有一个树不为空
+//	if (p == NULL || q == NULL)
+//	{
+//		return false;
+//	}
+//
+//	//两棵树都正常 - 前序
+//	if (p->val != q->val)
+//	{
+//		return false;
+//	}
+//
+//	return isSameTree(p->left, q->left)
+//		&& isSameTree(p->right, q->right);
+//}
+//
+//检验一个二叉树是否为对称二叉树
+//bool isSymmetricSubTree(struct TreeNode* root1, struct TreeNode* root2)
+//{
+//	if (root1 == NULL && root2 == NULL)
+//	{
+//		return true;
+//	}
+//
+//	//至此，必然有一个树不为空
+//	if (root1 == NULL || root2 == NULL)
+//	{
+//		return false;
+//	}
+//
+//	if (root1->val != root2->val)
+//	{
+//		return false;
+//	}
+//
+//	//至此，这一层节点为对称的
+//	return isSymmetricSubTree(root1->left, root2->right)
+//		&& isSymmetricSubTree(root1->right, root2->left);
+//}
+//
+//bool isSymmetric(struct TreeNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return true;
+//	}
+//
+//	return isSymmetricSubTree(root->left, root->right);
+//}
+//
+//另一棵树的子树
+//给定root和subroot, 检验root中是否包含和subroot具有相同结构和节点值的子树
+//bool isSameTree(struct TreeNode* root1, struct TreeNode* root2)
+//{
+//	if (root1 == NULL && root2 == NULL)
+//	{
+//		return true;
+//	}
+//
+//	if (root1 == NULL || root2 == NULL)
+//	{
+//		return false;
+//	}
+//
+//	if (root1->val != root2->val)
+//	{
+//		return false;
+//	}
+//
+//	return isSameTree(root1->left, root2->left)
+//		&& isSameTree(root1->right, root2->right);
+//}
+//
+//bool isSubtree(struct TreeNode* root, struct TreeNode* subRoot)
+//{
+//	//原书中所有子树都找出来跟subroot比较一下即可
+//	if (root == NULL)
+//	{
+//		return false;
+//	}
+//
+//	//遍历，跟root中所有子树比较一遍
+//	if (isSameTree(root, subRoot))
+//	{
+//		return true;
+//	}
+//
+//	return isSubtree(root->left, subRoot)
+//		|| isSubtree(root->right, subRoot);
+//}
+
+//二叉树的前序遍历
+//int TreeSize(struct TreeNode* root)
+//{
+//    return root == NULL ? 0 : TreeSize(root->left) + TreeSize(root->right) + 1;
+//}
+//
+////int* pi可以保证pi在每个栈帧内都可以控制到i
+//void PreOrder(struct TreeNode* root, int* a, int* pi)
+//{
+//    if (root == NULL)
+//    {
+//        return;
+//    }
+//
+//    a[(*pi)++] = root->val;
+//    PreOrder(root->left, a, pi);
+//    PreOrder(root->right, a, pi);
+//}
+//
+//int* preorderTraversal(struct TreeNode* root, int* returnSize)
+//{
+//    *returnSize = TreeSize(root);
+//    int* a = (int*)malloc(sizeof(int) * *returnSize);
+//
+//    int i = 0;
+//    PreOrder(root, a, &i);
+//
+//    return a;
+//}
+
+//二叉树创建和遍历
+//读入用户输入的字符串，依据此字符串，先序遍历出一个二叉树
+//再以中序遍历输出结果
+
+//typedef int BTDataType;
+//typedef struct BinaryTreeNode
+//{
+//    struct BinaryTreeNode* left;
+//    struct BinaryTreeNode* right;
+//    BTDataType data;
+//}BTNode;
+//
+//BTNode* CreateNode(BTDataType x)
+//{
+//    BTNode* node = (BTNode*)malloc(sizeof(BTNode));
+//    node->data = x;
+//    node->left = NULL;
+//    node->right = NULL;
+//
+//    return node;
+//}
+//
+//BTNode* CreateTree(char* str, int* pi)
+//{
+//    if (str[*pi] == '#')
+//    {
+//        (*pi)++;
+//        return NULL;
+//    }
+//
+//    BTNode* root = CreateNode(str[(*pi)++]);
+//    root->left = CreateTree(str, pi);
+//    root->right = CreateTree(str, pi);
+//
+//    return root;
+//}
+//
+//void InOrder(BTNode* root)
+//{
+//    if (root == NULL)
+//    {
+//        return;
+//    }
+//
+//    InOrder(root->left);
+//    printf("%c ", root->data);
+//    InOrder(root->right);
+//}
+//
+//int main()
+//{
+//    char str[100];
+//    gets(str);
+//
+//    int i = 0;
+//    BTNode* root = CreateTree(str, &i);
+//
+//    InOrder(root);
+//
+//    return 0;
 //}
