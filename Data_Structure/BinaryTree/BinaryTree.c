@@ -1,4 +1,5 @@
 #include "BinaryTree.h"
+#include "Queue.h"
 
 BTNode* CreateBinaryTreeNode(BTDataType x)
 {
@@ -12,7 +13,7 @@ BTNode* CreateBinaryTreeNode(BTDataType x)
 	return node;
 }
 
-//递归思想
+//深度优先遍历  -  递归思想
 void PreOrder(BTNode* root)
 {
 	assert(root);
@@ -55,6 +56,39 @@ void PostOrder(BTNode* root)
 	printf("%d ", root->data);
 }
 
+//层序遍历
+//广度优先遍历  -  队列思想
+void LevelOrder(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+
+	//入树根节点
+	if (root)
+	{
+		QueuePush(&q, root);
+	}
+
+	while (!isQueueEmpty(&q));
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+		printf("%d ", front->data);
+
+		if (root->left)
+		{
+			QueuePush(&q, root->left);
+		}
+		if (root->right)
+		{
+			QueuePush(&q, root->right);
+		}
+	}
+	printf("\n");
+
+	QueueDestroy(&q);
+}
+
 //计数器的形式
 int count = 0;
 void TreeSize1(BTNode* root)
@@ -92,7 +126,7 @@ int TreeLeafSize(BTNode* root)
 	return TreeLeafSize(root->left) + TreeLeafSize(root->right);
 }
 
-//求K层节点数量
+//求K层节点数量 - 前序
 int TreeKLevel(BTNode* root, int k)
 {
 	//转换成子问题
@@ -127,7 +161,7 @@ int TreeDepth(BTNode* root)
 	return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
 }
 
-//查找值为x的节点
+//查找值为x的节点 - 前序
 BTNode* TreeFind(BTNode* root, BTDataType x)
 {
 	if (root == NULL)
@@ -153,4 +187,63 @@ BTNode* TreeFind(BTNode* root, BTDataType x)
 	}
 
 	return NULL;
+}
+
+//判断二叉树是否是完全二叉树 - 层序
+bool isTreeComplete(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+
+	if (root)
+	{
+		QueuePush(&q, root);
+	}
+
+	while (!isQueueEmpty(&q))
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+
+		//依次压入所有节点
+		if (front)
+		{
+			QueuePush(&q, front->left);
+			QueuePush(&q, front->right);
+		}
+		else
+		{
+			//遇到NULL节点，跳出层序遍历
+			break;
+		}
+	}
+
+	//1.如果后面全是空，则为完全二叉树
+	//2.如果后面还有非空，则不是完全二叉树
+	while (!isQueueEmpty)
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+
+		if (front)
+		{
+			return false;
+		}
+	}
+
+	//队列已空，说明后面全是空
+	return true;
+}
+
+//销毁二叉树 - 后序
+void TreeDestroy(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+
+	TreeDestroy(root->left);
+	TreeDestroy(root->right);
+	free(root);
 }
