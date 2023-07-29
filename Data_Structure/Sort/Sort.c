@@ -256,7 +256,34 @@ int PastSort1(int* a, int begin, int end)
 //挖坑法
 int PastSort2(int* a, int begin, int end)
 {
+	int key = a[begin];
+	int piti = begin;
+	int left = begin, right = end;
 
+	while (begin < end)
+	{
+		//右边找小，填到左边的坑里去，这个位置形成新的坑
+		while (begin < end && a[right] >= key)
+		{
+			right--;
+		}
+
+		a[piti] = a[right];
+		piti = right;
+
+		//左边找大，填到右边的坑里去，这个位置形成新的坑
+		while (begin < end && a[left] <= key)
+		{
+			left++;
+		}
+
+		a[piti] = a[left];
+		piti = left;
+	}
+
+	a[piti] = key;
+
+	return piti;
 }
 
 
