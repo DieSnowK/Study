@@ -286,6 +286,59 @@ int PastSort2(int* a, int begin, int end)
 	return piti;
 }
 
+int GetMidIndex(int* a, int begin, int end)
+{
+	int midi = (begin + end) / 2;
+	if (a[begin] > a[end])
+	{
+		if (a[midi] > a[begin])
+		{
+			return begin;
+		}
+		else if(a[end] > a[midi])
+		{
+			return end;
+		}
+		else
+		{
+			return midi;
+		}
+	}
+	else
+	{
+		//a[begin] < a[end]
+		if (a[midi] > a[end])
+		{
+			return end;
+		}
+		else if (a[begin] > a[midi])
+		{
+			return begin;
+		}
+		else
+		{
+			return midi;
+		}
+	}
+}
+
+//前后指针版本
+int PastSort3(int* a, int begin, int end)
+{
+	int prev = begin;
+	int cur = begin + 1;
+	int keyi = begin;
+
+	//加入三数取中的优化
+	int midi = GetMidIndex(a, begin, end);
+	Swap(&a[keyi], &a[midi]);
+
+	while (cur <= end)  //???
+	{
+
+	}
+}
+
 
 void QuickSort(int* a, int begin, int end)
 {
