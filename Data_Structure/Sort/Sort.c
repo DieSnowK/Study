@@ -1,4 +1,5 @@
 #include "Sort.h"
+#include "Stack.h"
 
 PrintArray(int* a, int n)
 {
@@ -77,6 +78,7 @@ void InsertSort(int* a, int n)
 //	}
 //}
 
+//平均:O(N^1.3)
 void ShellSort(int* a, int n)
 {
 	//gap > 1 --> 预排序
@@ -180,16 +182,13 @@ void AdjustDwon(int* a, int size, int parent)
 	}
 }
 
-// 降序 -- 建小堆
 void HeapSort(int* a, int n)
 {
-	// 建堆方式2：O(N)
 	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
 	{
 		AdjustDwon(a, n, i);
 	}
 
-	// O(N*logN)
 	int end = n - 1;
 	while (end > 0)
 	{
@@ -223,27 +222,25 @@ void BubbleSort(int* a, int n)
 	}
 }
 
-//hoare版本
-int PastSort1(int* a, int begin, int end)
+// Hoare
+int PartSort1(int* a, int begin, int end)
 {
 	int left = begin, right = end;
 	int keyi = left;
-
 	while (left < right)
 	{
-		//右边先走，找小
-		while (left < right && a[right] >= a[keyi])  //left < right是为了防止越界
+		// 右边先走，找小
+		while (left < right && a[right] >= a[keyi])
 		{
-			right--;
+			--right;
 		}
 
-		//左边再走，找大
+		// 左边再走，找大
 		while (left < right && a[left] <= a[keyi])
 		{
-			left++;
+			++left;
 		}
 
-		//交换
 		Swap(&a[left], &a[right]);
 	}
 
@@ -253,37 +250,157 @@ int PastSort1(int* a, int begin, int end)
 	return keyi;
 }
 
-//挖坑法
-int PastSort2(int* a, int begin, int end)
+// 挖坑法
+int PartSort2(int* a, int begin, int end)
 {
 	int key = a[begin];
 	int piti = begin;
-	int left = begin, right = end;
-
 	while (begin < end)
 	{
-		//右边找小，填到左边的坑里去，这个位置形成新的坑
-		while (begin < end && a[right] >= key)
+		// 右边找小，填到左边的坑里面去。这个位置形成新的坑
+		while (begin < end && a[end] >= key)
 		{
-			right--;
+			--end;
 		}
 
-		a[piti] = a[right];
-		piti = right;
+		a[piti] = a[end];
+		piti = end;
 
-		//左边找大，填到右边的坑里去，这个位置形成新的坑
-		while (begin < end && a[left] <= key)
+		// 左边找大，填到右边的坑里面去。这个位置形成新的坑
+		while (begin < end && a[begin] <= key)
 		{
-			left++;
+			++begin;
 		}
 
-		a[piti] = a[left];
-		piti = left;
+		a[piti] = a[begin];
+		piti = begin;
 	}
 
 	a[piti] = key;
-
 	return piti;
+}
+
+// 前后指针法
+int PartSort3(int* a, int begin, int end)
+{
+	int prev = begin;
+	int cur = begin + 1;
+	int keyi = begin;
+
+	// 加入三数取中的优化
+	int midi = GetMidIndex(a, begin, end);
+	Swap(&a[keyi], &a[midi]);
+
+	while (cur <= end)
+	{
+		// cur位置的之小于keyi位置值
+		if (a[cur] < a[keyi] && ++prev != cur)
+			Swap(&a[prev], &a[cur]);
+
+		++cur;
+	}
+
+	Swap(&a[prev], &a[keyi]);
+	keyi = prev;
+
+	return keyi;
+}
+
+void QuickSort1(int* a, int begin, int end)
+{
+	//结束条件  --  只有一个数 --> begin == end || 区间不存在 --> begin > end
+	if (begin >= end)
+	{
+		return;
+	}
+
+	if (end - begin > 30)
+	{
+		//hoare版本
+		int left = begin, right = end;
+		int keyi = left;
+
+		while (left < right)
+		{
+			//右边先走，找小
+			while (left < right && a[right] >= a[keyi])  //left < right是为了防止越界
+			{
+				right--;
+			}
+
+			//左边再走，找大
+			while (left < right && a[left] <= a[keyi])
+			{
+				left++;
+			}
+
+			//交换
+			Swap(&a[left], &a[right]);
+		}
+
+		Swap(&a[keyi], &a[left]);
+		keyi = left;
+
+		//key已经正确的位置上，左边都比key小，右边都比key大
+		//递归，分治 --  [begin,keyi - 1]  keyi  [keyi + 1,end]
+		QuickSort1(a, begin, keyi - 1);
+		QuickSort1(a, keyi + 1, end);
+	}
+	else
+	{
+		//直接插入排序
+		InsertSort(a + begin, end - begin + 1);
+	}
+}
+
+void QuickSort2(int* a, int begin, int end)
+{
+	//结束条件  --  只有一个数 --> begin == end || 区间不存在 --> begin > end
+	if (begin >= end)
+	{
+		return;
+	}
+
+	if (end - begin > 30)
+	{
+		//挖坑法
+		int key = a[begin];
+		int piti = begin;
+		int left = begin, right = end;
+
+		while (begin < end)
+		{
+			//右边找小，填到左边的坑里去，这个位置形成新的坑
+			while (begin < end && a[right] >= key)
+			{
+				right--;
+			}
+
+			a[piti] = a[right];
+			piti = right;
+
+			//左边找大，填到右边的坑里去，这个位置形成新的坑
+			while (begin < end && a[left] <= key)
+			{
+				left++;
+			}
+
+			a[piti] = a[left];
+			piti = left;
+		}
+
+		a[piti] = key;
+
+		//key已经正确的位置上，左边都比key小，右边都比key大
+		//递归，分治 --  [begin,keyi - 1]  keyi  [keyi + 1,end]
+		QuickSort2(a, begin, piti - 1);
+		QuickSort2(a, piti + 1, end);
+	}
+	else
+	{
+		//直接插入排序
+		InsertSort(a + begin, end - begin + 1);
+	}
 }
 
 int GetMidIndex(int* a, int begin, int end)
@@ -295,7 +412,7 @@ int GetMidIndex(int* a, int begin, int end)
 		{
 			return begin;
 		}
-		else if(a[end] > a[midi])
+		else if (a[end] > a[midi])
 		{
 			return end;
 		}
@@ -322,25 +439,7 @@ int GetMidIndex(int* a, int begin, int end)
 	}
 }
 
-//前后指针版本
-int PastSort3(int* a, int begin, int end)
-{
-	int prev = begin;
-	int cur = begin + 1;
-	int keyi = begin;
-
-	//加入三数取中的优化
-	int midi = GetMidIndex(a, begin, end);
-	Swap(&a[keyi], &a[midi]);
-
-	while (cur <= end)  //???
-	{
-
-	}
-}
-
-
-void QuickSort(int* a, int begin, int end)
+void QuickSort3(int* a, int begin, int end)
 {
 	//结束条件  --  只有一个数 --> begin == end || 区间不存在 --> begin > end
 	if (begin >= end)
@@ -348,34 +447,79 @@ void QuickSort(int* a, int begin, int end)
 		return;
 	}
 
-	int left = begin, right = end;
-	int keyi = left;
-
-	while (left < right)
+	if (end - begin > 30)
 	{
-		//右边先走，找小
-		while (left < right && a[right] >= a[keyi])  //left < right是为了防止越界
+		//前后指针版本
+		int prev = begin;
+		int cur = begin + 1;
+		int keyi = begin;
+
+		//加入三数取中的优化
+		int midi = GetMidIndex(a, begin, end);
+		Swap(&a[keyi], &a[midi]);
+
+		while (cur <= end)  //一直往后走，遇到小则停下来处理
 		{
-			right--;
+			//cur找小
+			if (a[cur] < a[keyi] && ++prev != cur)  //防止prev和cur重合时，重复交换
+			{
+				Swap(&a[prev], &a[cur]);
+			}
+
+			cur++;
 		}
 
-		//左边再走，找大
-		while (left < right && a[left] <= a[keyi])
+		Swap(&a[keyi], &a[prev]);
+		keyi = prev;
+
+		//key已经正确的位置上，左边都比key小，右边都比key大
+		//递归，分治 --  [begin,keyi - 1]  keyi  [keyi + 1,end]
+		QuickSort3(a, begin, keyi - 1);
+		QuickSort3(a, keyi + 1, end);
+	}
+	else
+	{
+		//直接插入排序
+		InsertSort(a + begin, end - begin + 1);
+	}
+}
+
+//用栈模拟递归 -- 先进后出
+void QuickSortNonR(int* a, int begin, int end)
+{
+	Stack st;
+	StackInit(&st);
+	
+	StackPush(&st, end);
+	StackPush(&st, begin);
+
+	while (!isStackEmpty(&st))
+	{
+		//从栈中取出两个数，作为区间
+		int left = StackTop(&st);
+		StackPop(&st);
+		int right = StackTop(&st);
+		StackPop(&st);
+
+		//排序，取keyi
+		int keyi = PartSort3(a, left, right);
+
+		//此时分成了两个区间 [left, keyi-1] keyi [keyi+1, right]
+		//继续压栈
+		if (keyi + 1 < right)
 		{
-			left++;
+			StackPush(&st, right);
+			StackPush(&st, keyi + 1);
 		}
 
-		//交换
-		Swap(&a[left], &a[right]);
+		if (left < keyi - 1)
+		{
+			StackPush(&st, keyi - 1);
+			StackPush(&st, left);
+		}
 	}
 
-	Swap(&a[keyi], &a[left]);
-	keyi = left;
-
-	//key已经正确的位置上，左边都比key小，右边都比key大
-	//递归，分治 --  [begin,keyi - 1]  keyi  [keyi + 1,end]
-	QuickSort(a, begin, keyi - 1);
-	QuickSort(a, keyi + 1, end);
+	StackDestroy(&st);
 }
 
 void MergeSort(int* a, int n)
