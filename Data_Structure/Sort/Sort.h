@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 
 void InsertSort(int* a, int n);
 void ShellSort(int* a, int n);

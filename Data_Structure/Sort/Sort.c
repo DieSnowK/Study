@@ -522,7 +522,202 @@ void QuickSortNonR(int* a, int begin, int end)
 	StackDestroy(&st);
 }
 
+//函数名前加_表示这个函数是内部函数，不对外提供接口 - 子函数
+//后序思想
+void _MergeSort(int* a, int begin, int end, int* tmp)
+{
+	if (begin >= end)
+	{
+		return;
+	}
+
+	int mid = (begin + end) / 2;
+
+	//[begin, mid] [mid+1, end] 分治递归，让子区间有序
+	_MergeSort(a,begin,mid,tmp);
+	_MergeSort(a,mid+1,end,tmp);
+
+	//归并 [begin, mid] [mid+1, end]
+	int begin1 = begin, end1 = mid;
+	int begin2 = mid + 1, end2 = end;
+	int i = begin1;
+	while (begin1 <= end1 && begin2 <= end2)  //有一组结束则结束
+	{
+		if (a[begin1] < a[begin2])
+		{
+			tmp[i++] = a[begin1++];
+		}
+		else
+		{
+			tmp[i++] = a[begin2++];
+		}
+	}
+
+	//已经有一组结束了，拷贝另一组剩余的
+	while (begin1 <= end1)
+	{
+		tmp[i++] = a[begin1++];
+	}
+
+	while (begin2 <= end2)
+	{
+		tmp[i++] = a[begin2++];
+	}
+
+	//把归并数据拷贝回原数组
+	memcpy(a + begin, tmp + begin, (end - begin + 1) * sizeof(int));
+}
+
+//时间复杂度:O(N*logN)
+//空间复杂度:O(N)
 void MergeSort(int* a, int n)
 {
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("MergeSort");
+		exit(-1);
+	}
 
+	_MergeSort(a, 0, n - 1, tmp);
+
+	free(tmp);
+}
+
+//void MergeSortNonR(int* a, int n)
+//{
+//	int* tmp = (int*)malloc(sizeof(int) * n);
+//	if (tmp == NULL)
+//	{
+//		perror("malloc:");
+//		exit(-1);
+//	}
+//
+//	//手动归并
+//	int gap = 1;  //每次归并的元素个数
+//	while (gap < n)
+//	{
+//		for (int i = 0; i < n; i += 2 * gap)
+//		{
+//			//[i, i+gap-1] [i+gap,i+2*gap-1]
+//			int begin1 = i, end1 = i + gap - 1;
+//			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+//
+//			//越界处理 - 修正边界
+//			if (end1 >= n)
+//			{
+//				end1 = n - 1;
+//				//[begin2, end2]修正为不存在区间
+//				begin2 = n;
+//				end2 = n - 1;
+//			}
+//			else if (begin2 >= n)
+//			{
+//				// [begin2, end2]修正为不存在区间
+//				begin2 = n;
+//				end2 = n - 1;
+//			}
+//			else if (end2 >= n)
+//			{
+//				end2 = n - 1;
+//			}
+//
+//
+//			//归并
+//			int j = begin1;
+//			while (begin1 <= end1 && begin2 <= end2)
+//			{
+//				if (a[begin1] < a[begin2])
+//				{
+//					tmp[j++] = a[begin1++];
+//				}
+//				else
+//				{
+//					tmp[j++] = a[begin2++];
+//				}
+//			}
+//
+//			while (begin1 <= end1)
+//			{
+//				tmp[j++] = a[begin1++];
+//			}
+//
+//			while (begin2 <= end2)
+//			{
+//				tmp[j++] = a[begin2++];
+//			}
+//
+//		}
+//
+//		//全部归并完后，拷贝回原数组
+//		memcpy(a, tmp, sizeof(int) * n);
+//
+//		gap *= 2;
+//	}
+//
+//	free(tmp);
+//}
+
+void MergeSortNonR(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("malloc:");
+		exit(-1);
+	}
+
+	//手动归并
+	int gap = 1;  //每次归并的元素个数
+	while (gap < n)
+	{
+		for (int i = 0; i < n; i += 2 * gap)
+		{
+			//[i, i+gap-1] [i+gap,i+2*gap-1]
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+
+			//越界处理
+			//end1越界或者begin2越界，则可以不归并了
+			if (end1 >= n || begin2 >= n)
+			{
+				break;
+			}
+			else if (end2 >= n)
+			{
+				end2 = n - 1;
+			}
+
+			//归并
+			int m = end2 - begin1 + 1;
+			int j = begin1;
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[j++] = a[begin1++];
+				}
+				else
+				{
+					tmp[j++] = a[begin2++];
+				}
+			}
+
+			while (begin1 <= end1)
+			{
+				tmp[j++] = a[begin1++];
+			}
+
+			while (begin2 <= end2)
+			{
+				tmp[j++] = a[begin2++];
+			}
+
+			memcpy(a + i, tmp + i, sizeof(int) * m);
+		}
+
+		gap *= 2;
+	}
+
+	free(tmp);
 }
