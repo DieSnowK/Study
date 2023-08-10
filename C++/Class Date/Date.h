@@ -8,7 +8,7 @@ class Date
 	// 友元函数  --  这个函数内部可以使用Date对象访问私有成员
 	friend ostream& operator<<(ostream& out, const Date& d);
 	friend istream& operator>>(istream& in, Date& d);
-	
+
 public:
 	//不需要写析构函数和拷贝函数，因为没有动态开辟空间，且没有指针成员
 
