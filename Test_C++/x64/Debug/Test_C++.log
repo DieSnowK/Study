@@ -1,4 +1,2 @@
 ﻿  Test.cpp
-C:\Users\w1752\Desktop\My_Repository\Study_Test\Test_C++\Test.cpp(60,15): error C2131: 表达式的计算结果不是常数
-C:\Users\w1752\Desktop\My_Repository\Study_Test\Test_C++\Test.cpp(60,15): message : 因读取超过生命周期的变量而失败
-C:\Users\w1752\Desktop\My_Repository\Study_Test\Test_C++\Test.cpp(60,15): message : 请参见“n”的用法
+  Test_C++.vcxproj -> C:\Users\w1752\Desktop\My_Repository\Study_Test\Test_C++\x64\Debug\C++_OJ.exe

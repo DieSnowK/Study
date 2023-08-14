@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <assert.h>
 using namespace std;
 
@@ -164,3 +165,55 @@ using namespace std;
 //        return strRet;
 //    }
 //};
+
+// 链接：https://www.nowcoder.com/practice/8c949ea5f36f422594b306a2300315da?tpId=37&&tqId=21224&rp=5&ru=/activity/oj&qru=/ta/huawei/question-ranking
+// 字符串最后一个单词的长度
+//int main()
+//{
+//    string str;
+//
+//    // 获取一行字符串
+//    // 思考：为什么不用cin呢？
+//    getline(cin, str);
+//
+//    size_t pos = str.rfind(' ');
+//    if (pos != string::npos)
+//    {
+//        cout << str.size() - pos - 1 << endl;
+//    }
+//    else
+//    {
+//        cout << str.size() << endl;
+//    }
+//
+//    return 0;
+//}
+
+// 链接：https://leetcode.cn/problems/first-unique-character-in-a-string/
+// 字符串中的第一个唯一字符
+//class Solution {
+//public:
+//    int firstUniqChar(string s)
+//    {
+//        // 哈希
+//        int countArr[26] = { 0 };
+//        for (auto ch : s)
+//        {
+//            countArr[ch - 'a']++;
+//        }
+//
+//        // 遍历原字符串,找出现次数为1的
+//        for (size_t i = 0; i < s.size(); i++)
+//        {
+//            if (countArr[s[i] - 'a'] == 1)
+//            {
+//                return i;
+//            }
+//        }
+//
+//        return -1;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/valid-palindrome/
+// 验证回文串
