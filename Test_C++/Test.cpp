@@ -30,34 +30,137 @@ using namespace std;
 // 求1+2+3+...+n
 // 要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）
 // 不使用全局变量，只用静态成员变量
-class Sum
-{
-public:
-    Sum() //构造函数，每次构造自动调用
-    {
-        _sum += _i;
-        _i++;
-    }
+//class Sum
+//{
+//public:
+//    Sum() //构造函数，每次构造自动调用
+//    {
+//        _sum += _i;
+//        _i++;
+//    }
+//
+//    static int GetSum()
+//    {
+//        return _sum;
+//    }
+//
+//private:
+//    static int _sum;
+//    static int _i;
+//};
+//
+//int Sum::_sum = 0;
+//int Sum::_i = 1;
+//
+//class Solution
+//{
+//public:
+//    int Sum_Solution(int n)
+//    {
+//        Sum a[n]; // 调用n次sum的构造函数
+//        return Sum::GetSum();
+//    }
+//};
 
-    static int GetSum()
-    {
-        return _sum;
-    }
+// 链接：https://leetcode.cn/problems/reverse-only-letters/description/
+// 仅仅反转字母
+//class Solution 
+//{
+//public:
+//    string reverseOnlyLetters(string s)
+//    {
+//        size_t begin = 0, end = s.size() - 1;
+//        while (begin < end)
+//        {
+//            while (begin < end && !isalpha(s[begin])) // 注意防越界处理
+//            {
+//                begin++;
+//            }
+//
+//            while (begin < end && !isalpha(s[end]))
+//            {
+//                end--;
+//            }
+//
+//            //此位置时，已经是两个字母了
+//            swap(s[begin], s[end]);
+//            begin++;
+//            end--;
+//        }
+//
+//        return s;
+//    }
+//};
 
-private:
-    static int _sum;
-    static int _i;
-};
+// 链接:https://leetcode.cn/problems/add-strings/submissions/
+// 字符串相加
+// 版本一 - 头插效率低下
+//class Solution {
+//public:
+//    string addStrings(string num1, string num2)
+//    {
+//        int end1 = num1.size() - 1, end2 = num2.size() - 1;
+//        int next = 0;
+//        string strRet;
+//
+//        while (end1 >= 0 || end2 >= 0) // 两个都结束，才结束运算
+//        {
+//            // 将值从字符串中提取出来,还要考虑到是否提取完，0补位
+//            int val1 = end1 >= 0 ? num1[end1] - '0' : 0;
+//            int val2 = end2 >= 0 ? num2[end2] - '0' : 0;
+//            int ret = val1 + val2 + next;
+//            next = ret > 9 ? 1 : 0;
+//
+//            //头插
+//            strRet.insert(strRet.begin(), (ret % 10) + '0');
+//
+//            end1--;
+//            end2--;
+//        }
+//
+//        // 清理进位 - 
+//        if (next == 1)
+//        {
+//            strRet.insert(strRet.begin(), '1');
+//        }
+//
+//        return strRet;
+//    }
+//};
 
-int Sum::_sum = 0;
-int Sum::_i = 1;
-
-class Solution
-{
-public:
-    int Sum_Solution(int n)
-    {
-        Sum a[n]; // 调用n次sum的构造函数
-        return Sum::GetSum();
-    }
-};
+// 版本二 - 尾插，以空间换时间
+//class Solution {
+//public:
+//    string addStrings(string num1, string num2)
+//    {
+//        int end1 = num1.size() - 1, end2 = num2.size() - 1;
+//        int next = 0;
+//        string strRet;
+//
+//        while (end1 >= 0 || end2 >= 0) // 两个都结束，才结束运算
+//        {
+//            // 将值从字符串中提取出来,还要考虑到是否提取完，0补位
+//            int val1 = end1 >= 0 ? num1[end1] - '0' : 0;
+//            int val2 = end2 >= 0 ? num2[end2] - '0' : 0;
+//            int ret = val1 + val2 + next;
+//            next = ret > 9 ? 1 : 0;
+//
+//            // 尾插，最后一起逆置，以O(N)空间换时间
+//            strRet += (ret % 10) + '0';
+//
+//            end1--;
+//            end2--;
+//        }
+//
+//        // 清理进位
+//        if (next == 1)
+//        {
+//            strRet += '1';
+//        }
+//
+//        // 逆置
+//        reverse(strRet.begin(), strRet.end());
+//
+//        return strRet;
+//    }
+//};
