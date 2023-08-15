@@ -217,3 +217,43 @@ using namespace std;
 
 // 链接：https://leetcode.cn/problems/valid-palindrome/
 // 验证回文串
+//class Solution {
+//public:
+//    bool isPalindrome(string s)
+//    {
+//        // 为便于处理，都转化为小写字母
+//        for (auto& ch : s)
+//        {
+//            if (ch >= 'A' && ch <= 'Z')
+//            {
+//                ch += 32;
+//            }
+//        }
+//
+//        int begin = 0, end = s.size() - 1;
+//        while (begin < end)
+//        {
+//            while (begin < end && !isalnum(s[begin]))  // 记得防越界处理
+//            {
+//                begin++;
+//            }
+//
+//            while (begin < end && !isalnum(s[end]))
+//            {
+//                end--;
+//            }
+//
+//            if (s[begin] == s[end])
+//            {
+//                begin++;
+//                end--;
+//            }
+//            else
+//            {
+//                return false;
+//            }
+//        }
+//
+//        return true;
+//    }
+//};
