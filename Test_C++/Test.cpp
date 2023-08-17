@@ -257,3 +257,99 @@ using namespace std;
 //        return true;
 //    }
 //};
+
+// 链接：https://leetcode.cn/problems/single-number/description/
+// 只出现一次的数字
+//class Solution {
+//public:
+//    int singleNumber(vector<int>& nums)
+//    {
+//        int ret = 0;
+//
+//        for (auto e : nums)
+//        {
+//            ret ^= e;
+//        }
+//
+//        return ret;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/pascals-triangle/description/
+// 杨辉三角
+//class Solution {
+//public:
+//    vector<vector<int>> generate(int numRows)
+//    {
+//        // 用vector实现二维数组
+//        vector<vector<int>> vv;
+//        vv.resize(numRows);
+//
+//        // 初始化每个一维数组
+//        for (size_t i = 0; i < vv.size(); i++)
+//        {
+//            vv[i].resize(i + 1, 0);
+//            vv[i].front() = vv[i].back() = 1;
+//        }
+//
+//        // 处理杨辉三角
+//        for (size_t i = 2; i < vv.size(); i++)
+//        {
+//            // 每一行
+//            for (size_t j = 0; j < vv[i].size(); j++)
+//            {
+//                if (vv[i][j] == 0) // --> vv.operator[](i).operator[](j);
+//                {
+//                    vv[i][j] = vv[i - 1][j - 1] + vv[i - 1][j];
+//                }
+//            }
+//        }
+//
+//        return vv;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/letter-combinations-of-a-phone-number/submissions/
+// 电话号码的字母组合
+// 典型的排列组合问题
+
+//class Solution {
+//public:
+//    // 为便于获得每个数字对应的字符串，先建立一个映射关系
+//    char* numTostr[10] = { "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz" };
+//
+//    // 深度优先遍历 - 典型的多路递归
+//    // 为了递归，用这个子函数
+//    void Combine(string& digits, int di, vector<string>& retv, string combineStr = "")
+//    {
+//        if (di == digits.size()) //递归结束条件
+//        {
+//            retv.push_back(combineStr);
+//            return;
+//        }
+//
+//        // 取数字字符映射相印字符串
+//        int num = digits[di] - '0';
+//        string str = numTostr[num]; // 拷贝构造
+//
+//        for (auto ch : str)
+//        {
+//            Combine(digits, di + 1, retv, combineStr + ch);
+//        }
+//
+//    }
+//
+//    vector<string> letterCombinations(string digits)
+//    {
+//        vector<string> v;
+//
+//        if (digits.empty())
+//        {
+//            return v;
+//        }
+//
+//        Combine(digits, 0, v);
+//
+//        return v;
+//    }
+//};
