@@ -19,7 +19,7 @@ void game()
 	DisplayBoard(mine, ROW, COL);
 	
 	////模式选择                   可做待做  
-	////思路：将FineMine()中while去掉  套在模式选择处\
+	////思路：将FineMine()中while去掉  套在模式选择处
 	// 
 	//int choice = 0;
 	//printf("请选择要排雷[1]还是标记[2]>");

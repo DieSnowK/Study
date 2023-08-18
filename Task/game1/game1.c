@@ -138,7 +138,7 @@ int IsFull(char board[ROW][COL], int row, int col)
 	return 1;
 }
 
-char IsWin(char board[ROW][COL], int row, int col)
+char IsWin(char board[ROW][COL], int row, int col) //这里采取暴力判断，其他方法读者们可以评论区讨论
 {
 	int i = 0;
 
