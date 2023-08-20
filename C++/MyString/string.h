@@ -419,23 +419,23 @@ namespace SnowK
 		return out;
 	}
 
-	std::istream& operator>>(std::istream& in, string& s)
-	{
-		s.clear();
+	//std::istream& operator>>(std::istream& in, string& s)
+	//{
+	//	s.clear();
 
-		// 输入字符串很长，不断+=，效率很低
-		char ch;
-		ch = in.get();
-		s.reserve(64); // 提前开一些空间，防止空间小时，频繁扩容，以空间换时间
+	//	// 输入字符串很长，不断+=，效率很低
+	//	char ch;
+	//	ch = in.get();
+	//	s.reserve(64); // 提前开一些空间，防止空间小时，频繁扩容，以空间换时间
 
-		while (ch != ' ' && ch != '\n')
-		{
-			s += ch;
-			ch = in.get();
-		}
+	//	while (ch != ' ' && ch != '\n')
+	//	{
+	//		s += ch;
+	//		ch = in.get();
+	//	}
 
-		return in;
-	}
+	//	return in;
+	//}
 
 	// 优化版本
 	std::istream& operator>>(std::istream& in, string& s)
