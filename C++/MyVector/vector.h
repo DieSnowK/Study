@@ -163,9 +163,9 @@ namespace SnowK
 				if (_start) // 看是否为空，是否需要腾数据
 				{
 					//memcpy(tmp, _start, sizeof(T) * sz); // 这个不行，浅拷贝
-					for (size_t i = 0; i < sz; ++i) //深拷贝
+					for (size_t i = 0; i < sz; ++i) 
 					{
-						tmp[i] = _start[i]; //存疑，需要稍后研究
+						tmp[i] = _start[i]; //深拷贝  --  值得读者思考
 					}
 					delete[] _start;
 				}
