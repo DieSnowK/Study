@@ -353,3 +353,12 @@ using namespace std;
 //        return v;
 //    }
 //};
+
+// 链接：https://leetcode-cn.com/problems/min-stack/
+// 最小栈
+
+// 链接：https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&&tqId=11174&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking
+// 栈的弹出压入序列
+
+// 链接：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/
+// 逆波兰表达式求值
