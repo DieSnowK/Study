@@ -474,3 +474,21 @@ using namespace std;
 //        return st.top();
 //    }
 //};
+
+// 链接：https://leetcode.cn/problems/kth-largest-element-in-an-array/
+// 数组中的第K个最大元素
+//class Solution {
+//public:
+//    int findKthLargest(vector<int>& nums, int k)
+//    {
+//        // 建大堆 -- O(N)
+//        priority_queue<int> maxHeap(nums.begin(), nums.end());
+//
+//        while (--k)
+//        {
+//            maxHeap.pop();
+//        }
+//
+//        return maxHeap.top();
+//    }
+//};
