@@ -357,8 +357,120 @@ using namespace std;
 // 链接：https://leetcode-cn.com/problems/min-stack/
 // 最小栈
 
+//class MinStack {
+//public:
+//    MinStack()
+//    {
+//        // 不需要写构造函数，会去调用成员的默认构造函数
+//    }
+//
+//    void push(int val)
+//    {
+//        _st.push(val);
+//
+//        if (_minst.empty() || val <= _minst.top())
+//        {
+//            _minst.push(val);
+//        }
+//    }
+//
+//    void pop()
+//    {
+//        if (_st.top() == _minst.top())
+//        {
+//            _minst.pop();
+//        }
+//        _st.pop();
+//    }
+//
+//    int top()
+//    {
+//        return _st.top();
+//    }
+//
+//    int getMin()
+//    {
+//        return _minst.top();
+//    }
+//private:
+//    stack<int> _st;
+//    stack<int> _minst;
+//};
+
 // 链接：https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&&tqId=11174&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking
 // 栈的弹出压入序列
+// 大思路：用栈模拟这个过程 --> 是否能这样出栈
+
+//bool IsPopOrder(vector<int>& pushV, vector<int>& popV)
+//{
+//    stack<int> st;
+//    int popi = 0;
+//
+//    for (auto& pushVal : pushV)
+//    {
+//        // 正常压入数据
+//        st.push(pushVal);
+//
+//        // 出栈序列匹配后要持续比较，可能会有多个匹配
+//        while (!st.empty() && st.top() == popV[popi])
+//        {
+//            ++popi;
+//            st.pop();
+//        }
+//
+//    }
+//
+//    return st.empty(); //return popi == popV.size(); // 这个也可以
+//}
 
 // 链接：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/
-// 逆波兰表达式求值
+// 逆波兰表达式求值  --  后缀表达式求值
+// 思路：用栈模拟这个过程
+// 1.遇到数字，入栈
+// 2.遇到运算符，取出栈顶两个元素，计算结果，再入栈
+
+//class Solution {
+//public:
+//    // 本题已经省去了将中缀表达式转为后缀表达式的过程了 :P
+//    int evalRPN(vector<string>& tokens)
+//    {
+//        stack<int> st;
+//
+//        for (auto& str : tokens) // 一直获取vector中的字符串
+//        {
+//            if (str == "+" || str == "-"
+//                || str == "*" || str == "/")
+//            {
+//                // 遇到运算符，取出栈顶两个元素
+//                int right = st.top();
+//                st.pop();
+//                int left = st.top();
+//                st.pop();
+//
+//                // 计算结果，再入栈
+//                switch (str[0]) // 取到符号字符串时，字符串里只有符号
+//                {              // 所以可以这样将字符串转化为char
+//                case '+':
+//                    st.push(left + right);
+//                    break;
+//                case '-':
+//                    st.push(left - right);
+//                    break;
+//                case '*':
+//                    st.push(left * right);
+//                    break;
+//                case '/':
+//                    st.push(left / right);
+//                    break;
+//                }
+//            }
+//            else
+//            {
+//                // 数据入栈
+//                st.push(stoi(str));
+//            }
+//        } // end of for()
+//
+//        return st.top();
+//    }
+//};
