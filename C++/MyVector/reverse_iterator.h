@@ -17,12 +17,12 @@ namespace SnowK
 		RIterator operator++()
 		{
 			--_cur;
-			return *this
+			return *this;
 		}
 
 		RIterator operator++(int)
 		{
-			Riterator tmp = *this;
+			RIterator tmp = *this;
 			--_cur;
 
 			return tmp;
@@ -44,7 +44,8 @@ namespace SnowK
 
 		Ref operator*()
 		{
-			return *(--_cur);
+			Iterator tmp = _cur;
+			return *(--tmp);
 		}
 
 		Ptr operator->()
