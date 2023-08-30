@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <assert.h>
-//#include "reverse_iterator.h"
+#include "reverse_iterator.h"
 
 namespace SnowK
 {
@@ -11,8 +11,8 @@ namespace SnowK
 	public:
 		typedef T* iterator;
 		typedef const T* const_iterator;
-		//typedef __reverse_iterator<iterator, T&, T*> reverse_iterator;
-		//typedef __reverse_iterator<const_iterator, const T&, const T*> const_reverse_iterator;
+		typedef __reverse_iterator<iterator, T&, T*> reverse_iterator;
+		typedef __reverse_iterator<const_iterator, const T&, const T*> const_reverse_iterator;
 
 
 		iterator begin()
@@ -35,25 +35,25 @@ namespace SnowK
 			return _finish;
 		}
 
-		//reverse_iterator rbegin()
-		//{
-		//	return reverse_iterator(end());
-		//}
+		reverse_iterator rbegin()
+		{
+			return reverse_iterator(end());
+		}
 
-		//reverse_iterator rend()
-		//{
-		//	return reverse_iterator(begin());
-		//}
+		reverse_iterator rend()
+		{
+			return reverse_iterator(begin());
+		}
 
-		//const_reverse_iterator rbegin() const
-		//{
-		//	return reverse_iterator(end());
-		//}
+		const_reverse_iterator rbegin() const
+		{
+			return reverse_iterator(end());
+		}
 
-		//const_reverse_iterator rend() const
-		//{
-		//	return reverse_iterator(begin());
-		//}
+		const_reverse_iterator rend() const
+		{
+			return reverse_iterator(begin());
+		}
 
 		vector()
 			: _start(nullptr)

@@ -37,9 +37,9 @@ void InOrder(BTNode* root)
 		return;
 	}
 
-	PreOrder(root->left);
+	InOrder(root->left);
 	printf("%d ", root->data);
-	PreOrder(root->right);
+	InOrder(root->right);
 }
 
 void PostOrder(BTNode* root)
