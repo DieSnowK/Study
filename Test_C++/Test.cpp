@@ -894,3 +894,164 @@ using namespace std;
 //        return v;
 //    }
 //};
+
+// 链接：https://leetcode.cn/problems/top-k-frequent-words/
+// 前K个高频单词
+// 法一：TOPK + 仿函数
+//class Solution
+//{
+//public:
+//    struct Less
+//    {
+//        bool operator()(const pair<string, int>& kv1, const pair<string, int>& kv2) const
+//        {
+//            if (kv1.second < kv2.second) // 次数比较
+//            {
+//                return true;
+//            }
+//
+//            if (kv1.second == kv2.second && kv1.first > kv2.first) // 同频率，字典顺序输出
+//            {
+//                return true;
+//            }
+//
+//            return false;
+//        }
+//    };
+//
+//    vector<string> topKFrequent(vector<string>& words, int k)
+//    {
+//        // 统计次数
+//        map<string, int> countMap;
+//        for (auto& str : words)
+//        {
+//            countMap[str]++;
+//        }
+//
+//        // topk - 同时调整相同频率的单词排序 --> 利用仿函数
+//        // Less - 默认建大堆
+//        priority_queue<pair<string, int>, vector<pair<string, int>>, Less> maxHeap(countMap.begin(), countMap.end());
+//
+//        // 排序完入表
+//        vector<string> v;
+//        while (k--)
+//        {
+//            v.push_back(maxHeap.top().first);
+//            maxHeap.pop();
+//        }
+//
+//        return v;
+//    }
+//};
+
+// 法二：排序
+//class Solution
+//{
+//public:
+//    struct Greater
+//    {
+//        bool operator()(const pair<string, int>& kv1, const pair<string, int>& kv2) const
+//        {
+//            if (kv1.second > kv2.second) // 次数比较
+//            {
+//                return true;
+//            }
+//
+//            return false;
+//        }
+//    };
+//
+//    vector<string> topKFrequent(vector<string>& words, int k)
+//    {
+//        // 统计次数 - 按string排序，即符合字典顺序要求
+//        map<string, int> countMap;
+//        for (auto& str : words)
+//        {
+//            countMap[str]++;
+//        }
+//
+//        // 稳定排序 - 不破坏string的相对顺序
+//        vector<pair<string, int>> sortV(countMap.begin(), countMap.end()); // 转移数据，用于排序，因为sort要随机迭代器
+//        stable_sort(sortV.begin(), sortV.end(), Greater());
+//
+//        // 排序完入表
+//        vector<string> v;
+//        for (size_t i = 0; i < k; i++)
+//        {
+//            v.push_back(sortV[i].first);
+//        }
+//
+//        return v;
+//    }
+//};
+
+// 法三：multimap排序
+//class Solution
+//{
+//public:
+//    vector<string> topKFrequent(vector<string>& words, int k)
+//    {
+//        // 统计次数 - 按string排序，即符合字典顺序要求
+//        map<string, int> countMap;
+//        for (auto& str : words)
+//        {
+//            countMap[str]++;
+//        }
+//
+//        // 再按频率排序，且multimap允许存在多个相同的值
+//        // 不能升序然后反向迭代器取，思考为什么？
+//        multimap<int, string, greater<int>> sortMap;
+//        for (auto& kv : countMap)
+//        {
+//            sortMap.insert(make_pair(kv.second, kv.first));
+//        }
+//
+//        // 排序完入表
+//        vector<string> v;
+//        multimap<int, string, greater<int>>::iterator it = sortMap.begin();
+//        for (size_t i = 0; i < k; i++)
+//        {
+//            v.push_back(it->second);
+//            ++it;
+//        }
+//
+//        return v;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/intersection-of-two-arrays/
+// 两个数组的交集
+//class Solution {
+//public:
+//    vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
+//    {
+//        // 用set排序 + 去重
+//        set<int> s1(nums1.begin(), nums1.end());
+//        set<int> s2(nums2.begin(), nums2.end());
+//        set<int>::iterator it1 = s1.begin();
+//        set<int>::iterator it2 = s2.begin();
+//        vector<int> v;
+//
+//        while (it1 != s1.end() && it2 != s2.end()) //任意一个结束则结束
+//        {
+//            // 小的++
+//            if (*it1 < *it2)
+//            {
+//                ++it1;
+//            }
+//            else if (*it1 > *it2)
+//            {
+//                ++it2;
+//            }
+//            else
+//            {
+//                // 相等就是交集，同时++
+//                v.push_back(*it1);
+//                ++it1;
+//                ++it2;
+//            }
+//        }
+//
+//        return v;
+//    }
+//};
