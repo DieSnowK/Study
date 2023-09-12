@@ -492,3 +492,405 @@ using namespace std;
 //        return maxHeap.top();
 //    }
 //};
+
+// 链接：https://leetcode-cn.com/problems/construct-string-from-binary-tree/
+// 根据二叉树创建字符串
+//class Solution {
+//public:
+//	string tree2str(TreeNode* root)
+//	{
+//		if (root == nullptr)
+//		{
+//			return string();
+//		}
+//
+//		string str;
+//		str += to_string(root->val);
+//
+//		// 左边不为空或者左边为空，右边不为空，左边需要加括号
+//		if (root->left || root->right)
+//		{
+//			str += '(';
+//			str += tree2str(root->left);
+//			str += ')';
+//		}
+//
+//		// 右边不为空，右边需要加括号
+//		if (root->right)
+//		{
+//			str += '(';
+//			str += tree2str(root->right);
+//			str += ')';
+//		}
+//
+//		return str;
+//	}
+//};
+
+// 链接：https://leetcode.cn/problems/binary-tree-level-order-traversal/description/
+// 二叉树的层次遍历
+//class Solution {
+//public:
+//    vector<vector<int>> levelOrder(TreeNode* root)
+//    {
+//        queue<TreeNode*> q;
+//        size_t levelSize = 0; // 用于控制每层元素剩余数量，神之一手 :P
+//
+//        if (root)
+//        {
+//            q.push(root);
+//            levelSize = 1;
+//        }
+//
+//        vector<vector<int>> vv;
+//
+//        while (!q.empty())
+//        {
+//            // 控制一层一层出
+//            vector<int> v;
+//            for (size_t i = 0; i < levelSize; i++)
+//            {
+//                TreeNode* front = q.front();
+//                q.pop();
+//                v.push_back(front->val);
+//
+//                if (front->left)
+//                {
+//                    q.push(front->left);
+//                }
+//
+//                if (front->right)
+//                {
+//                    q.push(front->right);
+//                }
+//            }
+//
+//            vv.push_back(v);
+//            // 当前层出完了，下一层都进队列，队列的size就是下一层的levelSize
+//            levelSize = q.size();
+//        }
+//
+//        return vv;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/
+// 二叉树的最近公共祖先
+
+// 法一
+//class Solution {
+//public:
+//    bool Find(TreeNode* sub, TreeNode* x) // 本质就是前序遍历
+//    {
+//        if (sub == nullptr)
+//        {
+//            return false;
+//        }
+//
+//        return sub == x
+//            || Find(sub->left, x)
+//            || Find(sub->right, x);
+//    }
+//
+//    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
+//    {
+//        if (root == nullptr)
+//        {
+//            return nullptr;
+//        }
+//
+//        if (root == q || root == p) // 其中一个为根，那么最近公共祖先就是此根
+//        {
+//            return root;
+//        }
+//
+//        bool pInLeft, pInRight, qInLeft, qInRight; // 命名合适为关键所在
+//        pInLeft = Find(root->left, p);
+//        pInRight = !pInLeft;
+//
+//        qInLeft = Find(root->left, q);
+//        qInRight = !qInLeft;
+//
+//        // 1.一个在左，一个在右，root就是最近祖先
+//        if (pInLeft && qInRight || qInLeft && pInRight)
+//        {
+//            return root;
+//        }
+//        else if (pInLeft && qInLeft) // 2.都在左，递归去左树找
+//        {
+//            return lowestCommonAncestor(root->left, p, q);
+//        }
+//        else if (pInRight && qInRight) // 3.都在右，递归去右树找
+//        {
+//            return lowestCommonAncestor(root->right, p, q);
+//        }
+//        else
+//        {
+//            return nullptr; // 本题而言，理论不会走到这里
+//        }
+//    }
+//};
+
+// 法二
+//class Solution {
+//public:
+//    bool FindPath(TreeNode* root, TreeNode* x, stack<TreeNode*>& path)
+//    {
+//        if (root == nullptr)
+//        {
+//            return false;
+//        }
+//
+//        path.push(root);
+//        if (root == x)
+//        {
+//            return true;
+//        }
+//
+//        if (FindPath(root->left, x, path))
+//        {
+//            return true;
+//        }
+//
+//        if (FindPath(root->right, x, path))
+//        {
+//            return true;
+//        }
+//
+//        path.pop();
+//        return false;
+//    }
+//
+//    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
+//    {
+//        stack<TreeNode*> pPath, qPath;
+//        FindPath(root, p, pPath);
+//        FindPath(root, q, qPath);
+//
+//        // 类似链表相交
+//        while (pPath.size() != qPath.size())
+//        {
+//            if (pPath.size() > qPath.size())
+//            {
+//                pPath.pop();
+//            }
+//            else
+//            {
+//                qPath.pop();
+//            }
+//        }
+//
+//        while (pPath.top() != qPath.top())
+//        {
+//            pPath.pop();
+//            qPath.pop();
+//        }
+//
+//        return pPath.top();
+//    }
+//};
+
+// 链接：https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&&tqId=11179&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking
+// 二叉搜索树与双向链表
+//class Solution
+//{
+//public:
+//	void InOrderConvert(TreeNode* cur, TreeNode*& prev)
+//	{
+//		if (cur == nullptr)
+//		{
+//			return;
+//		}
+//
+//		InOrderConvert(cur->left, prev);
+//
+//		cur->left = prev;
+//		if (prev)
+//		{
+//			prev->right = cur;
+//		}
+//
+//		prev = cur;
+//
+//		InOrderConvert(cur->right, prev);
+//	}
+//
+//	TreeNode* Convert(TreeNode* pRootOfTree)
+//	{
+//		TreeNode* prev = nullptr;
+//		InOrderConvert(pRootOfTree, prev); // 中序遍历，以更改链接关系
+//
+//		// 找头节点，用于返回
+//		TreeNode* head = pRootOfTree;
+//		while (head && head->left)
+//		{
+//			head = head->left;
+//		}
+//
+//		return head;
+//	}
+//};
+
+// 链接：https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+// 从前序与中序遍历序列构造二叉树
+ // 大思路：前序创建树，中序分割左右子树
+ // 子树区间确认是否继续递归创建字数，不存在区间则是空树
+//class Solution {
+//public:
+//    TreeNode* _buildTree(vector<int>& preorder, vector<int>& inorder, int& prei, int inbegin, int inend)
+//    {
+//        if (inbegin > inend)
+//        {
+//            return nullptr;
+//        }
+//
+//        TreeNode* root = new TreeNode(preorder[prei++]); // 存入该节点(根)
+//
+//        // 分割中序
+//        int ini = inbegin;
+//        while (ini <= inend)
+//        {
+//            if (inorder[ini] == root->val)
+//            {
+//                break;
+//            }
+//            else
+//            {
+//                ini++;
+//            }
+//        }
+//
+//        // []inbegin, ini-1] ini [ini+1, inend]
+//        root->left = _buildTree(preorder, inorder, prei, inbegin, ini - 1);
+//        root->right = _buildTree(preorder, inorder, prei, ini + 1, inend);
+//
+//        return root;
+//    }
+//
+//    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder)
+//    {
+//        int i = 0;
+//        return _buildTree(preorder, inorder, i, 0, inorder.size() - 1);
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/binary-tree-preorder-traversal/
+// 二叉树的前序遍历：非递归版本
+
+ // 左路节点
+ // 左路节点右子树  -->  子问题
+//class Solution {
+//public:
+//    vector<int> preorderTraversal(TreeNode* root)
+//    {
+//        stack<TreeNode*> st; // 用于察觉从左路节点 --> 子路节点
+//        vector<int> v;
+//        TreeNode* cur = root;
+//
+//        while (cur || !st.empty()) // 树没遍历完，栈没空，都要继续
+//        {
+//            // 开始访问一棵树
+//            // 1.左路节点
+//            while (cur)
+//            {
+//                v.push_back(cur->val);
+//                st.push(cur);
+//
+//                cur = cur->left;
+//            }
+//
+//            // 左路节点的右子树需要访问
+//            TreeNode* top = st.top();
+//            st.pop();
+//
+//            // 一个节点从栈里面出来意味着
+//            // 这个节点及他的左子树访问完了，还剩右子树
+//
+//            cur = top->right; // 子问题访问右子树
+//        }
+//
+//        return v;
+//    }
+//};
+
+// 链接：https://leetcode.cn/problems/binary-tree-inorder-traversal/
+// 二叉树的中序遍历：非递归版本
+
+// 左路节点
+// 左路节点右子树  -->  子问题
+//class Solution 
+//{
+//public:
+//    vector<int> inorderTraversal(TreeNode* root)
+//    {
+//        stack<TreeNode*> st; // 用于察觉从左路节点 --> 子路节点
+//        vector<int> v;
+//        TreeNode* cur = root;
+//
+//        while (cur || !st.empty()) // 树没遍历完，栈没空，都要继续
+//        {
+//            // 开始访问一棵树
+//            // 1.左路节点
+//            while (cur)
+//            {
+//                st.push(cur);
+//                cur = cur->left;
+//            }
+//
+//            // 左路节点的右子树需要访问
+//            TreeNode* top = st.top();
+//            st.pop();
+//            v.push_back(top->val);
+//
+//            // 一个节点从栈里面出来意味着
+//            // 这个节点及他的左子树访问完了，还剩右子树
+//
+//            cur = top->right; // 子问题访问右子树
+//        }
+//
+//        return v;
+//    }
+//};
+
+// 链接：https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+// 二叉树的后序遍历：非递归版本
+//class Solution {
+//public:
+//    vector<int> postorderTraversal(TreeNode* root)
+//    {
+//        stack<TreeNode*> st; // 用于察觉从左路节点 --> 子路节点
+//        vector<int> v;
+//        TreeNode* cur = root;
+//        TreeNode* prev = nullptr; // prev用于记录路径
+//
+//        while (cur || !st.empty()) // 树没遍历完，栈没空，都要继续
+//        {
+//            // 开始访问一棵树
+//            // 1.左路节点
+//            while (cur)
+//            {
+//                st.push(cur);
+//                cur = cur->left;
+//            }
+//
+//            // 一个节点从栈里面出来意味着这个节点及他的左子树访问完了，还剩右子树
+//            TreeNode* top = st.top();
+//
+//            // 栈顶节点右子树为空或者上一个访问节点是右子树的根，说明右子树已经访问过了，可以访问
+//            // 否则，子问题访问top的右子树
+//            if (top->right == nullptr || top->right == prev)
+//            {
+//                v.push_back(top->val);
+//                prev = top;
+//
+//                st.pop();
+//            }
+//            else
+//            {
+//                cur = top->right; // 子问题访问右子树
+//            }
+//        }
+//
+//        return v;
+//    }
+//};
