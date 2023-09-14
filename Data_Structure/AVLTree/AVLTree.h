@@ -242,7 +242,6 @@ private:
 		{
 			assert(false); // 理论不会走到这
 		}
-
 	}
 
 	void RotateRL(Node* parent)
