@@ -1055,3 +1055,27 @@ using namespace std;
 //        return v;
 //    }
 //};
+
+// 链接：https://leetcode.cn/problems/n-repeated-element-in-size-2n-array/
+// 在长度为2N的数组中找出重复N次的元素
+//class Solution {
+//public:
+//    int repeatedNTimes(vector<int>& nums)
+//    {
+//        unordered_map<int, int> countMap;
+//        for (auto& e : nums)
+//        {
+//            countMap[e]++;
+//        }
+//
+//        for (auto& kv : countMap)
+//        {
+//            if (kv.second == nums.size() / 2)
+//            {
+//                return kv.first;
+//            }
+//        }
+//
+//        return 0;
+//    }
+//};
