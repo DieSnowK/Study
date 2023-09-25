@@ -1079,3 +1079,40 @@ using namespace std;
 //        return 0;
 //    }
 //};
+
+// 链接：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/submissions/
+// 逆波兰表达式求值  --  用包装器处理
+//class Solution {
+//public:
+//    int evalRPN(vector<string>& tokens)
+//    {
+//        stack<long long> st;
+//        // 用function包装器统一包装函数
+//        map<string, function<long long(long long, long long)>> opFuncMap =
+//        {
+//            // 初始化列表 + initializer_list + lambda
+//            {"+", [](long long a, long long b) {return a + b; }},
+//            {"-", [](long long a, long long b) {return a - b; }},
+//            {"*", [](long long a, long long b) {return a * b; }},
+//            {"/", [](long long a, long long b) {return a / b; }},
+//        };
+//
+//        for (auto& str : tokens)
+//        {
+//            if (opFuncMap.count(str)) // 操作符
+//            {
+//                long long right = st.top();
+//                st.pop();
+//                long long left = st.top();
+//                st.pop();
+//                st.push(opFuncMap[str](left, right));
+//            }
+//            else // 操作数
+//            {
+//                st.push(stoll(str));
+//            }
+//        }
+//
+//        return st.top();
+//    }
+//};
