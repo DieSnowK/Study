@@ -1,0 +1,9 @@
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello SnowK" << std::endl;
+    std::cout << "whoami?" << std::endl;
+	std::cout << "what are you doing?" << std::endl;
+    return 0;
+}
