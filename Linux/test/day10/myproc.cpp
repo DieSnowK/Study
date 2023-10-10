@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <iostream>
+#include <vector>
 
 int main()
 {
