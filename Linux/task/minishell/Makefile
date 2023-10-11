@@ -10,4 +10,4 @@ myfile:myfile.c
 
 .PHONY:clean
 clean:
-	rm -f minishell
+	rm -f minishell myfile

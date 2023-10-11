@@ -4,6 +4,6 @@
 int main()
 {
 	printf("Hello SnowK\n");
-	printf("MYVAL:SnowK=", getenv("SnowK"));
+	printf("SnowK=%s\n", getenv("SnowK"));
 	return 0;
 }

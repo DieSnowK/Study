@@ -47,6 +47,9 @@ int main()
 			g_argv[index++] = "-l";
 			g_argv[index++] = "--color=auto";
 		}
+
+		while(g_argv[index++] = strtok(NULL, SEP)); // 第二次，如果还要继续解析原字符串，传NULL
+
 		// export MYVAL=SnowK
 		if(strcmp(g_argv[0], "export") == 0 && g_argv[1] != NULL)
 		{
@@ -61,7 +64,6 @@ int main()
 			// 则g_argv中的各个子字符串就指向了错误的字符串
 			// 如:g_argv[1]存的地址，依然是cmd_line中的地址
 		}
-		while(g_argv[index++] = strtok(NULL, SEP)); // 第二次，如果还要继续解析原字符串，传NULL
 		
 		// 2.5 内置命令，即让父进程shell自己执行的命令
 		// 内置命令本质就是shell里的一个函数调用
