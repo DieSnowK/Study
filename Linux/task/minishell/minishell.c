@@ -1,13 +1,69 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
 
 #define NUM 1024
 #define SIZE 32
 #define SEP " "
+
+// 标识重定向状态
+#define INPUT_REDIR 1
+#define OUTPUT_REDIR 2
+#define APPEND_REDIR 3
+#define NONE_REDIR 0
+
+int redir_status = NONE_REDIR;
+
+// 暂不考虑包含空格情况，ls -l -a>log.txt
+char* CheckRedir(char *start)
+{
+	assert(start);
+	char *end = start + strlen(start) - 1;
+	while(end >= start)
+	{
+		if(*end == '>')
+		{
+			if(*(end-1) == '>')
+			{
+				redir_status = APPEND_REDIR;
+				*(end-1) = '\0';
+				end++;
+				break;
+			}
+
+			redir_status = OUTPUT_REDIR;
+			*end = '\0';
+			end++;
+			break;
+		}
+		else if(*end == '<')
+		{
+			redir_status = INPUT_REDIR;
+			*end = '\0';
+			end++;
+			break;
+		}
+		else
+		{
+			end--;
+		}
+	}// end of while
+	
+	if(end >= start)
+	{
+		return end; // 此处end就是要打开文件的字符串
+	}
+	else
+	{
+		return NULL;
+	}
+}
 
 char cmd_line[NUM] = {0}; // 保存用户键入的命令行字符串
 char *g_argv[SIZE] = {NULL}; // 保存解析之后的字符串
@@ -31,6 +87,9 @@ int main()
 		}
 		cmd_line[strlen(cmd_line) - 1] = '\0'; // 键入类似"ls -l\n"，但是没有\0，所以手动置换
 											   
+		// 2.0 分析是否有重定向
+		char *sep = CheckRedir(cmd_line);
+
 		// 2.解析命令:"ls -l -a" --> "ls" "-l" "-a"
 		int index = 1;
 		g_argv[0] = strtok(cmd_line, SEP); // 第一次调用，要传入原始字符串	
@@ -81,6 +140,30 @@ int main()
 		if(id == 0)
 		{
 			// child
+			if(sep != NULL)
+			{
+				// 说明曾经有过重定向
+				int fd = -1;
+				switch(redir_status)
+				{
+					case INPUT_REDIR:
+						fd = open(sep, O_RDONLY);
+						dup2(fd,0);
+						break;
+					case OUTPUT_REDIR:
+						fd = open(sep, O_WRONLY|O_CREAT|O_TRUNC, 0666);
+						dup2(fd,1);
+						break;
+					case APPEND_REDIR:
+						fd = open(sep, O_WRONLY|O_CREAT|O_APPEND, 0666);
+						dup2(fd,1);
+						break;
+					default:
+						printf("bug?\n");
+						break;
+				}
+			}
+
 			printf("child start\n");
 			printf("----------------------------\n");
 			execvp(g_argv[0], g_argv);
