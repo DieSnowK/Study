@@ -16,4 +16,4 @@ SnowK:
 
 .PHONY:clean
 clean:
-	rm -rf *.o libSnowK.a
+	rm -rf *.o libSnowK.a 
