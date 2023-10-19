@@ -33,16 +33,25 @@ int main()
         // 3.1 关闭父进程不需要的fd
         close(pipefd[1]);
         char buffer[1024] = {0};
+        int count = 0; // 实验读关闭，继续写，OS杀写进程
 
-        while(true)
+        while (true)
         {
             // 写入的一方fd没有关闭，如果有数据，就读，没有数据就等
             // 写入的一方fd关闭，读取的一方，read会返回0，表示读到了文件的结尾
             ssize_t s = read(pipefd[0], buffer, sizeof(buffer) - 1);
-            if(s > 0)
+            if (s > 0)
             {
                 // buffer[s] = 0; // 填充结尾\0，但初始化时都初始化了0，此步省略
                 cout << "child get a message[" << getpid() << "] Parent# " << buffer << endl;
+
+                #ifdef DEBUG
+                    count++;
+                    if(count == 5)
+                    {
+                        exit(1);
+                    }
+                #endif
             }
             else if(s == 0)
             {
