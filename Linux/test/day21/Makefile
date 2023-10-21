@@ -1,11 +1,11 @@
 .PHONY:all
-all:client mutiServer
+all:shmClient shmServer
 
-client:client.cpp
-	g++ -o $@ $^ -std=c++11
-mutiServer:server.cpp
-	g++ -o $@ $^ -std=c++11
+shmClient:shmClient.cc
+	g++ -o $@ $^ -std=c++11 -D DEBUGV
+shmServer:shmServer.cc
+	g++ -o $@ $^ -std=c++11 -D DEBUGV
 
 .PHONY:clean
 clean:
-	rm -f client mutiServer
+	rm -f client shmServer shmClient
