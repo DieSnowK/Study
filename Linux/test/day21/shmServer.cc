@@ -1,5 +1,9 @@
 #include "comm.hpp"
 
+// 程序加载的时候，自动构建全局变量，调用该类的构造函数 --> 创建管道文件
+// 程序退出的时候，全局变量析构，自动删除管道文件
+Init init;
+
 string TransToHex(key_t k)
 {
     char buffer[32];
@@ -35,7 +39,19 @@ int main()
     sleep(10);
 #endif
 
-    // 这里就是通信逻辑
+    // 这里就是通信逻辑，将共享内存看作一个大数组 -> char buffer[SHM_SIZE]
+    // 这里添加一定的访问控制(依赖管道)
+    int fd = OpenFifo(FIFO_NAME, READ);
+    while(true)
+    {
+        Wait(fd); // 写慢，读快，管道没有数据的时候，读必须等待
+
+        cout << shmaddr << endl;
+        if(strcmp(shmaddr, "quit") == 0)
+        {
+            break;
+        }
+    }
 
     // 4.将指定的共享内存，从自己的地址空间去关联
     int n = shmdt(shmaddr);
@@ -52,6 +68,8 @@ int main()
     assert(n != -1);
     (void)n;
     Log("delete shm done ", DEBUG) << "shmid：" << shmid << endl;
-    
+
+    CloseFifo(fd);
+
     return 0;
 }

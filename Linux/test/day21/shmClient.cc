@@ -38,6 +38,21 @@ int main()
 #endif
 
     // 通信逻辑
+    int fd = OpenFifo(FIFO_NAME, WRITE);
+    while(true)
+    {
+        ssize_t s = read(0, shmaddr, SHM_SIZE - 1); // 从键盘读数据，存入shm
+        if (s > 0)
+        {
+            shmaddr[s - 1] = 0; // 最后会键入\n，把\n替换成\0
+            Signal(fd); // 已经获取到数据，唤醒服务端
+            if(strcmp(shmaddr, "quit") == 0)
+            {
+                break;
+            }
+        }
+    }
+    CloseFifo(fd);
 
     // 4.将指定的共享内存，从自己的地址空间中去关联
     int n = shmdt(shmaddr);
