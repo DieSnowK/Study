@@ -7,6 +7,11 @@ using namespace std;
 static void catchSig(int sig)
 {
     cout << "捕获到一个信号: " << sig << endl;
+    int count = 20;
+    while(count--)
+    {
+        sleep(1);
+    }
 }
 
 static void showPending(sigset_t &set)
@@ -35,26 +40,85 @@ static void blockSig(int sig)
     (void)n;
 }
 
+// 6.如果不想等待子进程，并且还想让子进程退出之后，自动释放僵尸子进程
+// int main()
+// {
+//     // OS默认对SIGCHLD是忽略的
+//     signal(SIGCHLD, SIG_IGN); // 手动设置对子进程进行忽略，其效果和OS默认忽略是有区别的，算是一个特例
+
+//     if(fork() == 0)
+//     {
+//         cout << "child: " << getpid() << endl;
+//         sleep(5);
+//         exit(0);
+//     }
+
+//     while(true)
+//     {
+//         cout << "parent: " << getpid() << "执行自己的任务" << endl;
+//         sleep(1);
+//     }
+//     return 0;
+// }
+
+// 5.证明子进程退出，会向父进程发送信号
+// int main()
+// {
+//     signal(SIGCHLD, catchSig);
+//     if(fork() == 0)
+//     {
+//         cout << "child pid: " << getpid() << endl;
+//         sleep(100);
+//         exit(0);
+//     }
+
+//     while(true)
+//     {
+//         sleep(1);
+//     }
+
+//     return 0;
+// }
+
+// 4.sigaction使用
+// int main()
+// {
+//     // 内核数据类型
+//     struct sigaction act, oact;
+//     act.sa_flags = 0;
+//     sigemptyset(&act.sa_mask);
+//     act.sa_handler = catchSig;
+
+//     sigaddset(&act.sa_mask, 3);
+//     sigaddset(&act.sa_mask, 4);
+//     sigaddset(&act.sa_mask, 5);
+
+//     // 设置进当前调用进程的PCB中
+//     sigaction(2, &act, &oact);
+    
+//     return 0;
+// }
+
 // 3.
-int main()
-{
-    for (int sig = 1; sig <= 31; sig++)
-    {
-        blockSig(sig);
-    }
+// int main()
+// {
+//     for (int sig = 1; sig <= 31; sig++)
+//     {
+//         blockSig(sig);
+//     }
 
-    sigset_t pending;
-    while(true)
-    {
-        sigpending(&pending);
-        showPending(pending);
-        sleep(1);
-    }
+//     sigset_t pending;
+//     while(true)
+//     {
+//         sigpending(&pending);
+//         showPending(pending);
+//         sleep(1);
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
-// 2.
+// 2. sigset_t相关使用
 // int main()
 // {
 //     // 0.方便测试，捕捉2号信号，不要退出
