@@ -1,6 +1,6 @@
-mycond:mycond.cc
+cond_demo:cond_demo.cc
 	g++ -o $@ $^ -std=c++11
 
 .PHONY:clean
 clean:
-	rm -f mycond
+	rm -f cond_demo
