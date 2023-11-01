@@ -15,7 +15,7 @@ void *consumer(void *args)
     {
         // 获取任务
         Task t;
-        bqueue->pop(&t);
+        bqueue->pop(t);
 
         // 完成任务
         cout << "consumer：" << t._x << "+" << t._y << "=" << t() << endl;
@@ -31,6 +31,7 @@ void *productor(void *args)
     {
         // 类制作任务
         int x = rand() % 10 + 1;
+        usleep(rand() % 1000);
         int y = rand() % 5 + 1;
         Task t(x, y, Add);
 
@@ -47,7 +48,7 @@ void *productor(void *args)
 int main()
 {
     srand(time(nullptr) ^ getpid());
-    BlockQueue<int> *bqueue = new BlockQueue<int>();
+    BlockQueue<Task> *bqueue = new BlockQueue<Task>();
 
     pthread_t c[2], p[2];
     for (int i = 0; i < 2; i++)

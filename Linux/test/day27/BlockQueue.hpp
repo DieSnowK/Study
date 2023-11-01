@@ -41,7 +41,7 @@ public:
         pthread_cond_signal(&_empty);
     }
 
-    void pop(T *out) // 消费者
+    void pop(T &out) // 消费者
     {
         LockGuard lockguard(&_mtx);
 
@@ -50,7 +50,7 @@ public:
             pthread_cond_wait(&_empty, &_mtx);
         }
 
-        *out = _bq.front();
+        out = _bq.front();
         _bq.pop();
 
         pthread_cond_signal(&_full);

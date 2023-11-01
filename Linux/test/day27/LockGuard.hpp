@@ -11,13 +11,11 @@ public:
     LockGuard(pthread_mutex_t *mtx)
     : _pmtx(mtx)
     {
-        cout << "加锁" << endl;
         pthread_mutex_lock(_pmtx);
     }
 
     ~LockGuard()
     {
-        cout << "解锁" << endl;
         pthread_mutex_unlock(_pmtx);
     }
 private:
