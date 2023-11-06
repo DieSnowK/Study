@@ -70,7 +70,7 @@ public:
 
     // 如果单例本身也在被多线程申请使用呢？
     // 考虑多线程使用单例过程
-    // 成员方法不能访问类内静态成员？ -->  所以加static
+    // 思考这里为什么加static？ -- 这个坑很有意思:P
     static ThreadPool<T> *GetThreadPool(int num = g_thread_num)
     {
         // 第一层if可以有效减少未来必定要进行加锁检测的问题
