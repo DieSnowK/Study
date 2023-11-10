@@ -1,4 +1,4 @@
-//µ¥Á´±í
+//template
 // int main()
 // {
 // 	struct ListNode* n1 = (struct ListNode*)malloc(sizeof(struct ListNode));
