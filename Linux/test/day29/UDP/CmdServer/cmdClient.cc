@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in server;
     memset(&server, 0, sizeof server);
     server.sin_family = AF_INET;
-    server.sin_port = atoi(argv[2]);
+    server.sin_port = htons(atoi(argv[2]));
     server.sin_addr.s_addr = inet_addr(argv[1]);
 
     char buffer[SIZE];

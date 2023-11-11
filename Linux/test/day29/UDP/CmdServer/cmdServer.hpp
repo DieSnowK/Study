@@ -64,7 +64,7 @@ public:
 
     void Start()
     {
-        // 作为一款服务器，永远不推出
+        // 作为一款服务器，永远不退出
         // 服务器启动 --> 进程 --> 常驻进程 --> 永远在内存中存在，除非挂了
         char buffer[SIZE];
         while (true)
@@ -102,7 +102,7 @@ public:
                 }
 
 
-                while (fgets(buffer, sizeof result, fp) != nullptr)
+                while (fgets(result, sizeof result, fp) != nullptr)
                 {
                     cmd_echo += result;
                 }
