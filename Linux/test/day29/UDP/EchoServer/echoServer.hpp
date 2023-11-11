@@ -2,7 +2,6 @@
 #pragma once
 
 #include "Log.hpp"
-#include "Thread.hpp"
 #include <iostream>
 #include <string>
 #include <cstdlib>

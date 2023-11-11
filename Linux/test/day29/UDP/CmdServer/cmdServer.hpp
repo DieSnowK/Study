@@ -1,4 +1,4 @@
-// echoServer：Client给服务器发送消息，原封不动返回
+// cmdServer：Client给服务器发指令，服务器给响应
 #pragma once
 
 #include "Log.hpp"
