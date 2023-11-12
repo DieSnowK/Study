@@ -1,4 +1,6 @@
-#include "Log.hpp"
+#include "ThreadPool/Log.hpp"
+#include "ThreadPool/ThreadPool.hpp"
+#include "ThreadPool/Task.hpp"
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -42,33 +44,10 @@ static void service(int sock, const std::string &clientip, const uint16_t client
     }
 }
 
-class ThreadData
-{
-public:
-    ThreadData(int sock, std::string &ip, uint16_t port)
-    : _sock(sock), _ip(ip), _port(port)
-    {}
-
-    int _sock;
-    std::string _ip;
-    uint16_t _port;
-};
-
 class TcpServer
 {
 private:
     const static int gbacklog = 20; // TODO backlog
-
-    static void*ThreadRoutine(void *args)
-    {
-        pthread_detach(pthread_self()); // 线程分离，不用join回收
-        ThreadData *td = (ThreadData *)args;
-        service(td->_sock, td->_ip, td->_port);
-        delete td;
-        
-        return nullptr;
-    }
-
 public:
     TcpServer(uint16_t port, std::string ip = "")
     : _port(port), _ip(ip)
@@ -111,6 +90,7 @@ public:
 
     void Start()
     {
+        signal(SIGCHLD, SIG_IGN); // 主动忽略SIGCHLD，子进程退出的时候，会自动释放自己的僵尸状态
         while(true)
         {
             // 4.获取连接
@@ -131,11 +111,7 @@ public:
 
             // 进行通信服务
             // version 3.0 -- 多线程版
-            ThreadData *td = new ThreadData(servicesock, cli_ip, cli_port);
-            pthread_t tid;
-            pthread_create(&tid, nullptr, ThreadRoutine, (void *)td);
-
-            // pthread_join() // 不需要设置join，会阻塞等待
+            
         }
     }
 

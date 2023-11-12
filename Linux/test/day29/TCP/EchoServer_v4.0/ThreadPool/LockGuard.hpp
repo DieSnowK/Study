@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <pthread.h>
-using namespace std;
 
 // RAII风格的加锁方式
 class LockGuard
