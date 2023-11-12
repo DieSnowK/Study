@@ -13,7 +13,7 @@
 
 #define SIZE 1024
 
-static void service(int sock, const std::string &clientip, const uint16_t clientport)
+static void Service(int sock, const std::string &clientip, const uint16_t clientport)
 {
     // echo server
     char buffer[SIZE];
@@ -39,6 +39,8 @@ static void service(int sock, const std::string &clientip, const uint16_t client
 
         write(sock, buffer, strlen(buffer));
     }
+
+    close(sock);
 }
 
 class TcpServer
@@ -97,7 +99,7 @@ public:
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
-                exit(5);
+                continue;
             }
 
             // 获取连接成功
@@ -113,7 +115,7 @@ public:
             if (id == 0)
             {
                 close(_listensock); // 子进程提供服务，不需要监听socket
-                service(servicesock, cli_ip, cli_port);
+                Service(servicesock, cli_ip, cli_port);
                 exit(0);
             }
             close(servicesock); // 父进程负责监听，不需要保留servicesock，占用fd资源

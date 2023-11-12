@@ -10,7 +10,7 @@
 #include <queue>
 using namespace std;
 
-const int g_thread_num = 3;
+const int g_thread_num = 10;
 
 template<class T>
 class ThreadPool

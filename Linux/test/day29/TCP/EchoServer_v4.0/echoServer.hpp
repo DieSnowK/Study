@@ -3,6 +3,7 @@
 #include "ThreadPool/Task.hpp"
 #include <iostream>
 #include <string>
+#include <memory>
 #include <cstring>
 #include <cstdlib>
 #include <cassert>
@@ -16,9 +17,10 @@
 
 #define SIZE 1024
 
-static void service(int sock, const std::string &clientip, const uint16_t clientport)
+static void Service(int sock, const std::string &clientip, const uint16_t clientport, std::string &threadname)
 {
     // echo server
+    // 此种服务器从连上到断开，要一直保持这个连接 -- 长连接
     char buffer[SIZE];
     while(true)
     {
@@ -27,7 +29,7 @@ static void service(int sock, const std::string &clientip, const uint16_t client
         if(s > 0)
         {
             buffer[s] = 0;
-            std::cout << clientip << ":" << clientport << "# " << buffer << std::endl;
+            std::cout << threadname << "|" << clientip << ":" << clientport << "# " << buffer << std::endl;
         }
         else if(s == 0) // 对端关闭连接
         {
@@ -42,6 +44,8 @@ static void service(int sock, const std::string &clientip, const uint16_t client
 
         write(sock, buffer, strlen(buffer));
     }
+
+    close(sock);
 }
 
 class TcpServer
@@ -50,7 +54,8 @@ private:
     const static int gbacklog = 20; // TODO backlog
 public:
     TcpServer(uint16_t port, std::string ip = "")
-    : _port(port), _ip(ip)
+    : _listensock(-1), _port(port), _ip(ip)
+    , _pthreadpool(ThreadPool<Task>::GetThreadPool())
     {}
 
     ~TcpServer()
@@ -90,8 +95,8 @@ public:
 
     void Start()
     {
-        signal(SIGCHLD, SIG_IGN); // 主动忽略SIGCHLD，子进程退出的时候，会自动释放自己的僵尸状态
-        while(true)
+        _pthreadpool->Run();
+        while (true)
         {
             // 4.获取连接
             struct sockaddr_in src;
@@ -100,7 +105,7 @@ public:
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
-                exit(5);
+                continue;
             }
 
             // 获取连接成功
@@ -110,8 +115,9 @@ public:
                        servicesock, cli_ip.c_str(), cli_port);
 
             // 进行通信服务
-            // version 3.0 -- 多线程版
-            
+            // version 4.0 -- 线程池版
+            Task t(servicesock, cli_ip, cli_port, Service);
+            _pthreadpool->PushTask(t);
         }
     }
 
@@ -119,4 +125,5 @@ private:
     uint16_t _port;
     std::string _ip;
     int _listensock;
+    std::unique_ptr<ThreadPool<Task>> _pthreadpool;
 };

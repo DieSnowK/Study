@@ -14,7 +14,7 @@
 
 #define SIZE 1024
 
-static void service(int sock, const std::string &clientip, const uint16_t clientport)
+static void Service(int sock, const std::string &clientip, const uint16_t clientport)
 {
     // echo server
     char buffer[SIZE];
@@ -40,6 +40,8 @@ static void service(int sock, const std::string &clientip, const uint16_t client
 
         write(sock, buffer, strlen(buffer));
     }
+
+    close(sock);
 }
 
 class TcpServer
@@ -98,7 +100,7 @@ public:
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
-                exit(5);
+                continue;
             }
 
             // 获取连接成功
@@ -120,7 +122,7 @@ public:
                 }
 
                 // 孙子进程成为孤儿进程，由OS领养，OS在其退出时回收其资源
-                service(servicesock, cli_ip, cli_port);
+                Service(servicesock, cli_ip, cli_port);
                 exit(0);
             }
             waitpid(id, nullptr, 0); // 子进程立即退出，故不会阻塞

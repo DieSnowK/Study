@@ -11,7 +11,7 @@
 
 void Usage(std::string proc)
 {
-    std::cout << "\nUsage£º" << proc << " ip port" << std::endl;
+    std::cout << "\nUsageï¼š" << proc << " ip port" << std::endl;
 }
 
 int main(int argc, char *argv[])
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     std::string serverip = argv[1];
     uint16_t serverport = atoi(argv[2]);
 
-    // 1.´´½¨socket
+    // 1.åˆ›å»ºsocket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if(sock < 0)
     {
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
         std::string line;
         std::cout << "Enter your msg# ";
         std::getline(std::cin, line);
-        send(sock, line.c_str(), line.size(), 0);
+        send(sock, line.c_str(), line.size(), 0); 
 
         ssize_t s = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (s > 0)

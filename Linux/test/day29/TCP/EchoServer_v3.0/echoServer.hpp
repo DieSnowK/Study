@@ -14,7 +14,7 @@
 
 #define SIZE 1024
 
-static void service(int sock, const std::string &clientip, const uint16_t clientport)
+static void Service(int sock, const std::string &clientip, const uint16_t clientport)
 {
     // echo server
     char buffer[SIZE];
@@ -40,6 +40,8 @@ static void service(int sock, const std::string &clientip, const uint16_t client
 
         write(sock, buffer, strlen(buffer));
     }
+
+    close(sock);
 }
 
 class ThreadData
@@ -63,7 +65,7 @@ private:
     {
         pthread_detach(pthread_self()); // 线程分离，不用join回收
         ThreadData *td = (ThreadData *)args;
-        service(td->_sock, td->_ip, td->_port);
+        Service(td->_sock, td->_ip, td->_port);
         delete td;
         
         return nullptr;
@@ -120,7 +122,7 @@ public:
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
-                exit(5);
+                continue;
             }
 
             // 获取连接成功
