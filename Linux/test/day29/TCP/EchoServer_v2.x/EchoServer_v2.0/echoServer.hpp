@@ -3,7 +3,9 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <cassert>
 #include <signal.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -85,7 +87,7 @@ public:
 
     void Start()
     {
-        // signal(SIGCHLD, SIG_IGN); // 主动忽略SIGCHLD，子进程退出的时候，会自动释放自己的僵尸状态
+        signal(SIGCHLD, SIG_IGN); // 主动忽略SIGCHLD，子进程退出的时候，会自动释放自己的僵尸状态
         while(true)
         {
             // 4.获取连接
@@ -105,9 +107,16 @@ public:
                        servicesock, cli_ip.c_str(), cli_port);
 
             // 进行通信服务
-            // version 1 -- 单进程循环版 -- 只能一次处理一个客户端，此版本不能直接被使用
-            service(servicesock, cli_ip, cli_port);
-            close(servicesock);
+            // version 2.0 -- 多进程版 -- 创建子进程
+            pid_t id = fork();
+            assert(id != -1);
+            if (id == 0)
+            {
+                close(_listensock); // 子进程提供服务，不需要监听socket
+                service(servicesock, cli_ip, cli_port);
+                exit(0);
+            }
+            close(servicesock); // 父进程负责监听，不需要保留servicesock，占用fd资源
         }
     }
 
