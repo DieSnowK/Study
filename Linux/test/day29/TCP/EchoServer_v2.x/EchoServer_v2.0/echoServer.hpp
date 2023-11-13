@@ -46,7 +46,7 @@ static void Service(int sock, const std::string &clientip, const uint16_t client
 class TcpServer
 {
 private:
-    const static int gbacklog = 20; // TODO backlog
+    const static int gbacklog = 20;
 public:
     TcpServer(uint16_t port, std::string ip = "")
     : _port(port), _ip(ip)
@@ -95,7 +95,7 @@ public:
             // 4.获取连接
             struct sockaddr_in src;
             socklen_t len = sizeof src;
-            int servicesock = accept(_listensock, (struct sockaddr *)&src, &len); // TODO fd vs _listensock
+            int servicesock = accept(_listensock, (struct sockaddr *)&src, &len);
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));

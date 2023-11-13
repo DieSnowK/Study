@@ -38,7 +38,7 @@ public:
             LogMessage(FATAL, "%d:%s", errno, strerror(errno));
             exit(2);
         }
-
+        
         // 2.bind：将用户设置的ip和port在内核中和当前的进程强关联
         struct sockaddr_in local;
         memset(&local, 0, sizeof local);

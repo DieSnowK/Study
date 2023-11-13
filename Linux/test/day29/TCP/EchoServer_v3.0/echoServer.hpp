@@ -59,7 +59,7 @@ public:
 class TcpServer
 {
 private:
-    const static int gbacklog = 20; // TODO backlog
+    const static int gbacklog = 20;
 
     static void*ThreadRoutine(void *args)
     {
@@ -118,7 +118,7 @@ public:
             // 4.获取连接
             struct sockaddr_in src;
             socklen_t len = sizeof src;
-            int servicesock = accept(_listensock, (struct sockaddr *)&src, &len); // TODO fd vs _listensock
+            int servicesock = accept(_listensock, (struct sockaddr *)&src, &len);
             if(servicesock < 0)
             {
                 LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
