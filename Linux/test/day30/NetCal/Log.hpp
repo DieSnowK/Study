@@ -4,14 +4,14 @@
 #include <cstdarg>
 #include <ctime>
 
-// ÈÕÖ¾ÊÇÓĞÈÕÖ¾¼¶±ğµÄ
+// æ—¥å¿—æ˜¯æœ‰æ—¥å¿—çº§åˆ«çš„
 #define DEBUG   0
 #define NORMAL  1
 #define WARNING 2
 #define ERROR   3
 #define FATAL   4
 
-// Ó³Éä±í
+// æ˜ å°„è¡¨
 const char *gLevelMap[] =
 {
     "DEBUG",
@@ -23,8 +23,8 @@ const char *gLevelMap[] =
 
 #define LOGFILE "./threadpool.log"
 
-// ÍêÕûµÄÈÕÖ¾¹¦ÄÜ£¬ÖÁÉÙÒª°üÀ¨£º
-// ÈÕÖ¾µÈ¼¶ Ê±¼ä Ö§³ÖÓÃ»§×Ô¶¨Òå(ÈÕÖ¾ÄÚÈİ ÎÄ¼şĞĞ ÎÄ¼şÃû)
+// å®Œæ•´çš„æ—¥å¿—åŠŸèƒ½ï¼Œè‡³å°‘è¦åŒ…æ‹¬ï¼š
+// æ—¥å¿—ç­‰çº§ æ—¶é—´ æ”¯æŒç”¨æˆ·è‡ªå®šä¹‰(æ—¥å¿—å†…å®¹ æ–‡ä»¶è¡Œ æ–‡ä»¶å)
 void LogMessage(int level, const char *format, ...)
 {
 #ifndef DEBUG_SHOW
@@ -34,11 +34,11 @@ void LogMessage(int level, const char *format, ...)
     }
 #endif
 
-    char stdBuffer[1024]; // ±ê×¼²¿·Ö
+    char stdBuffer[1024]; // æ ‡å‡†éƒ¨åˆ†
     time_t timestamp = time(nullptr);
     snprintf(stdBuffer, sizeof stdBuffer, "[%s] [%ld]", gLevelMap[level], timestamp);
 
-    char logBuffer[1024]; // ×Ô¶¨Òå²¿·Ö
+    char logBuffer[1024]; // è‡ªå®šä¹‰éƒ¨åˆ†
     va_list args;
     va_start(args, format);
     vsnprintf(logBuffer, sizeof logBuffer, format, args);

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Log.hpp"
 #include <iostream>
 #include <string>

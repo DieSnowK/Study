@@ -3,7 +3,6 @@
 #include "Log.hpp"
 #include <iostream>
 #include <string>
-#include <memory>
 #include <cstring>
 #include <cstdlib>
 #include <cassert>
@@ -63,10 +62,10 @@ public:
         LogMessage(NORMAL, "Init Server success");
     }
 
-    // TODO 一般经验，歇会考虑用不用
-    // const std::string &：输入型参数
-    // std::string *：输出型参数
-    // std::string &：输入输出型参数
+    // TODO
+    // const std::string &: 输入型参数
+    // std::string *: 输出型参数
+    // std::string &: 输入输出型参数
     int Accept(int listensock, std::string *ip, uint16_t *port)
     {
         struct sockaddr_in src;
@@ -89,5 +88,23 @@ public:
         }
 
         return servicesock;
+    }
+
+    bool Connect(int sock, std::string &serverip, const uint16_t serverport)
+    {
+        struct sockaddr_in server;
+        memset(&server, 0, sizeof server);
+        server.sin_family = AF_INET;
+        server.sin_port = htons(serverport);
+        server.sin_addr.s_addr = inet_addr(serverip.c_str());
+
+        if (connect(sock, (struct sockaddr *)&server, sizeof server) == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 };

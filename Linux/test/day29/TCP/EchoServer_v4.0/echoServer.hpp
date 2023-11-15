@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ThreadPool/Log.hpp"
 #include "ThreadPool/ThreadPool.hpp"
 #include "ThreadPool/Task.hpp"
@@ -17,7 +19,7 @@
 
 #define SIZE 1024
 
-static void Service(int sock, const std::string &clientip, const uint16_t clientport, std::string &threadname)
+static void Service(int sock, const std::string &clientip, const uint16_t clientport, const std::string &threadname)
 {
     // echo server
     // 此种服务器从连上到断开，要一直保持这个连接 -- 长连接
