@@ -9,4 +9,4 @@ CalServer:CalServer.cc
 
 .PHONY:clean
 clean:
-	rm -f CalServer CalServer
+	rm -f CalServer CalClient
