@@ -52,7 +52,7 @@ public:
         }
     }
 
-    int Listen(int sock)
+    void Listen(int sock)
     {
         if (listen(sock, gbacklog) < 0)
         {
@@ -74,7 +74,7 @@ public:
         if (servicesock < 0)
         {
             LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
-            exit(5);
+            return -1;
         }
 
         if(port)
