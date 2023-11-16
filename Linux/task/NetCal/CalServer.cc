@@ -48,7 +48,7 @@ static Response CalcuatorDealer(const Request &req)
         resp._code = 3;
         break;
     }
-
+    
     return resp;
 }
 
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    Daemon();
+    // Daemon();
 
     std::unique_ptr<TcpServer> svr(new TcpServer(atoi(argv[1])));
     svr->BindService(Calculator);
