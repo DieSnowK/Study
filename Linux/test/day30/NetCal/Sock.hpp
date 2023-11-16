@@ -62,10 +62,6 @@ public:
         LogMessage(NORMAL, "Init Server success");
     }
 
-    // TODO
-    // const std::string &: 输入型参数
-    // std::string *: 输出型参数
-    // std::string &: 输入输出型参数
     int Accept(int listensock, std::string *ip, uint16_t *port)
     {
         struct sockaddr_in src;

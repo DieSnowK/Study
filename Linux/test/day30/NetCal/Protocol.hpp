@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
-#define MYSELF
+// #define MYSELF
 #define SPACE " "
 #define SPACE_LEN strlen(SPACE)
 #define SEP "\r\n"
@@ -42,7 +42,12 @@ public:
         str += std::to_string(_y);
         return str;
 #else
-        // TODO
+        Json::Value root;
+        root["x"] = _x;
+        root["y"] = _y;
+        root["op"] = _op;
+        Json::FastWriter writer;
+        return writer.write(root);
 #endif
     }
 
@@ -74,7 +79,13 @@ public:
             return false;
         }
 #else
-        // TODO
+        Json::Value root;
+        Json::Reader reader;
+        reader.parse(str, root);
+        _x = root["x"].asInt();
+        _y = root["y"].asInt();
+        _op = root["op"].asInt();
+        return true;
 #endif
     }
 
@@ -107,7 +118,11 @@ public:
         str += std::to_string(_ret);
         return str;
 #else
-        // TODO
+        Json::Value root;
+        root["code"] = _code;
+        root["result"] = _ret;
+        Json::FastWriter writer;
+        return writer.write(root);
 #endif
     }
 
@@ -125,7 +140,13 @@ public:
 
         return true;
 #else
-        // TODO
+        Json::Value root;
+        Json::Reader reader;
+        reader.parse(str, root);
+        _code = root["code"].asInt();
+        _ret = root["result"].asInt();
+        return true;
+
 #endif
     }
 
@@ -159,7 +180,7 @@ bool Recv(int sock, std::string *out)
     return true;
 }
 
-void Send(int sock, const std::string str) // TODO &?
+void Send(int sock, const std::string str)
 {
     int n = send(sock, str.c_str(), str.size(), 0);
     if (n < 0)
