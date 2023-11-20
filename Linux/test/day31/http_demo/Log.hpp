@@ -21,7 +21,7 @@ const char *gLevelMap[] =
     "FATAL"
 };
 
-#define LOGFILE "./Calculator.log"
+#define LOGFILE "./http.log"
 
 // 完整的日志功能，至少要包括：
 // 日志等级 时间 支持用户自定义(日志内容 文件行 文件名)

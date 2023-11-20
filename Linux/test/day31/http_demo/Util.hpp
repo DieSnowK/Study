@@ -18,7 +18,15 @@ public:
                 break;
             }
 
+            std::string sub = s.substr(start, pos - start);
+            out->push_back(sub);
+            start += sub.size();
+            start += sep.size();
+        }
 
+        if(start < s.size())
+        {
+            out->push_back(s.substr(start));
         }
     }
 };
