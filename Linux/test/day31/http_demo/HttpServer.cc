@@ -68,7 +68,6 @@ void HandlerHttpRequest(int sock)
     else
     {
         HttpResponse = "HTTP/1.1 200 OK\r\n";
-        // TODO
         HttpResponse += ("Content-Type: text/html\r\n");
         HttpResponse += ("Content-Length: " + std::to_string(content.size()) + "\r\n");
         HttpResponse += "Set-Cookie: 这是一个cookie\r\n";
