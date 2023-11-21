@@ -5,7 +5,7 @@
 #include <vector>
 
 // 一般http都要有自己的web根目录
-#define ROOT "./webroot"
+#define ROOT "./wwwroot"
 // 若客户端只请求了/，则返回首页
 #define HOMEPAGE "index.html"
 
@@ -62,11 +62,16 @@ void HandlerHttpRequest(int sock)
     std::string HttpResponse;
     if(content.empty())
     {
-        HttpResponse = "HTTP/1.1 404 NotFound\r\n";
+        HttpResponse = "HTTP/1.1 302 NotFound\r\n";
+        HttpResponse += "Location: https://www.bilibili.com/\r\n";
     }
     else
     {
         HttpResponse = "HTTP/1.1 200 OK\r\n";
+        // TODO
+        HttpResponse += ("Content-Type: text/html\r\n");
+        HttpResponse += ("Content-Length: " + std::to_string(content.size()) + "\r\n");
+        HttpResponse += "Set-Cookie: 这是一个cookie\r\n";
     }
     HttpResponse += "\r\n";
     HttpResponse += content;

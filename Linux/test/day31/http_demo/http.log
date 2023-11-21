@@ -17,3 +17,16 @@
 [NORMAL] [1700484345]Init Server success
 [NORMAL] [1700485465]Init Server success
 [NORMAL] [1700485563]Init Server success
+[NORMAL] [1700568469]Init Server success
+[FATAL] [1700568662]bind error, 98-Address already in use
+[NORMAL] [1700568695]Init Server success
+[NORMAL] [1700568834]Init Server success
+[FATAL] [1700568965]bind error, 98-Address already in use
+[NORMAL] [1700568988]Init Server success
+[NORMAL] [1700569069]Init Server success
+[NORMAL] [1700569382]Init Server success
+[NORMAL] [1700569647]Init Server success
+[NORMAL] [1700569685]Init Server success
+[FATAL] [1700569741]bind error, 98-Address already in use
+[FATAL] [1700569742]bind error, 98-Address already in use
+[NORMAL] [1700569744]Init Server success
