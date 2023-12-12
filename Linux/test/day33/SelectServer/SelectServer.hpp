@@ -87,8 +87,6 @@ public:
                 HandlerEvent(rfds);
                 break;
             }
-            
-            // sleep(1);
         }
     }// end of Start
 
