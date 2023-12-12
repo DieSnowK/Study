@@ -71,7 +71,7 @@ public:
             }
 
             // rfds未来，一定会有两类sock，_listensock，普通sock
-            struct timeval tv = {0, 0};
+            struct timeval tv = {1, 0};
             int n = select(maxfd + 1, &rfds, nullptr, nullptr, &tv);
             // int n = select(maxfd, &rfds, nullptr, nullptr, nullptr);
             switch(n)
@@ -88,9 +88,9 @@ public:
                 break;
             }
             
-            sleep(1);
+            // sleep(1);
         }
-    }
+    }// end of Start
 
 private:
     void DebugPrint()
@@ -121,19 +121,17 @@ private:
             if(FD_ISSET(_fd_Array[i], &rfds))
             {
                 // 3.指定的fd，读事件就绪
-                // a.连接事件到来，accept
-                // b.读取数据
                 if(_fd_Array[i] == _listensock)
                 {
-                    Accepter();
+                    Accepter(); // a.连接事件到来，accept
                 }
                 else
                 {
-                    Recver(i);
+                    Recver(i); // b.读取数据
                 }
             }
         } // end of for()
-    }
+    } // end of HandlerEvent
 
     void Accepter()
     {
@@ -169,12 +167,39 @@ private:
         {
             _fd_Array[pos] = sock;
         }
-    }
+    } // end of Accepter
 
     void Recver(int pos)
     {
+        LogMessage(NORMAL, "get IO event, message in: %d", _fd_Array[pos]);
 
-    }
+        // 此时select已经帮我们进行了事件检测，fd上的数据一定是就虚的，即本次一定不会被阻塞
+        // 这样做有bug，无法保证获得的是一个完整报文
+        // 需要更加细致的定制协议，这里姑且暂时认为获得的就是一个完整报文
+        char buffer[1024];
+        int n = recv(_fd_Array[pos], buffer, sizeof(buffer) - 1, 0);
+        if(n > 0)
+        {
+            buffer[n - 1] = 0;
+            LogMessage(NORMAL, "client[%d]# %s", _fd_Array[pos], buffer);
+        }
+        else if(n == 0)
+        {
+            LogMessage(NORMAL, "client[%d] quit, follow it :P", _fd_Array[pos]);
+            // 1.关闭不需要的fd
+            close(_fd_Array[pos]);
+            // 2.不要让select关心此fd了
+            _fd_Array[pos] = FD_NONE;
+        }
+        else
+        {
+            LogMessage(WARNING, "%d sock recv error: %s", _fd_Array[pos], strerror(errno));
+            // 1.关闭不需要的fd
+            close(_fd_Array[pos]);
+            // 2.不要让select关心此fd了
+            _fd_Array[pos] = FD_NONE;
+        }
+    } // end of Recver
 
 private:
     int _listensock;
