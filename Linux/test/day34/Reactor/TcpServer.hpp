@@ -95,7 +95,7 @@ private:
     // 专门针对任意sock进行添加至TcpServer
     void AddConnection(int sock, func_t recv_cb, func_t send_cb, func_t except_cb)
     {
-
+        Sock::SetNonBlock(sock);
     }
 
 private:

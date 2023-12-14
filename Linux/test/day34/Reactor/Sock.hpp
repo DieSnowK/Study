@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -107,5 +108,16 @@ public:
         {
             return false;
         }
+    }
+
+    static bool SetNonBlock(int sock)
+    {
+        int fl = fcntl(sock, F_GETFL);
+        if(fl < 0)
+        {
+            return false;
+        }
+        fcntl(sock, fl | O_NONBLOCK);
+        return true;
     }
 };
