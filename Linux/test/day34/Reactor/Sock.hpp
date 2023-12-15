@@ -68,14 +68,16 @@ public:
         LogMessage(NORMAL, "Init Server success");
     }
 
-    static int Accept(int listensock, std::string *ip, uint16_t *port)
+    static int Accept(int listensock, std::string *ip, uint16_t *port, int *accept_errno)
     {
         struct sockaddr_in src;
         socklen_t len = sizeof src;
+        *accept_errno = 0;
+
         int servicesock = accept(listensock, (struct sockaddr *)&src, &len);
         if (servicesock < 0)
         {
-            LogMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
+            *accept_errno = errno;
             return -1;
         }
 
@@ -117,7 +119,7 @@ public:
         {
             return false;
         }
-        fcntl(sock, fl | O_NONBLOCK);
+        fcntl(sock, F_SETFL, fl | O_NONBLOCK);
         return true;
     }
 };

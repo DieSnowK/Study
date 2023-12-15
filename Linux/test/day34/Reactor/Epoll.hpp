@@ -8,7 +8,10 @@ class Epoll
 
 public:
     Epoll(const int timeout = g_timeout)
+    : _timeout(timeout)
     {}
+
+    // TODO close _epfd
 
     void CreateEpoll()
     {
@@ -17,6 +20,20 @@ public:
         {
             exit(5);
         }
+    }
+
+    bool AddSockToEpoll(int sock, uint32_t events)
+    {
+        struct epoll_event ev;
+        ev.events = events;
+        ev.data.fd = sock;
+
+        return (epoll_ctl(_epfd, EPOLL_CTL_ADD, sock, &ev) == 0);
+    }
+
+    int WaitEpoll(struct epoll_event *revs, int revs_num)
+    {
+        return epoll_wait(_epfd, revs, revs_num, _timeout);
     }
 
 private:
