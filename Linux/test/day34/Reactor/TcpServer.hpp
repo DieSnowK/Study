@@ -2,6 +2,7 @@
 #include "Log.hpp"
 #include "Epoll.hpp"
 #include "Protocol.hpp"
+#include <cassert>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -57,9 +58,10 @@ class TcpServer
     const static int g_num = 100;
 
 public:
-    TcpServer(const int num = g_num, const uint16_t port = g_port)
+    TcpServer(callback_t cb, int num = g_num, const uint16_t port = g_port)
     : _port(port)
     , _revs_num(num)
+    , _cb(cb)
     {
         // 1.创建_listensock
         _listensock = Sock::Socket();
@@ -70,7 +72,7 @@ public:
         _poll.CreateEpoll();
 
         // 3.添加_listensock到服务器中
-        AddConnection(_listensock, std::bind(&TcpServer::Accepter, this, std::placeholders::_1), nullptr, nullptr); // TODO 考虑整理为什么需要&
+        AddConnection(_listensock, std::bind(&TcpServer::Accepter, this, std::placeholders::_1), nullptr, nullptr);
 
         // 4.构建一个获取就绪事件的缓冲区
         _revs = new struct epoll_event[_revs_num];
@@ -97,6 +99,12 @@ public:
         }
     }
 
+    void EnableReadWrite(Connection *conn, bool readable, bool writeable)
+    {
+        uint32_t events = (readable ? EPOLLIN : 0) | (writeable ? EPOLLOUT : 0);
+        _poll.CtrlEpoll(conn->_sock, events);
+    }
+
 private:
     void LoopOnce()
     {
@@ -106,7 +114,7 @@ private:
             int sock = _revs[i].data.fd;
             uint32_t revents = _revs[i].events;
 
-            // 将所有的异常，全部交给read/write来统一处理 // TODO
+            // 将所有的异常，全部交给read/write来统一处理，由其调用到Excepter()
             if(revents & EPOLLERR)
             {
                 revents |= (EPOLLIN | EPOLLOUT);
@@ -119,7 +127,7 @@ private:
 
             if(revents & EPOLLIN)
             {
-                if(IsConnectionExist(sock) && _connections[sock]->_recv_cb) // TODO IsConnectionExist()
+                if(IsConnectionExist(sock) && _connections[sock]->_recv_cb)
                 {
                     _connections[sock]->_recv_cb(_connections[sock]);
                 }
@@ -127,7 +135,7 @@ private:
 
             if(revents & EPOLLOUT)
             {
-                if (IsConnectionExist(sock) && _connections[sock]->_send_cb) // TODO IsConnectionExist()
+                if (IsConnectionExist(sock) && _connections[sock]->_send_cb)
                 {
                     _connections[sock]->_send_cb(_connections[sock]);
                 }
@@ -159,7 +167,6 @@ private:
     void Accepter(Connection* conn)
     {
         // 无法保证底层只有一个连接就绪，所以轮询读取
-        std::cout << "Accepter" << conn->_sock << std::endl;
         while (true)
         {
             std::string clientip;
@@ -247,18 +254,73 @@ private:
             {
                 _cb(conn, msg); // 这里可以将msg封装成task，然后push到任务队列，任务处理交给后端线程池
             }
-        } // TODO 昨天从这里结束
-
+        }
     } // end of Recver
 
+    // 最开始的时候，conn是没有被触发写事件的，需要上层发起调用
     void Sender(Connection *conn)
     {
+        while(true)
+        {
+            ssize_t n = send(conn->_sock, conn->_outbuffer.c_str(), conn->_outbuffer.size(), 0);
+            if(n > 0)
+            {
+                conn->_outbuffer.erase(0, n);
+                if(conn->_outbuffer.empty())
+                {
+                    break;
+                }
+            }
+            else
+            {
+                if(errno == EAGAIN || errno == EWOULDBLOCK)
+                {
+                    break;
+                }
+                else if(errno == EINTR)
+                {
+                    continue;
+                }
+                else
+                {
+                    LogMessage(ERROR, "send error, %s", strerror(errno));
+                    conn->_except_cb(conn);
+                    break;
+                }
+            }
 
-    }
+            // 无法确定是否发完，但是可以保证，如果没有出错，一定要么发完，要么发送条件不满足，下次发送
+            // 根据输出缓冲区是否为空，设置epoll事件的读写状态
+            if(conn->_outbuffer.empty())
+            {
+                EnableReadWrite(conn, true, false); // 全部发完，则此sock下次只关心read
+            }
+            else
+            {
+                EnableReadWrite(conn, true, true); // 未发完，则此sock还要继续关心read/write
+            }
+        } // end of while(true)
+    } // end of Sender
 
     void Excepter(Connection *conn)
     {
+        int sock = conn->_sock;
 
+        // 1.从epoll中移除
+        bool ret = _poll.DelFromEpoll(conn->_sock);
+        assert(ret); // 要判断，可以改成if
+        (void)ret;
+
+        // 2.从_connections移除
+        _connections.erase(conn->_sock);
+
+        // 3.
+        close(conn->_sock);
+
+        // 4.
+        delete conn;
+
+        LogMessage(NORMAL, "Excepter 已回收完毕[%d]的异常情况", sock);
     }
 
     // 为什么需要此接口？
@@ -276,7 +338,6 @@ private:
             return true;
         }
     }
-
 private:
     int _listensock;
     uint16_t _port;

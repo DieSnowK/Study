@@ -11,7 +11,10 @@ public:
     : _timeout(timeout)
     {}
 
-    // TODO close _epfd
+    ~Epoll()
+    {
+        close(_epfd);
+    }
 
     void CreateEpoll()
     {
@@ -34,6 +37,20 @@ public:
     int WaitEpoll(struct epoll_event *revs, int revs_num)
     {
         return epoll_wait(_epfd, revs, revs_num, _timeout);
+    }
+
+    bool CtrlEpoll(int sock, uint32_t events)
+    {
+        events |= EPOLLET;
+        struct epoll_event ev;
+        ev.events = events;
+        ev.data.fd = sock;
+        return (epoll_ctl(_epfd, EPOLL_CTL_MOD, sock, &ev) == 0);
+    }
+
+    bool DelFromEpoll(int sock)
+    {
+        return (epoll_ctl(_epfd, EPOLL_CTL_DEL, sock, nullptr) == 0);
     }
 
 private:
