@@ -11,11 +11,11 @@
 #define SPACE " "
 #define SPACE_LEN strlen(SPACE)
 #define SEP "\r\n"
-#define SEP_LEN strlen(SEP) // ä¸èƒ½æ˜¯sizeofï¼Œä¸ç„¶ä¼šè®¡å…¥\0è¿›é•¿åº¦
+#define SEP_LEN strlen(SEP) // ²»ÄÜÊÇsizeof£¬²»È»»á¼ÆÈë\0½ø³¤¶È
 #define SIZE 1024
 
-// 1.å°è¯•è‡ªä¸»å®ç°ä¸€ä¸ªåè®®demo "length\r\n_x _op _y\r\n"
-// 2.ä½¿ç”¨ç°æˆæ–¹æ¡ˆ
+// 1.³¢ÊÔ×ÔÖ÷ÊµÏÖÒ»¸öĞ­Òédemo "length\r\n_x _op _y\r\n"
+// 2.Ê¹ÓÃÏÖ³É·½°¸
 
 class Request
 {
@@ -151,14 +151,14 @@ public:
     }
 
 public:
-    int _ret;  // è®¡ç®—ç»“æœ
-    int _code; // è®¡ç®—ç»“æœçš„çŠ¶æ€ç 
+    int _ret;  // ¼ÆËã½á¹û
+    int _code; // ¼ÆËã½á¹ûµÄ×´Ì¬Âë
 };
 
-// TCPé¢å‘å­—èŠ‚æµ
-// æœŸæœ›ï¼Œå¿…é¡»è¿”å›ä¸€ä¸ªå®Œæ•´çš„æŠ¥æ–‡
-// Recvæ— æ³•ä¿è¯è¿”å›çš„æ˜¯ä¸€ä¸ªå®Œæ•´çš„æŠ¥æ–‡
-// éœ€è¦è¿›ä¸€æ­¥å®šåˆ¶åè®®
+// TCPÃæÏò×Ö½ÚÁ÷
+// ÆÚÍû£¬±ØĞë·µ»ØÒ»¸öÍêÕûµÄ±¨ÎÄ
+// RecvÎŞ·¨±£Ö¤·µ»ØµÄÊÇÒ»¸öÍêÕûµÄ±¨ÎÄ
+// ĞèÒª½øÒ»²½¶¨ÖÆĞ­Òé
 bool Recv(int sock, std::string *out)
 {
     char buffer[SIZE];
@@ -202,7 +202,7 @@ std::string Decode(std::string &buffer)
     int surplus = buffer.size() - pos - 2 * SEP_LEN;
     if(surplus >= size)
     {
-        // bufferé‡Œè‡³å°‘æœ‰ä¸€ä¸ªåˆæ³•ä¸”å®Œæ•´çš„æŠ¥æ–‡ï¼Œå¯æå–
+        // bufferÀïÖÁÉÙÓĞÒ»¸öºÏ·¨ÇÒÍêÕûµÄ±¨ÎÄ£¬¿ÉÌáÈ¡
         buffer.erase(0, pos + SEP_LEN);
         std::string str = buffer.substr(0, size);
         buffer.erase(0, size + SEP_LEN);

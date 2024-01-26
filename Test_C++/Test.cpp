@@ -1082,8 +1082,8 @@ using namespace std;
 
 // 链接：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/submissions/
 // 逆波兰表达式求值  --  用包装器处理
-//class Solution {
-//public:
+// class Solution {
+// public:
 //    int evalRPN(vector<string>& tokens)
 //    {
 //        stack<long long> st;
@@ -1096,7 +1096,7 @@ using namespace std;
 //            {"*", [](long long a, long long b) {return a * b; }},
 //            {"/", [](long long a, long long b) {return a / b; }},
 //        };
-//
+
 //        for (auto& str : tokens)
 //        {
 //            if (opFuncMap.count(str)) // 操作符
@@ -1112,7 +1112,7 @@ using namespace std;
 //                st.push(stoll(str));
 //            }
 //        }
-//
+
 //        return st.top();
 //    }
-//};
+// };
