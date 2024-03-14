@@ -314,7 +314,7 @@ void QuickSort1(int* a, int begin, int end)
 		return;
 	}
 
-	if (end - begin > 30)
+	if (end - begin > 0)
 	{
 		//hoare版本
 		int left = begin, right = end;
@@ -361,7 +361,7 @@ void QuickSort2(int* a, int begin, int end)
 		return;
 	}
 
-	if (end - begin > 30)
+	if (end - begin > 0)
 	{
 		//挖坑法
 		int key = a[begin];
@@ -447,7 +447,7 @@ void QuickSort3(int* a, int begin, int end)
 		return;
 	}
 
-	if (end - begin > 30)
+	if (end - begin > 0)
 	{
 		//前后指针版本
 		int prev = begin;
