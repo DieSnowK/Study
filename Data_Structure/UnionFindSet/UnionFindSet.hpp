@@ -11,15 +11,25 @@ public:
 
 	size_t FindRoot(int x)
 	{
-		while (_ufs[x] >= 0)
+		int root = x;
+		while (_ufs[root] >= 0)
 		{
-			x = _ufs[x];
+			root = _ufs[x];
 		}
 
-		return x;
+		// 璺緞鍘嬬缉
+		while(_ufs[x] >= 0)
+		{
+			int parent = _ufs[x];
+			_ufs[x] = root;
+			
+			x = parent;
+		}
+
+		return root;
 	}
 
-	// 合并集合
+	// 鍚堝苟闆嗗悎
 	void Union(int x1, int x2)
 	{
 		int root1 = FindRoot(x1);
@@ -27,13 +37,25 @@ public:
 
 		if (root1 != root2)
 		{
+			// 鎺у埗鏁版嵁閲忓皬鐨勫線澶х殑鍚堝苟
+			if(abs(_ufs[root1] < abs(_ufs[root2])))
+			{
+				swap(root1, root2);
+			}
+
 			_ufs[root1] += _ufs[root2];
 			_ufs[root2] = root1;
 		}
 	}
 
-	// 集合数量
-	size_t SetCount()
+	// 鏄惁鍦ㄥ悓涓�闆嗗悎
+	bool InSameSet(int x1, int x2)
+	{
+		return FindRoot(x1) == FindRoot(x2);
+	}
+
+	// 闆嗗悎鏁伴噺
+	size_t SetSize()
 	{
 		size_t count = 0;
 		for (size_t i = 0; i < _ufs.size(); i++)
