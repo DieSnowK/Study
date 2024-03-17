@@ -2,7 +2,9 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <functional>
 #include <stdexcept>
+#include "UnionFindSet.hpp"
 using namespace std;
 
 namespace Matrix
@@ -11,7 +13,10 @@ namespace Matrix
     template<class V, class W, W MAX_W = INT_MAX, bool Direction = false>
     class Graph
     {
+        typedef Graph<V, W, MAX_W, Direction> Self;
     public:
+        Graph() = default;
+
         Graph(const V* arr, size_t n)
         {
             _vertexs.resize(n);
@@ -42,11 +47,10 @@ namespace Matrix
             }
         }
 
-        void AddEdge(const V& src, const V& dst, const W& w)
+        // 可以考虑函数重载(No)
+        // 但是如果V本身是int类型，可能会出问题，所以抽离出来一个子函数
+        void _AddEdge(size_t srci, size_t dsti, const W& w)
         {
-            size_t srci = GetVertexIndex(src);
-            size_t dsti = GetVertexIndex(dst);
-
             _matrix[srci][dsti] = w;
 
             // 无向图
@@ -54,6 +58,13 @@ namespace Matrix
             {
                 _matrix[dsti][srci] = w;
             }
+        }
+
+        void AddEdge(const V& src, const V& dst, const W& w)
+        {
+            size_t srci = GetVertexIndex(src);
+            size_t dsti = GetVertexIndex(dst);
+            _AddEdge(srci, dsti, w);
         }
 
         void BFS(const V& src)
@@ -111,6 +122,97 @@ namespace Matrix
             size_t srci = GetVertexIndex(src);
             vector<bool> visited(_vertexs.size(), false);
             _DFS(srci, visited);
+
+            // 处理存在不连通的情况
+            for (size_t i = 0; i < _vertexs.size(); i++)
+            {
+                if (!visited[i])
+                {
+                    _DFS(i, visited);
+                }
+            }
+        }
+
+        struct Edge
+        {
+            Edge(size_t srci, size_t dsti, W w)
+                : _srci(srci)
+                , _dsti(dsti)
+                , _w(w)
+            {}
+
+            bool operator>(const Edge& e) const
+            {
+                return _w > e._w;
+            }
+
+            size_t _srci;
+            size_t _dsti;
+            W _w;
+        };
+
+        W Kruskal(Self& minTree)
+        {
+            size_t n = _vertexs.size();
+
+            // 初始化minTree
+            minTree._vertexs = _vertexs;
+            minTree._indexMap = _indexMap;
+            minTree._matrix.resize(n);
+            for (size_t i = 0; i < n; i++)
+            {
+                minTree._matrix[i].resize(n, MAX_W);
+            }
+
+            priority_queue<Edge, vector<Edge>, greater<Edge>> minQueue;
+
+            // 建堆排序
+            for (size_t i = 0; i < n; i++)
+            {
+                for (size_t j = 0; j < n; j++)
+                {
+                    if (i < j && _matrix[i][j] != MAX_W)
+                    {
+                        minQueue.push(Edge(i, j, _matrix[i][j]));
+                    }
+                }
+            }
+
+            // 选出n-1条边
+            size_t size = 0;
+            W totalW = W();
+            UnionFindSet ufs(n);
+            while (!minQueue.empty())
+            {
+                Edge min = minQueue.top();
+                minQueue.pop();
+
+                // 判环 -> 并查集
+                if (!ufs.InSameSet(min._srci, min._dsti))
+                {
+                    cout << _vertexs[min._srci] << "->" << _vertexs[min._dsti] << ":" << min._w << endl;
+                    
+                    minTree._AddEdge(min._srci, min._dsti, min._w);
+                    ufs.Union(min._srci, min._dsti); // 入集
+                    
+                    size++;
+                    totalW += min._w;
+                }
+                else
+                {
+                    cout << "Forming Ring: ";
+                    cout << _vertexs[min._srci] << "->" << _vertexs[min._dsti] << ":" << min._w << endl;
+                }
+            }
+
+            if (size == n - 1)
+            {
+                return totalW;
+            }
+            else
+            {
+                return W();
+            }
         }
 
         void Print()

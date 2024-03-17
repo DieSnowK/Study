@@ -18,6 +18,9 @@
     <ClInclude Include="Graph.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="UnionFindSet.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
