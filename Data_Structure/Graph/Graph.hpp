@@ -1,6 +1,6 @@
-#pragma once
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <map>
 #include <stdexcept>
 using namespace std;
@@ -56,6 +56,42 @@ namespace Matrix
             }
         }
 
+        void BFS(const V& src)
+        {
+            size_t srci = GetVertexIndex(src);
+
+            queue<int> q;
+            vector<bool> visited(_vertexs.size(), false); // 标记数组
+
+            q.push(srci);
+            visited[srci] = true;
+            int levelSize = 1; // 控制每层出的数量
+
+            while (!q.empty())
+            {
+                // 一层一层出
+                for (size_t i = 0; i < levelSize; i++)
+                {
+                    int front = q.front();
+                    q.pop();
+                    cout << front << ":" << _vertexs[front] << " ";
+
+                    // 把front的邻接顶点入队列
+                    for (size_t j = 0; j < _vertexs.size(); j++)
+                    {
+                        if (_matrix[front][j] != MAX_W && visited[j] == false)
+                        {
+                            q.push(j);
+                            visited[j] = true;
+                        }
+                    }
+                }
+                cout << endl;
+
+                levelSize = q.size();
+            }
+        }
+
         void Print()
         {
             // 顶点
@@ -70,7 +106,8 @@ namespace Matrix
             cout << "  ";
             for (size_t i = 0; i < _matrix.size(); i++)
             {
-                cout << i << " ";
+                //cout << i << " ";
+                printf("%4d", i);
             }
             cout << endl;
 
@@ -81,11 +118,13 @@ namespace Matrix
                 {
                     if (_matrix[i][j] == MAX_W)
                     {
-                        cout << "* ";
+                        //cout << "* ";
+                        printf("%4c", '*');
                     }
                     else
                     {
-                        cout << _matrix[i][j] << " ";
+                        //cout << _matrix[i][j] << " ";
+                        printf("%4d", _matrix[i][j]);
                     }
                 }
                 cout << endl;
@@ -97,6 +136,7 @@ namespace Matrix
         vector<vector<W>> _matrix; // 邻接矩阵
     };
 }
+
 
 namespace LinkTable
 {
