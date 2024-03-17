@@ -92,6 +92,27 @@ namespace Matrix
             }
         }
 
+        void _DFS(size_t srci, vector<bool>& visited)
+        {
+            cout << srci << ":" << _vertexs[srci] << endl;
+            visited[srci] = true;
+
+            for (size_t i = 0; i < _vertexs.size(); i++)
+            {
+                if (_matrix[i] != MAX_W && visited[i] == false)
+                {
+                    _DFS(i, visited);
+                }
+            }
+        }
+
+        void DFS(const V& src)
+        {
+            size_t srci = GetVertexIndex(src);
+            vector<bool> visited(_vertexs.size(), false);
+            _DFS(srci, visited);
+        }
+
         void Print()
         {
             // 顶点
