@@ -14,7 +14,7 @@ public:
 		int root = x;
 		while (_ufs[root] >= 0)
 		{
-			root = _ufs[x];
+			root = _ufs[root];
 		}
 
 		// 路径压缩
