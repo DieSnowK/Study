@@ -299,6 +299,80 @@ namespace Matrix
             }
         } // end of Prim
 
+        // 比较抽象，对着图和文档会好理解些:P
+        void Dijkstra(const V& src, vector<W>& dist, vector<int>& pPath)
+        {
+            size_t srci = GetVertexIndex(src);
+            size_t n = _vertexs.size();
+
+            dist.resize(n, MAX_W); // dist[] 存储src -> *的最短路径
+            pPath.resize(n, -1); // pPath 存储路径前一个顶点下标
+
+            dist[srci] = 0;
+            pPath[srci] = srci;
+
+            // 已经确定最短路径的顶点集合
+            vector<bool> S(n, false);
+
+            for (size_t i = 0; i < n; i++) // n个顶点
+            {
+                // 选最短路径且不在S的顶点，更新其他路径
+                int u = 0;
+                W min = MAX_W;
+                for (size_t j = 0; j < n; j++)
+                {
+                    if (S[j] == false && dist[j] < min)
+                    {
+                        u = j;
+                        min = dist[j];
+                    }
+                }
+                S[u] = true;
+
+                // 松弛更新u连接顶点v  srci->u + u->v  <  srci->v  更新
+                for (size_t v = 0; v < n; v++)
+                {
+                    // S[v] == false 是为了确保已经确定最短路径的不再更新
+                    if (S[v] == false && _matrix[u][v] != MAX_W
+                        && dist[u] + _matrix[u][v] < dist[v]) 
+                    {
+                        dist[v] = dist[u] + _matrix[u][v];
+                        pPath[v] = u;
+                    }
+                }
+            }
+        }// end of Dijkstra
+
+        void PrintShortPath(const V& src, const vector<W>& dist, const vector<int>& pPath)
+        {
+            size_t srci = GetVertexIndex(src);
+            size_t n = _vertexs.size();
+
+            for (size_t i = 0; i < n; i++)
+            {
+                if (i != srci)
+                {
+                    // 找出i顶点的路径
+                    vector<int> path;
+                    size_t parenti = i;
+
+                    while (parenti != srci)
+                    {
+                        path.push_back(parenti);
+                        parenti = pPath[parenti];
+                    }
+                    path.push_back(srci);
+                    reverse(path.begin(), path.end());
+
+                    for(auto index : path)
+                    {
+                        cout << _vertexs[index] << "->";
+                    }
+                    cout << dist[i] << endl;
+                }
+            }
+        } // end of PrintShortPath
+
         void Print()
         {
             // 顶点

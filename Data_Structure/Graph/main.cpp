@@ -77,12 +77,44 @@ void TestGraphMinTree()
 	//}
 }
 
+void TestGraphDijkstra()
+{
+	const char* str = "syztx";
+	Matrix::Graph<char, int, INT_MAX, true> g(str, strlen(str));
+	g.AddEdge('s', 't', 10);
+	g.AddEdge('s', 'y', 5);
+	g.AddEdge('y', 't', 3);
+	g.AddEdge('y', 'x', 9);
+	g.AddEdge('y', 'z', 2);
+	g.AddEdge('z', 's', 7);
+	g.AddEdge('z', 'x', 6);
+	g.AddEdge('t', 'y', 2);
+	g.AddEdge('t', 'x', 1);
+	g.AddEdge('x', 'z', 4);
 
+	vector<int> dist;
+	vector<int> parentPath;
+	g.Dijkstra('s', dist, parentPath);
+	g.PrintShortPath('s', dist, parentPath);
+
+	// 图中带有负权路径时，贪心策略则失效了。
+	// 测试结果可以看到s->t->y之间的最短路径没更新出来
+	//const char* str = "sytx";
+	//Matrix::Graph<char, int, INT_MAX, true> g(str, strlen(str));
+	//g.AddEdge('s', 't', 10);
+	//g.AddEdge('s', 'y', 5);
+	//g.AddEdge('t', 'y', -7);
+	//g.AddEdge('y', 'x', 3);
+	//vector<int> dist;
+	//vector<int> parentPath;
+	//g.Dijkstra('s', dist, parentPath);
+	//g.PrintShortPath('s', dist, parentPath);
+}
 int main()
 {
 	//Test_LinkTable_Graph();
 	//TestBDFS();
 	//TestGraphMinTree();
-
+	TestGraphDijkstra();
 	return 0;
 }

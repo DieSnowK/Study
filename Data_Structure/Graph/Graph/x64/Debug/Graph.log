@@ -1,1 +1,132 @@
-﻿
+﻿  main.cpp
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\UnionFindSet.hpp(35,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\UnionFindSet.hpp(36,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(391,24): warning C4477: “printf”: 格式字符串“%4d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(391,24):
+  请考虑在格式字符串中使用“%zd”
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(391,24):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(47,27):
+  	查看对正在编译的 类 模板 实例化“Matrix::Graph<char,int,2147483647,false>”的引用
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(376,14):
+  	在编译 类 模板 成员函数“void Matrix::Graph<char,int,2147483647,false>::Print(void)”时
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(71,16):
+  		请参阅 "TestGraphMinTree" 中对 "Matrix::Graph<char,int,2147483647,false>::Print" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(26,37): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(26,37):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(20,9):
+  	在编译 类 模板 成员函数“Matrix::Graph<char,int,2147483647,false>::Graph(const V *,size_t)”时
+          with
+          [
+              V=char
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(47,28):
+  		请参阅 "TestGraphMinTree" 中对 "Matrix::Graph<char,int,2147483647,false>::Graph" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(77,20): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(77,20):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(70,14):
+  	在编译 类 模板 成员函数“void Matrix::Graph<std::string,int,2147483647,false>::BFS(const V &)”时
+          with
+          [
+              V=std::string
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(40,8):
+  		请参阅 "TestBDFS" 中对 "Matrix::Graph<std::string,int,2147483647,false>::BFS" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(95,36): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(102,35): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(474,33): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(474,33):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(22,38):
+  	查看对正在编译的 类 模板 实例化“LinkTable::Graph<std::string,int,true>”的引用
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(469,14):
+  	在编译 类 模板 成员函数“void LinkTable::Graph<std::string,int,true>::AddEdge(const V &,const V &,const W &)”时
+          with
+          [
+              V=std::string,
+              W=int
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(23,12):
+  		请参阅 "Test_LinkTable_Graph" 中对 "LinkTable::Graph<std::string,int,true>::AddEdge" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(481,37): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(449,37): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(449,37):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(443,9):
+  	在编译 类 模板 成员函数“LinkTable::Graph<std::string,int,true>::Graph(const V *,size_t)”时
+          with
+          [
+              V=std::string
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(22,40):
+  		请参阅 "Test_LinkTable_Graph" 中对 "LinkTable::Graph<std::string,int,true>::Graph" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40): warning C4267: “参数”: 从“size_t”转换到“_Ty”，可能丢失数据
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40): warning C4267:         with
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40): warning C4267:         [
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40): warning C4267:             _Ty=int
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40): warning C4267:         ]
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(361,40):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(346,14):
+  	在编译 类 模板 成员函数“void Matrix::Graph<char,int,2147483647,true>::PrintShortPath(const V &,const std::vector<int,std::allocator<int>> &,const std::vector<int,std::allocator<int>> &)”时
+          with
+          [
+              V=char
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(98,18):
+  		请参阅 "TestGraphDijkstra" 中对 "Matrix::Graph<char,int,2147483647,true>::PrintShortPath" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(364,36): warning C4267: “参数”: 从“size_t”转换到“_Ty”，可能丢失数据
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(364,36): warning C4267:         with
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(364,36): warning C4267:         [
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(364,36): warning C4267:             _Ty=int
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(364,36): warning C4267:         ]
+  (编译源文件“main.cpp”)
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27): warning C4267: “=”: 从“size_t”转换到“_Ty”，可能丢失数据
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27): warning C4267:         with
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27): warning C4267:         [
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27): warning C4267:             _Ty=int
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27): warning C4267:         ]
+  (编译源文件“main.cpp”)
+  C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(312,27):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(303,14):
+  	在编译 类 模板 成员函数“void Matrix::Graph<char,int,2147483647,true>::Dijkstra(const V &,std::vector<int,std::allocator<int>> &,std::vector<int,std::allocator<int>> &)”时
+          with
+          [
+              V=char
+          ]
+  		C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\main.cpp(97,12):
+  		请参阅 "TestGraphDijkstra" 中对 "Matrix::Graph<char,int,2147483647,true>::Dijkstra" 的第一个引用
+  
+C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\Graph.hpp(326,29): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+  Graph.vcxproj -> C:\Users\w1752\Desktop\My_Repository\Study\Data_Structure\Graph\x64\Debug\Graph.exe
