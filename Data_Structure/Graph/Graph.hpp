@@ -213,7 +213,91 @@ namespace Matrix
             {
                 return W();
             }
-        }
+        } // end of Kruskal
+
+        W Prim(Self& minTree, const W& src)
+        {
+            size_t srci = GetVertexIndex(src);
+            size_t n = _vertexs.size();
+
+            // 初始化minTree
+            minTree._vertexs = _vertexs;
+            minTree._indexMap = _indexMap;
+            minTree._matrix.resize(n);
+            for (size_t i = 0; i < n; i++)
+            {
+                minTree._matrix[i].resize(n, MAX_W);
+            }
+
+            // true & false表示该元素是否在该集合内
+            vector<bool> X(n, false);
+            vector<bool> Y(n, true);
+            X[srci] = true;
+            Y[srci] = false;
+
+            // 从X->Y集合中连接的边里面选出最小的边
+            priority_queue<Edge, vector<Edge>, greater<Edge>> minQueue;
+
+            // 先把srci连接的边添加到队列中
+            for (size_t i = 0; i < n; i++)
+            {
+                if (_matrix[srci][i] != MAX_W)
+                {
+                    minQueue.push(Edge(srci, i, _matrix[srci][i]));
+                }
+            }
+
+            size_t size = 0;
+            W totalW = W();
+            while (!minQueue.empty())
+            {
+                Edge min = minQueue.top();
+                minQueue.pop();
+
+                // 最小边的目标也在X集合，则构成环
+                if (X[min._dsti])
+                {
+                    cout << "Forming Ring:";
+                    cout << _vertexs[min._srci] << "->" << _vertexs[min._dsti] << ":" << min._w << endl;
+                }
+                else
+                {
+                    cout << _vertexs[min._srci] << "->" << _vertexs[min._dsti] << ":" << min._w << endl;
+
+                    minTree._AddEdge(min._srci, min._dsti, min._w);
+                    X[min._dsti] = true;
+                    Y[min._dsti] = false;
+
+                    size++;
+                    totalW += min._w;
+
+                    // 可能最小生成树已经生成，但是多了很多成环边，无须继续遍历
+                    if (size == n - 1)
+                    {
+                        break;
+                    }
+
+                    // 将目标顶点连接的边加入到队列中
+                    for (size_t i = 0; i < n; i++)
+                    {
+                        if (_matrix[min._dsti][i] != MAX_W && Y[i])
+                        {
+                            minQueue.push(Edge(min._dsti, i, _matrix[min._dsti][i]));
+                        }
+                    }
+                }
+            }
+
+            // 实际不一定存在最小生成树
+            if (size == n - 1)
+            {
+                return totalW;
+            }
+            else
+            {
+                return W();
+            }
+        } // end of Prim
 
         void Print()
         {
