@@ -300,6 +300,7 @@ namespace Matrix
         } // end of Prim
 
         // 比较抽象，对着图和文档会好理解些:P
+        // 顶点个数是N -> 时间复杂度：O(N^2) 空间复杂度：O(N)
         void Dijkstra(const V& src, vector<W>& dist, vector<int>& pPath)
         {
             size_t srci = GetVertexIndex(src);
@@ -342,6 +343,64 @@ namespace Matrix
                 }
             }
         }// end of Dijkstra
+
+        // 时间复杂度：O(N^3) 空间复杂度：O(N)
+        bool BellmanFord(const V& src, vector<W>& dist, vector<int>& pPath)
+        {
+            size_t n = _vertexs.size();
+            size_t srci = GetVertexIndex(src);
+
+            dist.resize(n, MAX_W);
+            pPath.resize(n, -1);
+
+            // 先更新srci->srci为缺省值
+            dist[srci] = W();
+
+            // 总体最多更新n轮
+            for (size_t k = 0; k < n; k++)
+            {
+                bool update = false;
+
+                // i->j松弛
+                for (size_t i = 0; i < n; i++)
+                {
+                    for (size_t j = 0; j < n; j++)
+                    {
+                        // srci -> i + i -> j
+                        if (_matrix[i][j] != MAX_W && dist[i] + _matrix[i][j] < dist[j])
+                        {
+                            dist[j] = dist[i] + _matrix[i][j];
+                            pPath[j] = i;
+
+                            update = true;
+
+                            cout << _vertexs[i] << "->" << _vertexs[j] << ":" << _matrix[i][j] << endl;
+                        }
+                    }
+                }
+
+                // 如果这个伦茨中没有更新出更短路径，那么后续轮次就不需要走了
+                if (!update)
+                {
+                    break;
+                }
+            }
+
+            // 还能更新，则为带负权回路
+            for (size_t i = 0; i < n; i++)
+            {
+                for (size_t j = 0; j < n; j++)
+                {
+                    // srci -> i + i -> j
+                    if (_matrix[i][j] != MAX_W && dist[i] + _matrix[i][j] < dist[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
 
         void PrintShortPath(const V& src, const vector<W>& dist, const vector<int>& pPath)
         {

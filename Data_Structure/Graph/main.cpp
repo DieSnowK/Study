@@ -110,11 +110,55 @@ void TestGraphDijkstra()
 	//g.Dijkstra('s', dist, parentPath);
 	//g.PrintShortPath('s', dist, parentPath);
 }
+
+void TestGraphBellmanFord()
+{
+		const char* str = "syztx";
+		Matrix::Graph<char, int, INT_MAX, true> g(str, strlen(str));
+		g.AddEdge('s', 't', 6);
+		g.AddEdge('s', 'y', 7);
+		g.AddEdge('y', 'z', 9);
+		g.AddEdge('y', 'x', -3);
+		g.AddEdge('z', 's', 2);
+		g.AddEdge('z', 'x', 7);
+		g.AddEdge('t', 'x', 5);
+		g.AddEdge('t', 'y', 8);
+		g.AddEdge('t', 'z', -4);
+		g.AddEdge('x', 't', -2);
+		vector<int> dist;
+		vector<int> parentPath;
+		g.BellmanFord('s', dist, parentPath);
+		g.PrintShortPath('s', dist, parentPath);
+
+	//const char* str = "syztx";
+	//Matrix::Graph<char, int, INT_MAX, true> g(str, strlen(str));
+	//g.AddEdge('s', 't', 6);
+	//g.AddEdge('s', 'y', 7);
+	//g.AddEdge('y', 'z', 9);
+	//g.AddEdge('y', 'x', -3);
+	////g.AddEdge('y', 's', 1); // 新增
+	//g.AddEdge('z', 's', 2);
+	//g.AddEdge('z', 'x', 7);
+	//g.AddEdge('t', 'x', 5);
+	////g.AddEdge('t', 'y', -8); //更改
+	//g.AddEdge('t', 'y', 8);
+
+	//g.AddEdge('t', 'z', -4);
+	//g.AddEdge('x', 't', -2);
+	//vector<int> dist;
+	//vector<int> parentPath;
+	//if (g.BellmanFord('s', dist, parentPath))
+	//	g.PrintShortPath('s', dist, parentPath);
+	//else
+	//	cout << "带负权回路" << endl;
+}
+
 int main()
 {
 	//Test_LinkTable_Graph();
 	//TestBDFS();
 	//TestGraphMinTree();
-	TestGraphDijkstra();
+	//TestGraphDijkstra();
+	//TestGraphBellmanFord();
 	return 0;
 }
