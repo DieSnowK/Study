@@ -10,7 +10,7 @@ public:
         : _capacity(capacity)
     {}
 
-    int get(int key)
+    int Get(int key)
     {
         auto ret = _hashMap.find(key);
         if (ret != _hashMap.end())
@@ -28,7 +28,7 @@ public:
         }
     }
 
-    void put(int key, int value)
+    void Put(int key, int value)
     {
 
         auto ret = _hashMap.find(key);
