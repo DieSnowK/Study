@@ -402,6 +402,88 @@ namespace Matrix
             return true;
         }
 
+        void FloydWarshall(vector<vector<W>>& dist, vector<vector<int>>& pPath)
+        {
+            size_t n = _vertexs.size();
+            dist.resize(n);
+            pPath.resize(n);
+
+            // 初始化权值和路径矩阵
+            for (size_t i = 0; i < n; i++)
+            {
+                dist[i].resize(n, MAX_W);
+                pPath[i].resize(n, -1);
+            }
+
+            // 首先直接相连的边更新
+            for (size_t i = 0; i < n; i++)
+            {
+                for (size_t j = 0; j < n; j++)
+                {
+                    if (_matrix[i][j] != MAX_W)
+                    {
+                        dist[i][j] = _matrix[i][j];
+                        pPath[i][j] = i;
+                    }
+
+                    if (i == j)
+                    {
+                        dist[i][j] = W();
+                    }
+                }
+            }
+
+            // 最短路径的更新 i -> {else} -> j
+            for (size_t k = 0; k < n; k++)
+            {
+                for (size_t i = 0; i < n; i++)
+                {
+                    for (size_t j = 0; j < n; j++)
+                    {
+                        // k作为i j的中间点，尝试去更新i->j的路径
+                        if (dist[i][k] != MAX_W && dist[k][j] != MAX_W
+                            && dist[i][k] + dist[k][j] < dist[i][j])
+                        {
+                            dist[i][j] = dist[i][k] + dist[k][j];
+
+                            // 找跟j相连的上一个邻接顶点，k j不一定是直接相连的
+                            // 如果k->j 直接相连，pPath[k][j]存的就是k
+                            // 如果k->j 没有直接相连，k->...->x->j，pPath[k][j]村的就是x
+                            pPath[i][j] = pPath[k][j];
+                        }
+                    }
+                }
+
+                //// 打印权值和路径矩阵观察数据
+                //for (size_t i = 0; i < n; ++i)
+                //{
+                //    for (size_t j = 0; j < n; ++j)
+                //    {
+                //        if (dist[i][j] == MAX_W)
+                //        {
+                //            printf("%3c", '*');
+                //        }
+                //        else
+                //        {
+                //            printf("%3d", dist[i][j]);
+                //        }
+                //    }
+                //    cout << endl;
+                //}
+                //cout << endl;
+
+                //for (size_t i = 0; i < n; ++i)
+                //{
+                //    for (size_t j = 0; j < n; ++j)
+                //    {
+                //        printf("%3d", pPath[i][j]);
+                //    }
+                //    cout << endl;
+                //}
+                //cout << "=================================" << endl;
+            }
+        } // end of FloydWarshall
+
         void PrintShortPath(const V& src, const vector<W>& dist, const vector<int>& pPath)
         {
             size_t srci = GetVertexIndex(src);

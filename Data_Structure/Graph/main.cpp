@@ -153,6 +153,31 @@ void TestGraphBellmanFord()
 	//	cout << "带负权回路" << endl;
 }
 
+void TestFloydWarShall()
+{
+	const char* str = "12345";
+	Matrix::Graph<char, int, INT_MAX, true> g(str, strlen(str));
+	g.AddEdge('1', '2', 3);
+	g.AddEdge('1', '3', 8);
+	g.AddEdge('1', '5', -4);
+	g.AddEdge('2', '4', 1);
+	g.AddEdge('2', '5', 7);
+	g.AddEdge('3', '2', 4);
+	g.AddEdge('4', '1', 2);
+	g.AddEdge('4', '3', -5);
+	g.AddEdge('5', '4', 6);
+	vector<vector<int>> vvDist;
+	vector<vector<int>> vvParentPath;
+	g.FloydWarshall(vvDist, vvParentPath);
+
+	// 打印任意两点之间的最短路径
+	for (size_t i = 0; i < strlen(str); ++i)
+	{
+		g.PrintShortPath(str[i], vvDist[i], vvParentPath[i]);
+		cout << endl;
+	}
+}
+
 int main()
 {
 	//Test_LinkTable_Graph();
@@ -160,5 +185,7 @@ int main()
 	//TestGraphMinTree();
 	//TestGraphDijkstra();
 	//TestGraphBellmanFord();
+	//TestFloydWarShall();
+
 	return 0;
 }
