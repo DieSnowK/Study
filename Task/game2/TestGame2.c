@@ -2,39 +2,39 @@
 
 void game()
 {
-	//¹æ¶¨1ÎªÀ×   0ÎªÎŞÀ×
+	//è§„å®š1ä¸ºé›·   0ä¸ºæ— é›·
 
-	char mine[ROWS][COLS];  //´æ·Å²¼ÖÃºÃÀ×µÄĞÅÏ¢
-	char show[ROWS][COLS];  //´æ·ÅÅÅ²é³öÀ×µÄĞÅÏ¢
+	char mine[ROWS][COLS];  //å­˜æ”¾å¸ƒç½®å¥½é›·çš„ä¿¡æ¯
+	char show[ROWS][COLS];  //å­˜æ”¾æ’æŸ¥å‡ºé›·çš„ä¿¡æ¯
 
-	//³õÊ¼»¯ÆåÅÌ
+	//åˆå§‹åŒ–æ£‹ç›˜
 	InitBoard(mine, ROWS, COLS, '0');
 	InitBoard(show, ROWS, COLS, '*');
 
-	//´òÓ¡Ò»ÏÂÆåÅÌ
+	//æ‰“å°ä¸€ä¸‹æ£‹ç›˜
 	DisplayBoard(show, ROW, COL);
 
-	//²¼ÖÃÀ×
+	//å¸ƒç½®é›·
 	SetMine(mine, ROW, COL);
 	DisplayBoard(mine, ROW, COL);
 	
-	////Ä£Ê½Ñ¡Ôñ                   ¿É×ö´ı×ö  
-	////Ë¼Â·£º½«FineMine()ÖĞwhileÈ¥µô  Ì×ÔÚÄ£Ê½Ñ¡Ôñ´¦
+	////æ¨¡å¼é€‰æ‹©                   å¯åšå¾…åš  
+	////æ€è·¯ï¼šå°†FineMine()ä¸­whileå»æ‰  å¥—åœ¨æ¨¡å¼é€‰æ‹©å¤„
 	// 
 	//int choice = 0;
-	//printf("ÇëÑ¡ÔñÒªÅÅÀ×[1]»¹ÊÇ±ê¼Ç[2]>");
+	//printf("è¯·é€‰æ‹©è¦æ’é›·[1]è¿˜æ˜¯æ ‡è®°[2]>");
 	//scanf("%d", &choice);
 	//switch (choice)
 	//{
 	//	case 1:
-	//		//ÅÅÀ×
+	//		//æ’é›·
 	//		break;
 	//	case 2:
-	//		//±ê¼Ç
+	//		//æ ‡è®°
 	//		break
 	//}
 
-	//ÅÅÀ×
+	//æ’é›·
 	FineMine(mine, show, ROW, COL);
 
 }
@@ -46,9 +46,9 @@ int main()
 
 	do
 	{
-		//´òÓ¡²Ëµ¥
+		//æ‰“å°èœå•
 		menu();
-		printf("\nÇëÑ¡Ôñ:>");
+		printf("\nè¯·é€‰æ‹©:>");
 
 		scanf("%d", &input);
 
@@ -59,11 +59,11 @@ int main()
 				break;
 
 			case 0:
-				printf("ÍË³öÓÎÏ·\n");
+				printf("é€€å‡ºæ¸¸æˆ\n");
 				break;
 
 			default:
-				printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+				printf("è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥\n");
 				break;
 		}
 

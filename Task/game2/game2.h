@@ -5,24 +5,24 @@
 #include <time.h>
 #include <stdlib.h>
 
-//¶¨Òå±êÊ¶·û³£Á¿   Ï°¹ßÉÏ¶¼ÓÃ´óĞ´
+//å®šä¹‰æ ‡è¯†ç¬¦å¸¸é‡   ä¹ æƒ¯ä¸Šéƒ½ç”¨å¤§å†™
 #define ROWS 11
 #define COLS 11
 #define ROW 9
 #define COL 9
 #define BOMB 80
 
-//´òÓ¡²Ëµ¥
+//æ‰“å°èœå•
 void menu();
 
-//³õÊ¼»¯ÆåÅÌ
+//åˆå§‹åŒ–æ£‹ç›˜
 void InitBoard(char board[ROWS][COLS], int rows, int cols);
 
-//´òÓ¡ÆåÅÌ
+//æ‰“å°æ£‹ç›˜
 void DisplayBoard(char board[ROWS][COLS], int row, int col);
 
-//²¼ÖÃÀ×
-void SetMine(char board[ROWS][COLS], int row, int col); //²¼ÖÃ9x9
+//å¸ƒç½®é›·
+void SetMine(char board[ROWS][COLS], int row, int col); //å¸ƒç½®9x9
 
-//ÅÅÀ×
+//æ’é›·
 void FineMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col);

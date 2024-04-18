@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "game1.h"
 
-//´òÓ¡²Ëµ¥
+//æ‰“å°èœå•
 void menu()
 {
 	printf("*****************************\n");
@@ -10,23 +10,23 @@ void menu()
 	printf("*****************************\n");
 }
 
-//³õÊ¼»¯ÆåÅÌ 
+//åˆå§‹åŒ–æ£‹ç›˜ 
 void InitBoard(char board[ROW][COL], int row, int col)
 {
 	int i = 0;
-	//Ò»ĞĞ
+	//ä¸€è¡Œ
 	for (i = 0; i < row; i++)
 	{
 		int j = 0;
 		for (j = 0; j < col; j++)
 		{
-			//ÎªÊı×éÌîÈë¿ÕÖµ
+			//ä¸ºæ•°ç»„å¡«å…¥ç©ºå€¼
 			board[i][j] = ' ';
 		}
 	}
 }
 
-//´òÓ¡ÆåÅÌ
+//æ‰“å°æ£‹ç›˜
 void DisplayBoard(char board[ROW][COL], int row, int col)
 {
 	printf("\n");
@@ -37,7 +37,7 @@ void DisplayBoard(char board[ROW][COL], int row, int col)
 		int j = 0;
 		for (j = 0; j < col; j++)
 		{
-			//Ã¿Êı¾İĞĞ´òÓ¡ÄÚÈİ
+			//æ¯æ•°æ®è¡Œæ‰“å°å†…å®¹
 			printf(" %c ", board[i][j]);
 			if (j < col - 1)
 			{
@@ -45,7 +45,7 @@ void DisplayBoard(char board[ROW][COL], int row, int col)
 			}
 		}
 		printf("\n");
-		//´òÓ¡Ã¿ĞĞÊı¾İĞĞÏÂµÄ·Ö¸îÏß
+		//æ‰“å°æ¯è¡Œæ•°æ®è¡Œä¸‹çš„åˆ†å‰²çº¿
 		if (i < row - 1)
 		{
 			int j = 0;
@@ -64,20 +64,20 @@ void DisplayBoard(char board[ROW][COL], int row, int col)
 	printf("\n");
 }
 
-//Íæ¼ÒÂä×Ó
+//ç©å®¶è½å­
 void PlayerMove(char board[ROW][COL], int row, int col)
 {
 	int x = 0;
 	int y = 0;
 
-	printf("Íæ¼ÒÂä×Ó>\n");
+	printf("ç©å®¶è½å­>\n");
 	while (1)
 	{
-		printf("ÇëÊäÈëÏÂÆåµÄ×ø±ê:>");
+		printf("è¯·è¾“å…¥ä¸‹æ£‹çš„åæ ‡:>");
 		scanf("%d %d", &x, &y);
-		if (x >= 1 && x <= row && y >= 1 && y <= row)  //¼ìÑéÊı¾İÊÇ·ñºÏ·¨
+		if (x >= 1 && x <= row && y >= 1 && y <= row)  //æ£€éªŒæ•°æ®æ˜¯å¦åˆæ³•
 		{
-			//ÅĞ¶Ï×ø±êÊÇ·ñ±»Õ¼ÓÃ
+			//åˆ¤æ–­åæ ‡æ˜¯å¦è¢«å ç”¨
 			if (board[x - 1][y - 1] == ' ')
 			{
 				board[x - 1][y - 1] = '*';
@@ -85,27 +85,27 @@ void PlayerMove(char board[ROW][COL], int row, int col)
 			}
 			else
 			{
-				printf("×ø±ê±»Õ¼ÓÃ£¬ÇëÖØĞÂÊäÈë\n");
+				printf("åæ ‡è¢«å ç”¨ï¼Œè¯·é‡æ–°è¾“å…¥\n");
 			}
 		}
 		else
 		{
-			printf("×ø±ê·Ç·¨£¬ÇëÖØĞÂÊäÈë\n");
+			printf("åæ ‡éæ³•ï¼Œè¯·é‡æ–°è¾“å…¥\n");
 		}
 	}
 }
 
-//µçÄÔÂä×Ó
+//ç”µè„‘è½å­
 void ComputerMove(char board[ROW][COL], int row, int col)
 {
-	printf("µçÄÔÂä×Ó>\n");
+	printf("ç”µè„‘è½å­>\n");
 
 	while (1)
 	{
 		int x = rand() % row;
 		int y = rand() % col;
 
-		//ÅĞ¶ÏÕ¼ÓÃ
+		//åˆ¤æ–­å ç”¨
 		if (board[x][y] == ' ')
 		{
 			board[x][y] = '#';
@@ -114,15 +114,15 @@ void ComputerMove(char board[ROW][COL], int row, int col)
 	}
 }
 
-//ÅĞ¶ÏÓÎÏ·×´Ì¬
-//Íæ¼ÒÓ®  ¡®*¡¯
-//µçÄÔÓ®   '#'
-//Æ½¾Ö     'Q'
-//¼ÌĞøÓÎÏ·¡®C'
+//åˆ¤æ–­æ¸¸æˆçŠ¶æ€
+//ç©å®¶èµ¢  â€˜*â€™
+//ç”µè„‘èµ¢   '#'
+//å¹³å±€     'Q'
+//ç»§ç»­æ¸¸æˆâ€˜C'
 
 int IsFull(char board[ROW][COL], int row, int col)
 {
-	//¹æ¶¨ 1ÎªÂú  0ÎªÎ´Âú
+	//è§„å®š 1ä¸ºæ»¡  0ä¸ºæœªæ»¡
 	int i = 0;
 	for (i = 0; i < row; i++)
 	{
@@ -138,20 +138,20 @@ int IsFull(char board[ROW][COL], int row, int col)
 	return 1;
 }
 
-char IsWin(char board[ROW][COL], int row, int col) //ÕâÀï²ÉÈ¡±©Á¦ÅĞ¶Ï£¬ÆäËû·½·¨¶ÁÕßÃÇ¿ÉÒÔÆÀÂÛÇøÌÖÂÛ
+char IsWin(char board[ROW][COL], int row, int col) //è¿™é‡Œé‡‡å–æš´åŠ›åˆ¤æ–­ï¼Œå…¶ä»–æ–¹æ³•è¯»è€…ä»¬å¯ä»¥è¯„è®ºåŒºè®¨è®º
 {
 	int i = 0;
 
-	//ÅĞ¶ÏÓ®    ÈıĞĞ
+	//åˆ¤æ–­èµ¢    ä¸‰è¡Œ
 	for (i = 0; i < row; i++)
 	{
-		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')  //Ó®µÃÒÀ¾İ
+		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')  //èµ¢å¾—ä¾æ®
 		{
 			return board[i][0];
 		}
 	}
 
-	//ÅĞ¶ÏÓ®    ÈıÁĞ
+	//åˆ¤æ–­èµ¢    ä¸‰åˆ—
 	for (i = 0; i < col; i++)
 	{
 		if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ')
@@ -160,7 +160,7 @@ char IsWin(char board[ROW][COL], int row, int col) //ÕâÀï²ÉÈ¡±©Á¦ÅĞ¶Ï£¬ÆäËû·½·¨¶
 		}
 	}
 
-	//ÅĞ¶ÏÓ®   Ğ±¶Ô½ÇÏß
+	//åˆ¤æ–­èµ¢   æ–œå¯¹è§’çº¿
 	if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[1][1] != ' ')
 	{
 		return board[1][1];
@@ -170,8 +170,8 @@ char IsWin(char board[ROW][COL], int row, int col) //ÕâÀï²ÉÈ¡±©Á¦ÅĞ¶Ï£¬ÆäËû·½·¨¶
 		return board[1][1];
 	}
 
-	//ÅĞ¶ÏÊÇ·ñÆ½¾Ö   Æ½¾Ö-->   ÆåÅÌÂúÁËÈÔÎ´³öÏÖÓ®¼Ò
-	//¹æ¶¨ 1ÎªÂú  0ÎªÎ´Âú
+	//åˆ¤æ–­æ˜¯å¦å¹³å±€   å¹³å±€-->   æ£‹ç›˜æ»¡äº†ä»æœªå‡ºç°èµ¢å®¶
+	//è§„å®š 1ä¸ºæ»¡  0ä¸ºæœªæ»¡
 
 	int ret = IsFull(board, row, col);
 	if (ret == 1)
@@ -179,6 +179,6 @@ char IsWin(char board[ROW][COL], int row, int col) //ÕâÀï²ÉÈ¡±©Á¦ÅĞ¶Ï£¬ÆäËû·½·¨¶
 		return 'Q';
 	}
 
-	//¼ÌĞøÓÎÏ·
+	//ç»§ç»­æ¸¸æˆ
 	return 'C';
 }
