@@ -61,8 +61,8 @@ namespace SnowK
 			, _end_of_storage(nullptr)
 		{}
 
-		// ÓÃµü´úÆ÷½øĞĞ³õÊ¼»¯¹¹Ôì
-		// ÎªºÎÕâÀïÊ¹ÓÃÄ£°åÄØ£¿ --> ÎÒÔõÃ´ÖªµÀÓÃ»§´«µÄÊÇÊ²Ã´ÀàĞÍµÄµü´úÆ÷ÄØ :P
+		// ç”¨è¿­ä»£å™¨è¿›è¡Œåˆå§‹åŒ–æ„é€ 
+		// ä¸ºä½•è¿™é‡Œä½¿ç”¨æ¨¡æ¿å‘¢ï¼Ÿ --> æˆ‘æ€ä¹ˆçŸ¥é“ç”¨æˆ·ä¼ çš„æ˜¯ä»€ä¹ˆç±»å‹çš„è¿­ä»£å™¨å‘¢ :P
 		template <class InputIterator>
 		vector(InputIterator first, InputIterator last)
 			: _start(nullptr)
@@ -76,7 +76,7 @@ namespace SnowK
 			}
 		}
 
-		vector(size_t n, const T& val = T()) // T()ÎªÄäÃû¶ÔÏó£¬»áµ÷ÓÃTµÄÄ¬ÈÏ¹¹Ôìº¯Êı
+		vector(size_t n, const T& val = T()) // T()ä¸ºåŒ¿åå¯¹è±¡ï¼Œä¼šè°ƒç”¨Tçš„é»˜è®¤æ„é€ å‡½æ•°
 			: _start(nullptr)
 			, _finish(nullptr)
 			, _end_of_storage(nullptr)
@@ -88,11 +88,11 @@ namespace SnowK
 			}
 		}
 
-		// ´«Í³Ğ´·¨
+		// ä¼ ç»Ÿå†™æ³•
 		//vector(const vector<T>& v) 
 		//{
-		//	_start = new T[v.size()]; // v.capacity()Ò²¿ÉÒÔ
-		//	//memcpy(_start, v._start, sizeof(T) * v.size()); //Õâ¸ö²»ĞĞ£¬Ç³¿½±´
+		//	_start = new T[v.size()]; // v.capacity()ä¹Ÿå¯ä»¥
+		//	//memcpy(_start, v._start, sizeof(T) * v.size()); //è¿™ä¸ªä¸è¡Œï¼Œæµ…æ‹·è´
 		//	for (size_t i = 0; i < v.size(); ++i)
 		//	{
 		//		_start[i] = v._start[i];
@@ -113,7 +113,7 @@ namespace SnowK
 		//	}
 		//}
 
-		// ÏÖ´úĞ´·¨
+		// ç°ä»£å†™æ³•
 		vector(const vector<T>& v)
 			: _start(nullptr)
 			, _finish(nullptr)
@@ -129,8 +129,8 @@ namespace SnowK
 			_start = _finish = _end_of_storage = nullptr;
 		}
 
-		// ÏÖ´úĞ´·¨ -- ÒÀÈ»ÊÇ¼«ÖÂµÄ°şÏ÷ :P
-		vector<T>& operator=(vector<T> v) // ´«Öµ£¬µ÷ÓÃ¿½±´¹¹Ôìº¯Êı
+		// ç°ä»£å†™æ³• -- ä¾ç„¶æ˜¯æè‡´çš„å‰¥å‰Š :P
+		vector<T>& operator=(vector<T> v) // ä¼ å€¼ï¼Œè°ƒç”¨æ‹·è´æ„é€ å‡½æ•°
 		{
 			swap(v);
 			return *this;
@@ -177,19 +177,19 @@ namespace SnowK
 			std::swap(_end_of_storage, v._end_of_storage);
 		}
 
-		// ¶Ôµü´úÆ÷Ê§Ğ§½øĞĞ´¦Àí
+		// å¯¹è¿­ä»£å™¨å¤±æ•ˆè¿›è¡Œå¤„ç†
 		void reserve(size_t n)  
 		{
 			if (n > capacity())
 			{
 				size_t sz = size();
 				T* tmp = new T[n];
-				if (_start) // ¿´ÊÇ·ñÎª¿Õ£¬ÊÇ·ñĞèÒªÌÚÊı¾İ
+				if (_start) // çœ‹æ˜¯å¦ä¸ºç©ºï¼Œæ˜¯å¦éœ€è¦è…¾æ•°æ®
 				{
-					//memcpy(tmp, _start, sizeof(T) * sz); // Õâ¸ö²»ĞĞ£¬Ç³¿½±´
+					//memcpy(tmp, _start, sizeof(T) * sz); // è¿™ä¸ªä¸è¡Œï¼Œæµ…æ‹·è´
 					for (size_t i = 0; i < sz; ++i) 
 					{
-						tmp[i] = _start[i]; //Éî¿½±´  --  ÖµµÃ¶ÁÕßË¼¿¼
+						tmp[i] = _start[i]; //æ·±æ‹·è´  --  å€¼å¾—è¯»è€…æ€è€ƒ
 					}
 					delete[] _start;
 				}
@@ -200,7 +200,7 @@ namespace SnowK
 			}
 		}
 
-		void resize(size_t n, const T& val = T()) // T()ÎªÄäÃû¶ÔÏó£¬»áµ÷ÓÃTµÄÄ¬ÈÏ¹¹Ôìº¯Êı
+		void resize(size_t n, const T& val = T()) // T()ä¸ºåŒ¿åå¯¹è±¡ï¼Œä¼šè°ƒç”¨Tçš„é»˜è®¤æ„é€ å‡½æ•°
 		{
 			if (n > capacity())
 			{
@@ -209,7 +209,7 @@ namespace SnowK
 			
 			if (n > size())
 			{
-				// ³õÊ¼»¯ÌîÖµ
+				// åˆå§‹åŒ–å¡«å€¼
 				while (n > size())
 				{
 					*_finish = val;
@@ -232,7 +232,7 @@ namespace SnowK
 			*_finish = val;
 			++_finish;
 
-			//insert(end(), val); // ÒÔÉÏ´úÂë¿ÉÓÃ´Ë·â×°´úÌæ
+			//insert(end(), val); // ä»¥ä¸Šä»£ç å¯ç”¨æ­¤å°è£…ä»£æ›¿
 		}
 
 		void pop_back()
@@ -261,13 +261,13 @@ namespace SnowK
 
 			if (_finish == _end_of_storage)
 			{
-				// À©ÈİÍêÖ®ºó£¬pos»áÊ§Ğ§£¬ËùÒÔÒª¼ÇµÃ¸üĞÂpos
+				// æ‰©å®¹å®Œä¹‹åï¼Œposä¼šå¤±æ•ˆï¼Œæ‰€ä»¥è¦è®°å¾—æ›´æ–°pos
 				size_t len = pos - _start;
 				reserve(capacity == 0 ? 4 : capacity() * 2);
 				pos = _start + len;
 			}
 
-			// Å²¶¯Êı¾İ
+			// æŒªåŠ¨æ•°æ®
 			iterator end = _finish - 1;
 			while (pos <= end)
 			{
@@ -278,7 +278,7 @@ namespace SnowK
 			*pos = val;
 			++_finish;
 
-			return pos; // ±ê×¼¿âvector·µ»ØµÄÊÇ²åÈëµÄÔªËØµÄµü´úÆ÷
+			return pos; // æ ‡å‡†åº“vectorè¿”å›çš„æ˜¯æ’å…¥çš„å…ƒç´ çš„è¿­ä»£å™¨
 		}
 
 		iterator erase(iterator pos)
@@ -294,9 +294,9 @@ namespace SnowK
 
 			--_finish;
 
-			//if (size() < capacity() / 3) //¿ÉÑ¡
+			//if (size() < capacity() / 3) //å¯é€‰
 			//{
-			//	// ËõÈİ£¬ÒÔÊ±¼ä»»¿Õ¼ä
+			//	// ç¼©å®¹ï¼Œä»¥æ—¶é—´æ¢ç©ºé—´
 			//}
 
 			return pos;

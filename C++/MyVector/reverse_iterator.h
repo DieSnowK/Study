@@ -2,12 +2,12 @@
 
 namespace SnowK
 {
-	// ·´Ïòµü´úÆ÷ÊÇ¸öµü´úÆ÷ÊÊÅäÆ÷£¬Ëü¿ÉÒÔ½«ÆäËûµü´úÆ÷×ª»»Îª·´Ïòµü´úÆ÷
-	// STLÖĞ²ÉÓÃ¶Ô³ÆÉè¼Æ
+	// åå‘è¿­ä»£å™¨æ˜¯ä¸ªè¿­ä»£å™¨é€‚é…å™¨ï¼Œå®ƒå¯ä»¥å°†å…¶ä»–è¿­ä»£å™¨è½¬æ¢ä¸ºåå‘è¿­ä»£å™¨
+	// STLä¸­é‡‡ç”¨å¯¹ç§°è®¾è®¡
 	template <class Iterator, class Ref, class Ptr>
 	struct __reverse_iterator
 	{
-		Iterator _cur; // ÄÃÒ»¸öÕıÏòµÄµü´úÆ÷µ±×÷³ÉÔ±±äÁ¿£¬¶ÔÆä½øĞĞ·â×°
+		Iterator _cur; // æ‹¿ä¸€ä¸ªæ­£å‘çš„è¿­ä»£å™¨å½“ä½œæˆå‘˜å˜é‡ï¼Œå¯¹å…¶è¿›è¡Œå°è£…
 		typedef __reverse_iterator<Iterator, Ref, Ptr> RIterator;
 
 		__reverse_iterator(Iterator it)
@@ -50,7 +50,7 @@ namespace SnowK
 
 		Ptr operator->()
 		{
-			return &(operator*()); //return _cur.operator->(); Ò²¿É
+			return &(operator*()); //return _cur.operator->(); ä¹Ÿå¯
 		}
 
 		bool operator!=(const RIterator& it)
