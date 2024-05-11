@@ -15,8 +15,8 @@ protected:
 
 int main()
 {
-	Library* pLib=new Application();
-	lib->Run();
+	Library* pLib = new Application();
+	pLib->Run();
 
 	delete pLib;
 }

@@ -24,7 +24,6 @@ public:
 	virtual ~Library(){ }
 
 protected:
-	
 	void Step1() //Œ»∂®
     {   
         //.....
