@@ -31,7 +31,6 @@ public:
 		g.DrawLine(Pens.Red, 
 			start.x, start.y,end.x, end.y);
 	}
-
 };
 
 class Rect: public Shape
@@ -54,5 +53,4 @@ public:
 		g.DrawRectangle(Pens.Red,
 			leftUp,width,height);
 	}
-
 };
