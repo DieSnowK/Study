@@ -49,7 +49,7 @@ public:
         delete this->strategy;
     }
 
-    public double CalculateTax()
+    double CalculateTax()
     {
         //...
         Context context();
