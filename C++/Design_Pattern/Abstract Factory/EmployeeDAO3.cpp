@@ -1,4 +1,4 @@
-//鏁版嵁搴撹闂湁鍏崇殑鍩虹被
+//数据库访问有关的基类
 class IDBConnection
 {};
 class IDBCommand
@@ -14,7 +14,7 @@ public:
     virtual IDataReader* CreateDataReader() = 0;
 };
 
-//鏀寔SQL Server
+//支持SQL Server
 class SqlConnection: public IDBConnection
 {};
 class SqlCommand: public IDBCommand
@@ -25,13 +25,16 @@ class SqlDataReader: public IDataReader
 class SqlDBFactory:public IDBFactory
 {
 public:
-    virtual IDBConnection* CreateDBConnection() = 0;
-    virtual IDBCommand* CreateDBCommand() = 0;
-    virtual IDataReader* CreateDataReader() = 0;
+    virtual IDBConnection* CreateDBConnection()
+    {}
+    virtual IDBCommand* CreateDBCommand()
+    {}
+    virtual IDataReader* CreateDataReader()
+    {}
  
 };
 
-//鏀寔Oracle
+//支持Oracle
 class OracleConnection: public IDBConnection
 {};
 class OracleCommand: public IDBCommand

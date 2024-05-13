@@ -1,4 +1,4 @@
-// æ•°æ®åº“è®¿é—®æœ‰å…³çš„åŸºç±»
+// Êı¾İ¿â·ÃÎÊÓĞ¹ØµÄ»ùÀà
 class IDBConnection
 {};
 class IDBConnectionFactory
@@ -23,7 +23,7 @@ public:
     virtual IDataReader* CreateDataReader() = 0;
 };
 
-//æ”¯æŒSQL Server
+//Ö§³ÖSQL Server
 class SqlConnection: public IDBConnection
 {};
 class SqlConnectionFactory:public IDBConnectionFactory
@@ -39,7 +39,7 @@ class SqlDataReader: public IDataReader
 class SqlDataReaderFactory:public IDataReaderFactory
 {};
 
-//æ”¯æŒOracle
+//Ö§³ÖOracle
 class OracleConnection: public IDBConnection
 {};
 class OracleCommand: public IDBCommand
@@ -62,9 +62,9 @@ public:
         IDBCommand* command =
             dbCommandFactory->CreateDBCommand();
         command->CommandText("...");
-        command->SetConnection(connection); // å…³è”æ€§
+        command->SetConnection(connection); // ¹ØÁªĞÔ
 
-        IDBDataReader* reader = command->ExecuteReader(); // å…³è”æ€§
+        IDBDataReader* reader = command->ExecuteReader(); // ¹ØÁªĞÔ
         while (reader->Read())
         {}
     }
