@@ -1,79 +1,60 @@
-
-//数据库访问有关的基类
-class IDBConnection{
-    
-};
-class IDBConnectionFactory{
+// 数据库访问有关的基类
+class IDBConnection
+{};
+class IDBConnectionFactory
+{
 public:
-    virtual IDBConnection* CreateDBConnection()=0;
+    virtual IDBConnection* CreateDBConnection() = 0;
 };
 
-
-class IDBCommand{
-    
-};
-class IDBCommandFactory{
+class IDBCommand
+{};
+class IDBCommandFactory
+{
 public:
-    virtual IDBCommand* CreateDBCommand()=0;
+    virtual IDBCommand* CreateDBCommand() = 0;
 };
 
-
-class IDataReader{
-    
-};
-class IDataReaderFactory{
+class IDataReader
+{};
+class IDataReaderFactory
+{
 public:
-    virtual IDataReader* CreateDataReader()=0;
+    virtual IDataReader* CreateDataReader() = 0;
 };
-
 
 //支持SQL Server
-class SqlConnection: public IDBConnection{
-    
-};
-class SqlConnectionFactory:public IDBConnectionFactory{
-    
-};
+class SqlConnection: public IDBConnection
+{};
+class SqlConnectionFactory:public IDBConnectionFactory
+{};
 
+class SqlCommand: public IDBCommand
+{};
+class SqlCommandFactory:public IDBCommandFactory
+{};
 
-class SqlCommand: public IDBCommand{
-    
-};
-class SqlCommandFactory:public IDBCommandFactory{
-    
-};
-
-
-class SqlDataReader: public IDataReader{
-    
-};
-class SqlDataReaderFactory:public IDataReaderFactory{
-    
-};
+class SqlDataReader: public IDataReader
+{};
+class SqlDataReaderFactory:public IDataReaderFactory
+{};
 
 //支持Oracle
-class OracleConnection: public IDBConnection{
-    
-};
+class OracleConnection: public IDBConnection
+{};
+class OracleCommand: public IDBCommand
+{};
+class OracleDataReader: public IDataReader
+{};
 
-class OracleCommand: public IDBCommand{
-    
-};
-
-class OracleDataReader: public IDataReader{
-    
-};
-
-
-
-class EmployeeDAO{
+class EmployeeDAO
+{
     IDBConnectionFactory* dbConnectionFactory;
     IDBCommandFactory* dbCommandFactory;
     IDataReaderFactory* dataReaderFactory;
-    
-    
 public:
-    vector<EmployeeDO> GetEmployees(){
+    vector<EmployeeDO> GetEmployees()
+    {
         IDBConnection* connection =
             dbConnectionFactory->CreateDBConnection();
         connection->ConnectionString("...");
@@ -81,12 +62,10 @@ public:
         IDBCommand* command =
             dbCommandFactory->CreateDBCommand();
         command->CommandText("...");
-        command->SetConnection(connection); //关联性
+        command->SetConnection(connection); // 关联性
 
-        IDBDataReader* reader = command->ExecuteReader(); //关联性
-        while (reader->Read()){
-
-        }
-
+        IDBDataReader* reader = command->ExecuteReader(); // 关联性
+        while (reader->Read())
+        {}
     }
 };
