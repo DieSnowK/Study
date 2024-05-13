@@ -31,7 +31,6 @@ public:
     {}
     virtual IDataReader* CreateDataReader()
     {}
- 
 };
 
 //Ö§³ÖOracle
