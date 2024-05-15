@@ -23,7 +23,7 @@ class CollectionIterator : public Iterator<T>
 {
     MyCollection<T> mc;
 public:
-    CollectionIterator(const MyCollection<T> & c): mc(c){}
+    CollectionIterator(const MyCollection<T>& c): mc(c){}
     
     void first() override 
     {}
