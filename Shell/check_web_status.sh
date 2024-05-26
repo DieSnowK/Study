@@ -2,7 +2,7 @@
 
 CheckUrl()
 {
-    timeout=0
+    timeout=5
     fails=0
     success=0
 
