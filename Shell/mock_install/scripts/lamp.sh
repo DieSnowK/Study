@@ -1,0 +1,1 @@
+echo LAMP is installed
