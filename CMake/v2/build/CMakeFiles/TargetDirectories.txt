@@ -1,0 +1,4 @@
+/home/snowk/repository/Study/CMake/v2/build/CMakeFiles/calc1.dir
+/home/snowk/repository/Study/CMake/v2/build/CMakeFiles/calc2.dir
+/home/snowk/repository/Study/CMake/v2/build/CMakeFiles/edit_cache.dir
+/home/snowk/repository/Study/CMake/v2/build/CMakeFiles/rebuild_cache.dir

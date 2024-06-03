@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/snowk/repository/Study/CMake/v2/lib/libcalc1.a CMakeFiles/calc1.dir/src/add.c.o CMakeFiles/calc1.dir/src/div.c.o CMakeFiles/calc1.dir/src/mult.c.o CMakeFiles/calc1.dir/src/sub.c.o
+/usr/bin/ranlib /home/snowk/repository/Study/CMake/v2/lib/libcalc1.a

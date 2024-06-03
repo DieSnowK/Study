@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -shared -Wl,-soname,libcalc2.so -o /home/snowk/repository/Study/CMake/v2/lib/libcalc2.so CMakeFiles/calc2.dir/src/add.c.o CMakeFiles/calc2.dir/src/div.c.o CMakeFiles/calc2.dir/src/mult.c.o CMakeFiles/calc2.dir/src/sub.c.o 
