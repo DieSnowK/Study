@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/app.dir/src/add.c.o CMakeFiles/app.dir/src/div.c.o CMakeFiles/app.dir/src/main.c.o CMakeFiles/app.dir/src/mult.c.o CMakeFiles/app.dir/src/sub.c.o -o /home/snowk/repository/Study/CMake/v1/bin/app 
