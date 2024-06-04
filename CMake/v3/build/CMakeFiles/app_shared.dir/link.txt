@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/app_shared.dir/src/main.c.o -o /home/snowk/repository/Study/CMake/v3/bin/app_shared   -L/home/snowk/repository/Study/CMake/v3/lib  -Wl,-rpath,/home/snowk/repository/Study/CMake/v3/lib -lcalc2 
