@@ -1,0 +1,3 @@
+/home/snowk/repository/Study/ProtoBuf/fast_start/build/CMakeFiles/app.dir
+/home/snowk/repository/Study/ProtoBuf/fast_start/build/CMakeFiles/edit_cache.dir
+/home/snowk/repository/Study/ProtoBuf/fast_start/build/CMakeFiles/rebuild_cache.dir
