@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/app.dir/contacts.pb.cc.o CMakeFiles/app.dir/main.cc.o -o app  -lprotobuf 
