@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/read.dir/ProtoBuf/contacts.pb.cc.o CMakeFiles/read.dir/read.cc.o -o /home/snowk/repository/Study/ProtoBuf/v2.0/bin/read  -lprotobuf 
