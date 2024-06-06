@@ -1,0 +1,37 @@
+syntax = "proto3";
+package contacts2;
+
+import "google/protobuf/any.proto";
+
+message Address
+{
+    string home_address = 1;
+    string unit_address = 2;
+}
+
+message PeopleInfo
+{
+    string name = 1;
+    int32 age = 2;
+
+    message Phone
+    {
+        string number = 1;
+        
+        enum PhoneType
+        {
+            MP = 0;
+            TEL = 1;
+        }
+
+        PhoneType type = 2;
+    }
+
+    repeated Phone phone = 3;
+    google.protobuf.Any data = 4; // 可以认为是泛型类型
+}
+
+message Contacts
+{
+    repeated PeopleInfo contacts = 1;
+}
