@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -62,6 +63,31 @@ template<> ::contacts2::PeopleInfo_Phone* Arena::CreateMaybeMessage<::contacts2:
 PROTOBUF_NAMESPACE_CLOSE
 namespace contacts2 {
 
+enum PeopleInfo_Phone_PhoneType : int {
+  PeopleInfo_Phone_PhoneType_MP = 0,
+  PeopleInfo_Phone_PhoneType_TEL = 1,
+  PeopleInfo_Phone_PhoneType_PeopleInfo_Phone_PhoneType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  PeopleInfo_Phone_PhoneType_PeopleInfo_Phone_PhoneType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool PeopleInfo_Phone_PhoneType_IsValid(int value);
+constexpr PeopleInfo_Phone_PhoneType PeopleInfo_Phone_PhoneType_PhoneType_MIN = PeopleInfo_Phone_PhoneType_MP;
+constexpr PeopleInfo_Phone_PhoneType PeopleInfo_Phone_PhoneType_PhoneType_MAX = PeopleInfo_Phone_PhoneType_TEL;
+constexpr int PeopleInfo_Phone_PhoneType_PhoneType_ARRAYSIZE = PeopleInfo_Phone_PhoneType_PhoneType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PeopleInfo_Phone_PhoneType_descriptor();
+template<typename T>
+inline const std::string& PeopleInfo_Phone_PhoneType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PeopleInfo_Phone_PhoneType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PeopleInfo_Phone_PhoneType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PeopleInfo_Phone_PhoneType_descriptor(), enum_t_value);
+}
+inline bool PeopleInfo_Phone_PhoneType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PeopleInfo_Phone_PhoneType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PeopleInfo_Phone_PhoneType>(
+    PeopleInfo_Phone_PhoneType_descriptor(), name, value);
+}
 // ===================================================================
 
 class PeopleInfo_Phone final :
@@ -182,10 +208,41 @@ class PeopleInfo_Phone final :
 
   // nested types ----------------------------------------------------
 
+  typedef PeopleInfo_Phone_PhoneType PhoneType;
+  static constexpr PhoneType MP =
+    PeopleInfo_Phone_PhoneType_MP;
+  static constexpr PhoneType TEL =
+    PeopleInfo_Phone_PhoneType_TEL;
+  static inline bool PhoneType_IsValid(int value) {
+    return PeopleInfo_Phone_PhoneType_IsValid(value);
+  }
+  static constexpr PhoneType PhoneType_MIN =
+    PeopleInfo_Phone_PhoneType_PhoneType_MIN;
+  static constexpr PhoneType PhoneType_MAX =
+    PeopleInfo_Phone_PhoneType_PhoneType_MAX;
+  static constexpr int PhoneType_ARRAYSIZE =
+    PeopleInfo_Phone_PhoneType_PhoneType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  PhoneType_descriptor() {
+    return PeopleInfo_Phone_PhoneType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& PhoneType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, PhoneType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function PhoneType_Name.");
+    return PeopleInfo_Phone_PhoneType_Name(enum_t_value);
+  }
+  static inline bool PhoneType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      PhoneType* value) {
+    return PeopleInfo_Phone_PhoneType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kNumberFieldNumber = 1,
+    kTypeFieldNumber = 2,
   };
   // string number = 1;
   void clear_number();
@@ -201,6 +258,15 @@ class PeopleInfo_Phone final :
   std::string* _internal_mutable_number();
   public:
 
+  // .contacts2.PeopleInfo.Phone.PhoneType type = 2;
+  void clear_type();
+  ::contacts2::PeopleInfo_Phone_PhoneType type() const;
+  void set_type(::contacts2::PeopleInfo_Phone_PhoneType value);
+  private:
+  ::contacts2::PeopleInfo_Phone_PhoneType _internal_type() const;
+  void _internal_set_type(::contacts2::PeopleInfo_Phone_PhoneType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:contacts2.PeopleInfo.Phone)
  private:
   class _Internal;
@@ -210,6 +276,7 @@ class PeopleInfo_Phone final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr number_;
+    int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -619,6 +686,26 @@ inline void PeopleInfo_Phone::set_allocated_number(std::string* number) {
   // @@protoc_insertion_point(field_set_allocated:contacts2.PeopleInfo.Phone.number)
 }
 
+// .contacts2.PeopleInfo.Phone.PhoneType type = 2;
+inline void PeopleInfo_Phone::clear_type() {
+  _impl_.type_ = 0;
+}
+inline ::contacts2::PeopleInfo_Phone_PhoneType PeopleInfo_Phone::_internal_type() const {
+  return static_cast< ::contacts2::PeopleInfo_Phone_PhoneType >(_impl_.type_);
+}
+inline ::contacts2::PeopleInfo_Phone_PhoneType PeopleInfo_Phone::type() const {
+  // @@protoc_insertion_point(field_get:contacts2.PeopleInfo.Phone.type)
+  return _internal_type();
+}
+inline void PeopleInfo_Phone::_internal_set_type(::contacts2::PeopleInfo_Phone_PhoneType value) {
+  
+  _impl_.type_ = value;
+}
+inline void PeopleInfo_Phone::set_type(::contacts2::PeopleInfo_Phone_PhoneType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:contacts2.PeopleInfo.Phone.type)
+}
+
 // -------------------------------------------------------------------
 
 // PeopleInfo
@@ -788,6 +875,16 @@ Contacts::contacts() const {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace contacts2
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::contacts2::PeopleInfo_Phone_PhoneType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::contacts2::PeopleInfo_Phone_PhoneType>() {
+  return ::contacts2::PeopleInfo_Phone_PhoneType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

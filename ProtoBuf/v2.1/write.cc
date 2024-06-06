@@ -31,6 +31,23 @@ void AddPeopleInfo(contacts2::PeopleInfo* people)
 
         contacts2::PeopleInfo_Phone* phone = people->add_phone();
         phone->set_number(tele);
+
+        cout << "请输入该电话类型(1.移动电话  2.固定电话)" << endl;
+        int type = 0;
+        cin >> type;
+        cin.ignore(256, '\n');
+        switch(type)
+        {
+        case 1:
+            phone->set_type(contacts2::PeopleInfo_Phone_PhoneType::PeopleInfo_Phone_PhoneType_MP);
+            break;
+        case 2:
+            phone->set_type(contacts2::PeopleInfo_Phone_PhoneType::PeopleInfo_Phone_PhoneType_TEL);
+            break;
+        default:
+            cout << "选择有误! (默认为MP)" << endl;
+            break;
+        }
     }
 
     cout << "----------------新增联系人成功----------------" << endl;
