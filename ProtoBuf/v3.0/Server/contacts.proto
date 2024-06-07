@@ -1,0 +1,23 @@
+syntax = "proto3";
+package s_contacts3;
+
+message PeopleInfo
+{
+    reserved 2;
+
+    string name = 1;
+    // int32 age = 2;
+    int32 birthday = 4;
+
+    message Phone
+    {
+        string number = 1;
+    }
+
+    repeated Phone phone = 3;
+}
+
+message Contacts
+{
+    repeated PeopleInfo contacts = 1;
+}
