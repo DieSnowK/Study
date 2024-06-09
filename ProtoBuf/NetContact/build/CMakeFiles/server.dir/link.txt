@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/server.dir/Common/ProtoBuf/add_contact.pb.cc.o CMakeFiles/server.dir/Server/server.cc.o -o /home/snowk/repository/Study/ProtoBuf/NetContact/bin/server  -lprotobuf -lpthread 

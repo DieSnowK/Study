@@ -1,0 +1,4 @@
+/home/snowk/repository/Study/ProtoBuf/NetContact/build/CMakeFiles/client.dir
+/home/snowk/repository/Study/ProtoBuf/NetContact/build/CMakeFiles/server.dir
+/home/snowk/repository/Study/ProtoBuf/NetContact/build/CMakeFiles/edit_cache.dir
+/home/snowk/repository/Study/ProtoBuf/NetContact/build/CMakeFiles/rebuild_cache.dir

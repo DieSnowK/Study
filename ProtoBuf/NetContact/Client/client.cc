@@ -2,6 +2,7 @@
 #include <string>
 #include "httplib.h"
 #include "add_contact.pb.h"
+#include "ContactsException.h"
 
 using std::cerr;
 using std::cin;
@@ -25,7 +26,17 @@ void Menu()
 
 void AddContact()
 {
+    httplib::Client client(IP, PORT);
     
+    // 1.构造req
+
+    // 2.序列化req
+
+    // 3.发起Post调用
+
+    // 4.反序列化 resp
+
+    // 5.结果打印
 }
 
 int main()
@@ -47,13 +58,30 @@ int main()
         cin >> choice;
         cin.ignore(256, '\n');
 
-        switch(choice)
+        try
         {
-        case OPTION::QUIT:
-            cout << "Process Quit :P" << endl;
-            break;
-        case OPTION::ADD:
-            AddContact();
+            switch (choice)
+            {
+            case OPTION::QUIT:
+                cout << "Process Quit :P" << endl;
+                break;
+            case OPTION::ADD:
+                AddContact();
+            case OPTION::DEL:
+                break;
+            case OPTION::FIND_ALL:
+                break;
+            case OPTION::FIND_ONE:
+                break;
+            default:
+                cout << "选择错误，请重新选择:)" << endl;
+                break;
+            }
+        }
+        catch(const ContactsException& e)
+        {
+            cout << "操作通讯录时发生异常" << endl
+                 << "异常信息: " << e.What() << endl;
         }
     }
 }
