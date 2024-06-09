@@ -23,6 +23,6 @@ message AddContactRequest
 message AddContactResponse
 {
     bool success = 1;
-    string errorDesc = 2;
+    string error_desc = 2;
     string uid = 3;
 }

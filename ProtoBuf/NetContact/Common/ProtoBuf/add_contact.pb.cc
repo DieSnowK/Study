@@ -52,7 +52,7 @@ struct AddContactRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddContactRequestDefaultTypeInternal _AddContactRequest_default_instance_;
 PROTOBUF_CONSTEXPR AddContactResponse::AddContactResponse(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.errordesc_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.error_desc_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.uid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -95,7 +95,7 @@ const uint32_t TableStruct_add_5fcontact_2eproto::offsets[] PROTOBUF_SECTION_VAR
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::AddCont::AddContactResponse, _impl_.success_),
-  PROTOBUF_FIELD_OFFSET(::AddCont::AddContactResponse, _impl_.errordesc_),
+  PROTOBUF_FIELD_OFFSET(::AddCont::AddContactResponse, _impl_.error_desc_),
   PROTOBUF_FIELD_OFFSET(::AddCont::AddContactResponse, _impl_.uid_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -117,12 +117,12 @@ const char descriptor_table_protodef_add_5fcontact_2eproto[] PROTOBUF_SECTION_VA
   ".Phone\032o\n\005Phone\022\016\n\006number\030\001 \001(\t\0228\n\004type\030"
   "\002 \001(\0162*.AddCont.AddContactRequest.Phone."
   "PhoneType\"\034\n\tPhoneType\022\006\n\002MP\020\000\022\007\n\003TEL\020\001\""
-  "E\n\022AddContactResponse\022\017\n\007success\030\001 \001(\010\022\021"
-  "\n\terrorDesc\030\002 \001(\t\022\013\n\003uid\030\003 \001(\tb\006proto3"
+  "F\n\022AddContactResponse\022\017\n\007success\030\001 \001(\010\022\022"
+  "\n\nerror_desc\030\002 \001(\t\022\013\n\003uid\030\003 \001(\tb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_add_5fcontact_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_add_5fcontact_2eproto = {
-    false, false, 318, descriptor_table_protodef_add_5fcontact_2eproto,
+    false, false, 319, descriptor_table_protodef_add_5fcontact_2eproto,
     "add_contact.proto",
     &descriptor_table_add_5fcontact_2eproto_once, nullptr, 0, 3,
     schemas, file_default_instances, TableStruct_add_5fcontact_2eproto::offsets,
@@ -671,18 +671,18 @@ AddContactResponse::AddContactResponse(const AddContactResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   AddContactResponse* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.errordesc_){}
+      decltype(_impl_.error_desc_){}
     , decltype(_impl_.uid_){}
     , decltype(_impl_.success_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.errordesc_.InitDefault();
+  _impl_.error_desc_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.errordesc_.Set("", GetArenaForAllocation());
+    _impl_.error_desc_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_errordesc().empty()) {
-    _this->_impl_.errordesc_.Set(from._internal_errordesc(), 
+  if (!from._internal_error_desc().empty()) {
+    _this->_impl_.error_desc_.Set(from._internal_error_desc(), 
       _this->GetArenaForAllocation());
   }
   _impl_.uid_.InitDefault();
@@ -702,14 +702,14 @@ inline void AddContactResponse::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.errordesc_){}
+      decltype(_impl_.error_desc_){}
     , decltype(_impl_.uid_){}
     , decltype(_impl_.success_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.errordesc_.InitDefault();
+  _impl_.error_desc_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.errordesc_.Set("", GetArenaForAllocation());
+    _impl_.error_desc_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.uid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -728,7 +728,7 @@ AddContactResponse::~AddContactResponse() {
 
 inline void AddContactResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.errordesc_.Destroy();
+  _impl_.error_desc_.Destroy();
   _impl_.uid_.Destroy();
 }
 
@@ -742,7 +742,7 @@ void AddContactResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.errordesc_.ClearToEmpty();
+  _impl_.error_desc_.ClearToEmpty();
   _impl_.uid_.ClearToEmpty();
   _impl_.success_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -762,13 +762,13 @@ const char* AddContactResponse::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // string errorDesc = 2;
+      // string error_desc = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_errordesc();
+          auto str = _internal_mutable_error_desc();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "AddCont.AddContactResponse.errorDesc"));
+          CHK_(::_pbi::VerifyUTF8(str, "AddCont.AddContactResponse.error_desc"));
         } else
           goto handle_unusual;
         continue;
@@ -817,14 +817,14 @@ uint8_t* AddContactResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
   }
 
-  // string errorDesc = 2;
-  if (!this->_internal_errordesc().empty()) {
+  // string error_desc = 2;
+  if (!this->_internal_error_desc().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_errordesc().data(), static_cast<int>(this->_internal_errordesc().length()),
+      this->_internal_error_desc().data(), static_cast<int>(this->_internal_error_desc().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "AddCont.AddContactResponse.errorDesc");
+      "AddCont.AddContactResponse.error_desc");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_errordesc(), target);
+        2, this->_internal_error_desc(), target);
   }
 
   // string uid = 3;
@@ -853,11 +853,11 @@ size_t AddContactResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string errorDesc = 2;
-  if (!this->_internal_errordesc().empty()) {
+  // string error_desc = 2;
+  if (!this->_internal_error_desc().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_errordesc());
+        this->_internal_error_desc());
   }
 
   // string uid = 3;
@@ -890,8 +890,8 @@ void AddContactResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_errordesc().empty()) {
-    _this->_internal_set_errordesc(from._internal_errordesc());
+  if (!from._internal_error_desc().empty()) {
+    _this->_internal_set_error_desc(from._internal_error_desc());
   }
   if (!from._internal_uid().empty()) {
     _this->_internal_set_uid(from._internal_uid());
@@ -919,8 +919,8 @@ void AddContactResponse::InternalSwap(AddContactResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.errordesc_, lhs_arena,
-      &other->_impl_.errordesc_, rhs_arena
+      &_impl_.error_desc_, lhs_arena,
+      &other->_impl_.error_desc_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.uid_, lhs_arena,

@@ -595,18 +595,18 @@ class AddContactResponse final :
     kUidFieldNumber = 3,
     kSuccessFieldNumber = 1,
   };
-  // string errorDesc = 2;
-  void clear_errordesc();
-  const std::string& errordesc() const;
+  // string error_desc = 2;
+  void clear_error_desc();
+  const std::string& error_desc() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_errordesc(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_errordesc();
-  PROTOBUF_NODISCARD std::string* release_errordesc();
-  void set_allocated_errordesc(std::string* errordesc);
+  void set_error_desc(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error_desc();
+  PROTOBUF_NODISCARD std::string* release_error_desc();
+  void set_allocated_error_desc(std::string* error_desc);
   private:
-  const std::string& _internal_errordesc() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_errordesc(const std::string& value);
-  std::string* _internal_mutable_errordesc();
+  const std::string& _internal_error_desc() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error_desc(const std::string& value);
+  std::string* _internal_mutable_error_desc();
   public:
 
   // string uid = 3;
@@ -640,7 +640,7 @@ class AddContactResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr errordesc_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_desc_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
     bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -867,54 +867,54 @@ inline void AddContactResponse::set_success(bool value) {
   // @@protoc_insertion_point(field_set:AddCont.AddContactResponse.success)
 }
 
-// string errorDesc = 2;
-inline void AddContactResponse::clear_errordesc() {
-  _impl_.errordesc_.ClearToEmpty();
+// string error_desc = 2;
+inline void AddContactResponse::clear_error_desc() {
+  _impl_.error_desc_.ClearToEmpty();
 }
-inline const std::string& AddContactResponse::errordesc() const {
-  // @@protoc_insertion_point(field_get:AddCont.AddContactResponse.errorDesc)
-  return _internal_errordesc();
+inline const std::string& AddContactResponse::error_desc() const {
+  // @@protoc_insertion_point(field_get:AddCont.AddContactResponse.error_desc)
+  return _internal_error_desc();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void AddContactResponse::set_errordesc(ArgT0&& arg0, ArgT... args) {
+void AddContactResponse::set_error_desc(ArgT0&& arg0, ArgT... args) {
  
- _impl_.errordesc_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:AddCont.AddContactResponse.errorDesc)
+ _impl_.error_desc_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AddCont.AddContactResponse.error_desc)
 }
-inline std::string* AddContactResponse::mutable_errordesc() {
-  std::string* _s = _internal_mutable_errordesc();
-  // @@protoc_insertion_point(field_mutable:AddCont.AddContactResponse.errorDesc)
+inline std::string* AddContactResponse::mutable_error_desc() {
+  std::string* _s = _internal_mutable_error_desc();
+  // @@protoc_insertion_point(field_mutable:AddCont.AddContactResponse.error_desc)
   return _s;
 }
-inline const std::string& AddContactResponse::_internal_errordesc() const {
-  return _impl_.errordesc_.Get();
+inline const std::string& AddContactResponse::_internal_error_desc() const {
+  return _impl_.error_desc_.Get();
 }
-inline void AddContactResponse::_internal_set_errordesc(const std::string& value) {
+inline void AddContactResponse::_internal_set_error_desc(const std::string& value) {
   
-  _impl_.errordesc_.Set(value, GetArenaForAllocation());
+  _impl_.error_desc_.Set(value, GetArenaForAllocation());
 }
-inline std::string* AddContactResponse::_internal_mutable_errordesc() {
+inline std::string* AddContactResponse::_internal_mutable_error_desc() {
   
-  return _impl_.errordesc_.Mutable(GetArenaForAllocation());
+  return _impl_.error_desc_.Mutable(GetArenaForAllocation());
 }
-inline std::string* AddContactResponse::release_errordesc() {
-  // @@protoc_insertion_point(field_release:AddCont.AddContactResponse.errorDesc)
-  return _impl_.errordesc_.Release();
+inline std::string* AddContactResponse::release_error_desc() {
+  // @@protoc_insertion_point(field_release:AddCont.AddContactResponse.error_desc)
+  return _impl_.error_desc_.Release();
 }
-inline void AddContactResponse::set_allocated_errordesc(std::string* errordesc) {
-  if (errordesc != nullptr) {
+inline void AddContactResponse::set_allocated_error_desc(std::string* error_desc) {
+  if (error_desc != nullptr) {
     
   } else {
     
   }
-  _impl_.errordesc_.SetAllocated(errordesc, GetArenaForAllocation());
+  _impl_.error_desc_.SetAllocated(error_desc, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.errordesc_.IsDefault()) {
-    _impl_.errordesc_.Set("", GetArenaForAllocation());
+  if (_impl_.error_desc_.IsDefault()) {
+    _impl_.error_desc_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:AddCont.AddContactResponse.errorDesc)
+  // @@protoc_insertion_point(field_set_allocated:AddCont.AddContactResponse.error_desc)
 }
 
 // string uid = 3;
