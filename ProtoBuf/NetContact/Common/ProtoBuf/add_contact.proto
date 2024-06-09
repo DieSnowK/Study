@@ -1,0 +1,28 @@
+syntax = "proto3";
+package AddCont;
+
+message AddContactRequest
+{
+    string name = 1;
+    int32 age = 2;
+
+    message Phone
+    {
+        string number = 1;
+        enum PhoneType
+        {
+            MP = 0;
+            TEL = 1;
+        }
+        PhoneType type = 2;
+    }
+
+    repeated Phone phone = 3;
+}
+
+message AddContactResponse
+{
+    bool success = 1;
+    string errorDesc = 2;
+    string uid = 3;
+}
