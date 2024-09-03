@@ -40,10 +40,64 @@ void TestSetNXAndXX(Redis &redis)
     }
 }
 
+void TestMset(Redis &redis)
+{
+    redis.flushall();
+
+    // 第一种写法, 使用初始化列表描述多个键值对
+    // redis.mset({ std::make_pair("key1", "111"), std::make_pair("key2", "222"), std::make_pair("key3", "333") });
+
+    // 第二种写法, 可以把多个键值对提前组织到容器中. 以迭代器的形式告诉 mset
+    vector<pair<string, string>> keys = {
+        {"key1", "111"},
+        {"key2", "222"},
+        {"key3", "333"}
+    };
+    redis.mset(keys.begin(), keys.end());
+
+    auto value = redis.get("key1");
+    if (value)
+    {
+        std::cout << "value: " << value.value() << std::endl;
+    }
+
+    value = redis.get("key2");
+    if (value)
+    {
+        std::cout << "value: " << value.value() << std::endl;
+    }
+
+    value = redis.get("key3");
+    if (value)
+    {
+        std::cout << "value: " << value.value() << std::endl;
+    }
+}
+
+void TestMget(Redis &redis)
+{
+    redis.flushall();
+
+    vector<std::pair<string, string>> keys = {
+        {"key1", "111"},
+        {"key2", "222"},
+        {"key3", "333"}};
+    redis.mset(keys.begin(), keys.end());
+
+    vector<sw::redis::OptionalString> result;
+    auto it = std::back_inserter(result);
+    redis.mget({"key1", "key2", "key3", "key4"}, it);
+
+    PrintContainerOptional(result);
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestSetWithExpire(redis);
-    TestSetNXAndXX(redis);
+    // TestSetNXAndXX(redis);
+    // TestMset(redis);
+    TestMget(redis);
+
     return 0;
 }

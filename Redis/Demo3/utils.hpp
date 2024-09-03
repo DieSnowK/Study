@@ -18,7 +18,7 @@ inline void PrintContainerPair(const T &container)
 {
     for (auto &elem : container)
     {
-        // ´Ë´¦Ô¤ÆÚ elem ÊÇÒ»¸ö std::pair
+        // æ­¤å¤„é¢„æœŸ elem æ˜¯ä¸€ä¸ª std::pair
         std::cout << elem.first << ": " << elem.second << std::endl;
     }
 }
@@ -28,14 +28,14 @@ inline void PrintContainerOptional(const T &container)
 {
     for (const auto &elem : container)
     {
-        // ´Ë´¦Ô¤ÆÚ elem ÊÇÒ»¸ö optional ÀàÐÍµÄÔªËØ, ´òÓ¡Ö®Ç°, ÏÈÅÐ¶¨Ò»ÏÂ, ¿´ÊÇ·ñÓÐÐ§
+        // æ­¤å¤„é¢„æœŸ elem æ˜¯ä¸€ä¸ª optional ç±»åž‹çš„å…ƒç´ , æ‰“å°ä¹‹å‰, å…ˆåˆ¤å®šä¸€ä¸‹, çœ‹æ˜¯å¦æœ‰æ•ˆ
         if (elem)
         {
             std::cout << elem.value() << std::endl;
         }
         else
         {
-            std::cout << "ÔªËØÎÞÐ§" << std::endl;
+            std::cout << "å…ƒç´ æ— æ•ˆ" << std::endl;
         }
     }
 }
