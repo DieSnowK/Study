@@ -13,17 +13,17 @@ void TestPushAndRange(Redis &redis)
 {
     redis.flushall();
 
-    // ²åÈëµ¥¸öÔªËØ
+    // æ’å…¥å•ä¸ªå…ƒç´ 
     redis.lpush("key", "111");
 
-    // ²åÈëÒ»×éÔªËØ, »ùÓÚ³õÊ¼»¯ÁĞ±í
+    // æ’å…¥ä¸€ç»„å…ƒç´ , åŸºäºåˆå§‹åŒ–åˆ—è¡¨
     redis.lpush("key", {"222", "333", "444"});
 
-    // ²åÈëÒ»×éÔªËØ, »ùÓÚµü´úÆ÷
+    // æ’å…¥ä¸€ç»„å…ƒç´ , åŸºäºè¿­ä»£å™¨
     vector<string> values = {"555", "666", "777"};
     redis.lpush("key", values.begin(), values.end());
 
-    // lrange »ñÈ¡µ½ÁĞ±íÖĞµÄÔªËØ
+    // lrange è·å–åˆ°åˆ—è¡¨ä¸­çš„å…ƒç´ 
     vector<string> results;
     auto it = std::back_inserter(results);
     redis.lrange("key", 0, -1, it);
@@ -31,11 +31,50 @@ void TestPushAndRange(Redis &redis)
     PrintContainer(results);
 }
 
+void TestPop(Redis &redis)
+{
+    redis.flushall();
 
+    // æ„é€ ä¸€ä¸ª list
+    redis.rpush("key", {"1", "2", "3", "4"});
+
+    auto result = redis.lpop("key");
+    if (result)
+    {
+        std::cout << "lpop: " << result.value() << std::endl;
+    }
+
+    result = redis.rpop("key");
+    if (result)
+    {
+        std::cout << "rpop: " << result.value() << std::endl;
+    }
+}
+
+void TestBlpop(Redis &redis)
+{
+    redis.flushall();
+
+    auto result = redis.blpop({"key", "key2", "key3"}, 10s);
+
+    // æ­¤å¤„å¯ä»¥è€ƒè™‘åœ¨å…¶ä»–redis-cliæ’å…¥æ•°æ®ä»¥ä¾¿è¿›ä¸€æ­¥è§‚å¯Ÿæ•ˆæœ
+
+    if (result)
+    {
+        std::cout << "key:" << result->first << std::endl;
+        std::cout << "elem:" << result->second << std::endl;
+    }
+    else
+    {
+        std::cout << "result æ— æ•ˆ!" << std::endl;
+    }
+}
 
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
-    TestPushAndRange(redis);
+    // TestPushAndRange(redis);
+    // TestPop(redis);
+    TestBlpop(redis);
     return 0;
 }
