@@ -42,10 +42,47 @@ void TestGetAndSet(sw::redis::Redis& redis)
     }
 }
 
+void TestExists(sw::redis::Redis &redis)
+{
+    redis.flushall();
+
+    redis.set("key1", "111");
+    redis.set("key3", "111");
+
+    auto ret = redis.exists("key1");
+    cout << ret << endl;
+
+    ret = redis.exists("key2");
+    cout << ret << endl;
+
+    // exists()的重载形式，可以用一个初始化列表传参
+    ret = redis.exists({"key1", "key2", "key3"});
+    cout << ret << endl;
+}
+
+void TestDel(sw::redis::Redis &redis)
+{
+    redis.flushall();
+
+    redis.set("key1", "111");
+    redis.set("key2", "111");
+
+    // redis.del("key");
+
+    // redis.del()也重载了初始化列表传参的版本
+    auto ret = redis.del({"key1", "key2", "key3"});
+    cout << ret << endl;
+
+    ret = redis.exists({"key1", "key2"});
+    cout << ret << endl;
+}
+
 int main()
 {
     sw::redis::Redis redis("tcp://127.0.0.1:6379");
-    TestGetAndSet(redis);
+    // TestGetAndSet(redis);
+    // TestExists(redis);
+    TestDel(redis);
 
     return 0;
 }
