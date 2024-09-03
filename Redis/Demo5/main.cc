@@ -39,9 +39,20 @@ void TestSaddAndSmembers(Redis& redis)
     PrintContainer(result);
 }
 
+void TestSismember(Redis& redis)
+{
+    redis.flushall();
+
+    redis.sadd("key", {"111", "222", "333", "444"});
+
+    bool result = redis.sismember("key", "555");
+    cout << "result: " << result << endl;
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
-    TestSaddAndSmembers(redis);
+    // TestSaddAndSmembers(redis);
+    TestSismember(redis);
     return 0;
 }
