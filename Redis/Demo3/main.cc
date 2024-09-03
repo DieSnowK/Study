@@ -91,13 +91,29 @@ void TestMget(Redis &redis)
     PrintContainerOptional(result);
 }
 
+void TestRange(Redis &redis)
+{
+    redis.flushall();
+
+    redis.set("key", "DieKSnowK");
+
+    string result = redis.getrange("key", 2, 5);
+    cout << "result: " << result << endl;
+
+    redis.setrange("key", 2, "xyz");
+
+    auto value = redis.get("key");
+    cout << "value: " << value.value() << endl;
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestSetWithExpire(redis);
     // TestSetNXAndXX(redis);
     // TestMset(redis);
-    TestMget(redis);
+    // TestMget(redis);
+    TestRange(redis);
 
     return 0;
 }
