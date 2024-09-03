@@ -106,6 +106,25 @@ void TestRange(Redis &redis)
     cout << "value: " << value.value() << endl;
 }
 
+void TestIncrAndDecr(Redis &redis)
+{
+    redis.flushall();
+
+    redis.set("key", "100");
+
+    long long result = redis.incr("key");
+    cout << "result: " << result << endl;
+
+    auto value = redis.get("key");
+    cout << "value: " << value.value() << endl;
+
+    result = redis.decr("key");
+    cout << "result: " << result << endl;
+
+    value = redis.get("key");
+    cout << "value: " << value.value() << endl;
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
@@ -113,7 +132,8 @@ int main()
     // TestSetNXAndXX(redis);
     // TestMset(redis);
     // TestMget(redis);
-    TestRange(redis);
+    // TestRange(redis);
+    TestIncrAndDecr(redis);
 
     return 0;
 }
