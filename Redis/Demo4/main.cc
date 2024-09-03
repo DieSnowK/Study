@@ -70,11 +70,21 @@ void TestBlpop(Redis &redis)
     }
 }
 
+void TestLlen(Redis &redis)
+{
+    redis.flushall();
+
+    redis.lpush("key", {"111", "222", "333", "444"});
+    long long len = redis.llen("key");
+    cout << "len: " << len << endl;
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestPushAndRange(redis);
     // TestPop(redis);
-    TestBlpop(redis);
+    // TestBlpop(redis);
+    TestLlen(redis);
     return 0;
 }
