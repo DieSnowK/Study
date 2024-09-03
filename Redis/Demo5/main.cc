@@ -74,11 +74,28 @@ void TestSpop(Redis& redis)
     }
 }
 
+void TestSinter(Redis &redis)
+{
+    redis.flushall();
+
+    redis.sadd("key1", {"111", "222", "333"});
+    redis.sadd("key2", {"111", "222", "444"});
+
+    set<string> result;
+    auto it = std::inserter(result, result.end());
+    redis.sinter({"key1", "key2"}, it);
+
+    PrintContainer(result);
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestSaddAndSmembers(redis);
     // TestSismember(redis);
     // TestScard(redis);
+    // TestSpop(redis);
+    TestSinter(redis);
+
     return 0;
 }
