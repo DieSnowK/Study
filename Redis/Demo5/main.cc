@@ -88,6 +88,23 @@ void TestSinter(Redis &redis)
     PrintContainer(result);
 }
 
+void TestSinterstore(Redis &redis)
+{
+    redis.flushall();
+
+    redis.sadd("key1", {"111", "222", "333"});
+    redis.sadd("key2", {"111", "222", "444"});
+
+    long long len = redis.sinterstore("key3", {"key1", "key2"});
+    cout << "len: " << len << endl;
+
+    set<string> result;
+    auto it = std::inserter(result, result.end());
+    redis.smembers("key3", it);
+
+    PrintContainer(result);
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
@@ -95,7 +112,8 @@ int main()
     // TestSismember(redis);
     // TestScard(redis);
     // TestSpop(redis);
-    TestSinter(redis);
+    // TestSinter(redis);
+    TestSinterstore(redis);
 
     return 0;
 }
