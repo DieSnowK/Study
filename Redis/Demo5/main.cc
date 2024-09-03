@@ -15,24 +15,24 @@ void TestSaddAndSmembers(Redis& redis)
 {
     redis.flushall();
 
-    // Ò»´ÎÌí¼ÓÒ»¸öÔªËØ
+    // ä¸€æ¬¡æ·»åŠ ä¸€ä¸ªå…ƒç´ 
     redis.sadd("key", "111");
 
-    // Ò»´ÎÌí¼Ó¶à¸öÔªËØ(Ê¹ÓÃ³õÊ¼»¯ÁĞ±í)
+    // ä¸€æ¬¡æ·»åŠ å¤šä¸ªå…ƒç´ (ä½¿ç”¨åˆå§‹åŒ–åˆ—è¡¨)
     redis.sadd("key", {"222", "333", "444"});
 
-    // Ò»´ÎÌí¼Ó¶à¸öÔªËØ(Ê¹ÓÃµü´úÆ÷)
+    // ä¸€æ¬¡æ·»åŠ å¤šä¸ªå…ƒç´ (ä½¿ç”¨è¿­ä»£å™¨)
     set<string> elems = {"555", "666", "777"};
     redis.sadd("key", elems.begin(), elems.end());
 
-    // »ñÈ¡µ½ÉÏÊöÔªËØ
+    // è·å–åˆ°ä¸Šè¿°å…ƒç´ 
     // vector<string> result;
     // auto it = std::back_inserter(result);
 
-    // ´Ë´¦ÓÃÀ´±£´æ smembers µÄ½á¹û, Ê¹ÓÃ set ¿ÉÄÜ¸üºÏÊÊ.
+    // æ­¤å¤„ç”¨æ¥ä¿å­˜ smembers çš„ç»“æœ, ä½¿ç”¨ set å¯èƒ½æ›´åˆé€‚.
     set<string> result;
 
-    // ÓÉÓÚ´Ë´¦ set ÀïµÄÔªËØË³ĞòÊÇ¹Ì¶¨µÄ. Ö¸¶¨Ò»¸ö result.end() »òÕß result.begin() »òÕßÆäËûÎ»ÖÃµÄµü´úÆ÷, ¶¼ÎŞËùÎ½
+    // ç”±äºæ­¤å¤„ set é‡Œçš„å…ƒç´ é¡ºåºæ˜¯å›ºå®šçš„. æŒ‡å®šä¸€ä¸ª result.end() æˆ–è€… result.begin() æˆ–è€…å…¶ä»–ä½ç½®çš„è¿­ä»£å™¨, éƒ½æ— æ‰€è°“
     auto it = std::inserter(result, result.end());
     redis.smembers("key", it);
 
@@ -58,11 +58,27 @@ void TestScard(Redis &redis)
     cout << "result: " << result << endl;
 }
 
+void TestSpop(Redis& redis)
+{
+    redis.flushall();
+
+    redis.sadd("key", {"111", "222", "333", "444"});
+    auto result = redis.spop("key");
+    if (result)
+    {
+        std::cout << "result: " << result.value() << std::endl;
+    }
+    else
+    {
+        std::cout << "result æ— æ•ˆ!" << std::endl;
+    }
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestSaddAndSmembers(redis);
     // TestSismember(redis);
-    TestScard(redis);
+    // TestScard(redis);
     return 0;
 }
