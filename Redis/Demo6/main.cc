@@ -38,9 +38,82 @@ void TestHsetAndHget(Redis &redis)
     }
 }
 
+void TestHexists(Redis &redis)
+{
+    redis.flushall();
+
+    redis.hset("key", "f1", "111");
+    redis.hset("key", "f2", "222");
+    redis.hset("key", "f3", "333");
+
+    bool result = redis.hexists("key", "f4");
+    std::cout << "result: " << result << std::endl;
+}
+
+void TestHdel(Redis &redis)
+{
+    redis.flushall();
+
+    redis.hset("key", "f1", "111");
+    redis.hset("key", "f2", "222");
+    redis.hset("key", "f3", "333");
+
+    long long result = redis.hdel("key", "f1");
+    std::cout << "result: " << result << std::endl;
+
+    result = redis.hdel("key", {"f2", "f3"});
+    std::cout << "result: " << result << std::endl;
+
+    long long len = redis.hlen("key");
+    std::cout << "len: " << len << std::endl;
+}
+
+void TestHkeysAndHvals(Redis &redis)
+{
+    redis.flushall();
+
+    redis.hset("key", "f1", "111");
+    redis.hset("key", "f2", "222");
+    redis.hset("key", "f3", "333");
+
+    vector<string> fields;
+    auto itFields = std::back_inserter(fields);
+    redis.hkeys("key", itFields);
+    PrintContainer(fields);
+
+    vector<string> values;
+    auto itValues = std::back_inserter(values);
+    redis.hvals("key", itValues);
+    PrintContainer(values);
+}
+
+void TestHmgetAndHmset(Redis &redis)
+{
+    redis.flushall();
+
+    redis.hmset("key", {std::make_pair("f1", "111"),
+                        std::make_pair("f2", "222"),
+                        std::make_pair("f3", "333")});
+
+    vector<std::pair<string, string>> pairs = {
+        std::make_pair("f4", "444"),
+        std::make_pair("f5", "555"),
+        std::make_pair("f6", "666")};
+    redis.hmset("key", pairs.begin(), pairs.end());
+
+    vector<string> values;
+    auto it = std::back_inserter(values);
+    redis.hmget("key", {"f1", "f2", "f3"}, it);
+    PrintContainer(values);
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
-    TestHsetAndHget(redis);
+    // TestHsetAndHget(redis);
+    // TestHexists(redis);
+    // TestHdel(redis);
+    // TestHkeysAndHvals(redis);
+
     return 0;
 }
