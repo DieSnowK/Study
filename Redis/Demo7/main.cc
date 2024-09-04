@@ -35,8 +35,40 @@ void TestZaddAndZrange(Redis &redis)
     PrintContainerPair(membersWithScore);
 }
 
+void TestZcard(Redis &redis)
+{
+    redis.flushall();
+
+    redis.zadd("key", "zhangsan", 90);
+    redis.zadd("key", "lisi", 91);
+    redis.zadd("key", "wangwu", 92);
+    redis.zadd("key", "zhaoliu", 93);
+
+    long long result = redis.zcard("key");
+    std::cout << "result: " << result << std::endl;
+}
+
+void TestZrem(Redis &redis)
+{
+    redis.flushall();
+
+    redis.zadd("key", "zhangsan", 90);
+    redis.zadd("key", "lisi", 91);
+    redis.zadd("key", "wangwu", 92);
+    redis.zadd("key", "zhaoliu", 93);
+
+    redis.zrem("key", "zhangsan");
+
+    long long result = redis.zcard("key");
+    std::cout << "result: " << result << std::endl;
+}
+
 int main()
 {
-
+    Redis redis("tcp://127.0.0.1:6379");
+    // TestZaddAndZrange(redis);
+    // TestZcard(redis);
+    TestZrem(redis);
+   
     return 0;
 }
