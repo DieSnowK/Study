@@ -68,7 +68,8 @@ int main()
     Redis redis("tcp://127.0.0.1:6379");
     // TestZaddAndZrange(redis);
     // TestZcard(redis);
-    TestZrem(redis);
+    // TestZrem(redis);
+    
    
     return 0;
 }
