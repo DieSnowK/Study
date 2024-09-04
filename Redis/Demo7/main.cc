@@ -83,13 +83,34 @@ void TestZscore(Redis &redis)
     }
 }
 
+void TestZrank(Redis &redis)
+{
+    redis.flushall();
+
+    redis.zadd("key", "zhangsan", 90);
+    redis.zadd("key", "lisi", 91);
+    redis.zadd("key", "wangwu", 92);
+    redis.zadd("key", "zhaoliu", 93);
+
+    auto rank = redis.zrank("key", "zhaoliu");
+    if (rank)
+    {
+        std::cout << "rank: " << rank.value() << std::endl;
+    }
+    else
+    {
+        std::cout << "rank ÎŞĞ§" << std::endl;
+    }
+}
+
 int main()
 {
     Redis redis("tcp://127.0.0.1:6379");
     // TestZaddAndZrange(redis);
     // TestZcard(redis);
     // TestZrem(redis);
-
+    // TestZscore(redis);
+    TestZrank(redis);
    
     return 0;
 }
