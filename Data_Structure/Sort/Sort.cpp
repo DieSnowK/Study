@@ -721,3 +721,161 @@ void MergeSortNonR(int* a, int n)
 
 	free(tmp);
 }
+/////////////////////////////////////////////////////////////////////////////////////
+// 外排序 -- 归并排序
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <memory>
+
+class ExternalSorter
+{
+private:
+    static constexpr int CHUNK_SIZE = 1000000;
+    
+    std::string data_file = "data.txt";
+    std::string file1 = "file1.txt";
+    std::string file2 = "file2.txt";
+    std::string mfile = "mfile.txt";
+
+public:
+    // 读取n个数据排序并写入文件
+    int ReadNDataSortToFile(std::ifstream& fin, int n, const std::string& filename)
+    {
+        std::vector<int> data;
+        data.reserve(n);
+        
+        int x = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            if (!(fin >> x))
+            {
+                break;
+            }
+            data.push_back(x);
+        }
+
+        if (data.empty())
+        {
+            return 0;
+        }
+
+        // 排序
+        std::sort(data.begin(), data.end());
+
+        // 写入文件
+        std::ofstream fout(filename);
+        if (!fout)
+        {
+            std::cerr << "Error: Cannot open " << filename << " for writing" << std::endl;
+            return 0;
+        }
+
+        for (const auto& num : data)
+        {
+            fout << num << "\n";
+        }
+
+        return data.size();
+    }
+
+    // 归并两个文件
+    void MergeFiles(const std::string& file1, const std::string& file2, const std::string& output_file)
+    {
+        std::ifstream fin1(file1);
+        std::ifstream fin2(file2);
+        std::ofstream fout(output_file);
+
+        if (!fin1 || !fin2 || !fout)
+        {
+            std::cerr << "Error: Cannot open files for merging" << std::endl;
+            return;
+        }
+
+        int x1 = 0, x2 = 0;
+        bool has_x1 = !!(fin1 >> x1); // 这里算是一个技巧? --> !!双重否定, 目的是将 fin >> x1 转换为一个 bool 值
+        bool has_x2 = !!(fin2 >> x2); // 作用：状态标记
+
+        // 归并排序的核心逻辑
+        while (has_x1 && has_x2)
+        {
+            if (x1 < x2)
+            {
+                fout << x1 << "\n";
+                has_x1 = !!(fin1 >> x1);
+            }
+            else
+            {
+                fout << x2 << "\n";
+                has_x2 = !!(fin2 >> x2);
+            }
+        }
+
+        // 处理剩余数据
+        while (has_x1)
+        {
+            fout << x1 << "\n";
+            has_x1 = !!(fin1 >> x1);
+        }
+
+        while (has_x2)
+        {
+            fout << x2 << "\n";
+            has_x2 = !!(fin2 >> x2);
+        }
+    }
+
+    // 执行外部排序, 类的执行入口
+    void ExecuteExternalSort()
+    {
+        std::ifstream fin(data_file);
+        if (!fin)
+        {
+            std::cerr << "Error: Cannot open data file for reading" << std::endl;
+            return;
+        }
+
+        // 初始读取两个数据块
+        int chunk1_size = ReadNDataSortToFile(fin, CHUNK_SIZE, file1);
+        int chunk2_size = ReadNDataSortToFile(fin, CHUNK_SIZE, file2);
+
+        if (chunk1_size == 0)
+        {
+            std::cout << "No data to sort" << std::endl;
+            return;
+        }
+
+        // 多轮归并排序
+        while (chunk2_size > 0)
+        {
+            MergeFiles(file1, file2, mfile);
+
+            // 清理临时文件并重命名
+            std::remove(file1.c_str());
+            std::remove(file2.c_str());
+            std::rename(mfile.c_str(), file1.c_str());
+
+            // 读取下一块数据
+            chunk2_size = ReadNDataSortToFile(fin, CHUNK_SIZE, file2);
+        }
+
+        std::cout << "External sort completed successfully!" << std::endl;
+        std::cout << "Sorted data is in: " << file1 << std::endl;
+        
+        // 清理生成的数据文件
+        std::remove(data_file.c_str());
+    }
+};
+
+int main()
+{
+    ExternalSorter sorter;
+    
+    // 执行外部排序
+    sorter.ExecuteExternalSort();
+
+    return 0;
+}
